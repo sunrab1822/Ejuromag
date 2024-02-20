@@ -1,0 +1,181 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+#Logo{
+    width: 150px;
+}
+.vastag{
+    font-weight: bold;
+}
+
+// FooterStílusok kezdete
+
+#page-container {
+    position: relative;
+    min-height: 20vh;
+
+}
+#FooterBackgroundColor{
+    background-color: black;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    text-align: center; /* Footer height */
+}
+
+.SocialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+.SocialIcons a i{
+    font-size: 2.4em;
+    color: white;
+    opacity: 0.9;
+
+}
+
+.SocialIcons a:hover{
+    transition: 0.5s;
+}
+
+.SocialIcons a:hover i{
+    color: rgba(255, 255, 255, 0.548);
+    transition: 0.5s;
+}
+
+.FooterContainer{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    height: fit-content;
+}
+
+// FooterStílusok vége
+
+.h2Custom{
+    color: rgb(27, 14, 145);
+    font-weight: bold;
+
+}
+
+.h1Custom{
+    text-align: center;
+    font-size: 6.5vw;
+    color: green;
+    -webkit-text-stroke: 2px;
+    font-weight: bold;
+    padding: 25px;
+}
+
+// QrCodeStílusok Kezdete
+
+#QrCode{
+    width: 150px;
+}
+
+#QrCodeImage {
+    max-width: 100%;
+    max-height:100%;
+}
+
+#QrCodeText {
+    font-size: 70px;
+}
+
+#QrCodeContainer {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    height: fit-content;
+    background-color: rgb(249, 135, 49) ;
+
+}
+
+#QrCodeSecondaryImage{
+    width: 150px;
+}
+
+// QrCodeStílusok Vége
+
+.card{
+
+    align-self: center;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.fa-cart-shopping {
+
+    font-size: 30px;
+    transition: transform .7s ease-in-out;
+
+}
+.fa-palette{
+
+    font-size: 50px;
+
+}
+
+.fa-cart-shopping:hover {
+    transform: rotate(360deg);
+}
+
+// Kosar Stílusok Kezdete
+
+#RendelesFolyatatasaBtn{
+    width: 200px;
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #ffd754 0%, #fd9172 51%, #ffd651 100%);
+
+}
+
+#RendelesFolyatatasaBtn:hover, #TorolBtn:hover{
+  background-position: right center; /* change the direction of the change here */
+}
+
+#TorolBtn{
+    float: right;
+    border-radius: 5px;
+    width: 80px;
+    margin-top: 7px;
+    padding: 9px;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #ad3333 0%, #fd7272 51%, #ff0000 100%);
+}
+
+.termekContainer{
+    background-color: gray;
+    border-radius: 10px;
+    padding: 15px;
+}
+.PlusMinus{
+    font-size: large;
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+
+// Kosar Stílusok Vége
+
