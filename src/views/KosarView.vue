@@ -7,11 +7,12 @@
                 <div class="row termekContainer">
 
                     <div class="col-md-4 col-lg-4">
-                        <img src="" alt="Termék képe">
+                        <!-- <img src="" alt="Termék képe"> -->
+                        <p>{{ kosarKep }}</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4">
-                        <p>Termék neve</p>
+                        <p>{{ kosarNev }}</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4">
@@ -77,7 +78,31 @@
 
 <script setup>
 
-import {ref} from "vue";
+import {ref, onMounted, onBeforeMount, onBeforeUnmount} from "vue";
+import { useTermekStore } from "../store/store"
+
+const store = useTermekStore()
+let kosarNev = ref()
+let kosarKep = ref()
+const selectedTermekNeve = ref()
+const TermekNeve = ref()
+
+onMounted(async () => {
+
+})
+
+onBeforeMount(() => {
+    if (kosarNev !== null && kosarKep !== null) {
+        localStorage.setItem('KosarNeve', kosarNev.value);
+        localStorage.setItem('KosarKepe', kosarKep.value);
+    } else {
+        // A store-ból való betöltés
+        kosarNev.value = store.SelectedtermekNev;
+        kosarKep.value = store.SelectedtermekKep;
+    }
+});
+
+
 const ar = ref(100000)
 const egyAra = ar;
 const db = ref(0)

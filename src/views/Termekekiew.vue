@@ -8,7 +8,6 @@
                     </div>
 
                     <div class="col-md-4 col-lg-4">
-                        <p v-for="termek in MintaTermekek[0]"></p>
                         <p>{{MintaTermekek[0][1]}}</p>
                         <p>{{MintaTermekek[0][3]}}</p>
                         <p>{{MintaTermekek[0][4]}}</p>
@@ -23,6 +22,8 @@
 
                     <div class="col-md-4 col-lg-4">
                         <p>{{MintaTermekek[0][2]}}</p>
+                        <router-link to="/Kosar" @click="store.setTermekNev([MintaTermekek[0][0], MintaTermekek[0][1]])"><button>Vásárlás</button></router-link>
+                        
 
                     </div>
                 </div>
@@ -34,6 +35,9 @@
 
 <script setup>
     import { ref, onMounted, onBeforeMount} from 'vue'
+    import { useTermekStore } from "../store/store"
+
+    const store = useTermekStore()
 
     var pathname = window.location.pathname
     var MintaTermekek = [];

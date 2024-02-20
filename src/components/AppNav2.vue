@@ -38,5 +38,8 @@
   li{
     font-size: 15px;
   }
+  nav{
+    margin-bottom: 40px;
+  }
 
 </style>
