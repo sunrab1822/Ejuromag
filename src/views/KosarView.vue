@@ -22,7 +22,7 @@
                             <div class="col-md-6 col-lg-6"><p class="db"> {{ db }}</p></div>
                             <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel">+</button></div>
                         </div>
-                        <button id="TorolBtn">Töröl</button>
+                        <button @click="Torles" id="TorolBtn">Töröl</button>
 
                     </div>
 
@@ -82,25 +82,51 @@ import {ref, onMounted, onBeforeMount, onBeforeUnmount} from "vue";
 import { useTermekStore } from "../store/store"
 
 const store = useTermekStore()
+let adatok = []
+let adatok2 = ""
 let kosarNev = ref()
 let kosarKep = ref()
+let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
 
+const Torles = () => {
+
+    localStorage.clear();
+    kosarKep.value = kosarNev.value = ""
+}
+
 onMounted(async () => {
 
-})
 
+})
+    
 onBeforeMount(() => {
-    if (kosarNev !== null && kosarKep !== null) {
-        localStorage.setItem('KosarNeve', kosarNev.value);
-        localStorage.setItem('KosarKepe', kosarKep.value);
-    } else {
-        // A store-ból való betöltés
-        kosarNev.value = store.SelectedtermekNev;
-        kosarKep.value = store.SelectedtermekKep;
+
+    kosarNev.value = store.SelectedtermekNev
+    kosarKep.value = store.SelectedtermekKep
+    adatok.push(kosarNev.value, kosarKep.value)
+    adatok2 += localStorage.getItem("kosar")
+
+
+    if(kosarNev.value == ''){
+        kosarKep.value = localStorage.getItem("kep")
+        kosarNev.value = localStorage.getItem("nev")
+
     }
-});
+    else{
+        localStorage.setItem("kep", kosarKep.value)
+        localStorage.setItem("nev", kosarNev.value)
+        localStorage.setItem("kosar", adatok2)
+
+
+    }
+
+
+    console.log(localStorage.getItem("kosar"));
+    
+    
+})
 
 
 const ar = ref(100000)
