@@ -11,27 +11,27 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Főoldal',
       component: HomeView
     },
     {
       path: "/help/Rendeles_es_szallitas",
-      name: "Rendeles és szallitas",
+      name: "Rendelés és szállitás",
       component: HelpView
     },
     {
       path: '/help/Rolunk',
-      name: 'Rolunk',
+      name: 'Rólunk',
       component: RolunkView
     },
     {
       path: '/Kosar',
-      name: 'Kosar',
+      name: 'Kosár',
       component: KosarView
     },
     {
       path: '/Login',
-      name: 'Login',
+      name: 'Belépés',
       component: LoginAndRegisterView
     },
     {
@@ -51,6 +51,12 @@ const router = createRouter({
     }
     
   ]
+  
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.name + " - Ejuromag";
+  next();
+});
 
 export default router

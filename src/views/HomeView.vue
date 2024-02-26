@@ -49,7 +49,7 @@ const slides = [
         </div>
     </div>
 <vueper-slides autoplay>
-  <vueper-slide :style="'background-color:lightblue'" v-for="i in 5" :key="i">
+  <vueper-slide :style="'background-color:green'" v-for="i in 5" :key="i">
     <template #content>
       <div class="vueperslide__content-wrapper" style="flex-direction: row">
         <p>asd</p>
@@ -61,52 +61,5 @@ const slides = [
 
 <style scoped>
 
-
-.button{
-  display: inline-block;
-  position: relative;
-  margin: 100px 100px;
-  transform: rotate(270deg);
-  margin-top: 20px;
-  padding-top: 10px;
-  width: 120px;
-  height: 50px;
-  background-color: brown;
-  text-align: center;
-  color: white;
-  line-height: 50px;
-  transition: 0.5s ease;
-
-
-  background-size: 0px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.font{
-    transform: rotate(180deg);
-    vertical-align:text-bottom;
-    margin: -10px;
-    font-size: 16px;
-    font-weight: bold;
-}
-.margin-transition:hover{
-  height: 260px;
-  width: 200px;
-  background-size: 150px;
-
-}
-
-.Laptop{
-    background-image: url('/laptop.png');
-}
-.Konzol{
-    background-image: url('/game-console.png');
-
-}
-.Tablet{
-    background-image: url('/tablet.png');
-
-}
 
 </style>

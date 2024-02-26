@@ -95,11 +95,14 @@
 <script setup>
     import { ref, onMounted, onBeforeMount} from 'vue'
     import { useTermekStore } from "../store/store"
+    import termekService from "../services/termekService"
 
     const store = useTermekStore()
 
     var pathname = window.location.pathname
-    var MintaTermekek = [];
+    var MintaTermekek = ref();
+
+  console.log(MintaTermekek.value);
     var MintaLaptop = ["Laptop képe" ,"Laptop neve", "Laptop ar", "Laptop Gyártó", "Laptop Memória Tipus", "Laptop Memoria Méret", "Laptop Memória Sebesség",
                         "Laptop Processzor", "Laptop Integrált Videókártya (Igen vagy nem)", "Laptop Merevlemez Kapacitás",
                         "Laptop Operációs Rendszer" ]
@@ -107,32 +110,32 @@
                         "Tablet Processzor", "Tablet Kapacitás", "Tablet Operációs Rendszer", "Tablet Tömeg"]
     var MintaKonzol = ["Konzol képe","Konzol neve", "Konzol ar", "Konzol Gyártó" , "Konzol Processzor Sebesség","Konzol Processzor", "Konzol Kapacitás", "Konzol Tömeg"]
                     
-    onBeforeMount(() => {
-        MintaTermekek = [];
-        console.log(MintaTermekek);
-        switch (pathname){
-            case '/laptopok':
-                console.log("laptopok");
-                MintaTermekek.push(MintaLaptop)
-                console.log(MintaTermekek);
+    // onBeforeMount(() => {
+    //     MintaTermekek = [];
+    //     console.log(MintaTermekek);
+    //     switch (pathname){
+    //         case '/laptopok':
+    //             console.log("laptopok");
+    //             MintaTermekek.push(MintaLaptop)
+    //             console.log(MintaTermekek);
 
-                break;
-            case '/konzolok':
-                console.log("konzolok");
-                MintaTermekek.push(MintaKonzol)
-                console.log(MintaTermekek);
+    //             break;
+    //         case '/konzolok':
+    //             console.log("konzolok");
+    //             MintaTermekek.push(MintaKonzol)
+    //             console.log(MintaTermekek);
 
-                break;
-            case '/tabletek':
-                console.log("tabletek");
-                MintaTermekek.push(MintaTablet)
-                console.log(MintaTermekek);
+    //             break;
+    //         case '/tabletek':
+    //             console.log("tabletek");
+    //             MintaTermekek.push(MintaTablet)
+    //             console.log(MintaTermekek);
 
-                break;
-            default:
-                break;
-        }
-    })
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // })
     
     const Kuldes = () => {
         const adat = MintaTermekek[0][0]

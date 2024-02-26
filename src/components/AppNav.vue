@@ -33,12 +33,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
+                    <div class="dropdown">
+                        <a class="nav-link fa-solid fa-user" href="/login"></a>
+                        <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button> -->
+                        <!-- <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Saját adatok</a></li>
+                            <li><a class="dropdown-item" href="#">Rendelések</a></li>
+                            <li><a class="dropdown-item" href="#">Kijelentkezés</a></li>
+                        </ul> -->
+                    </div>
+
                               <!-- <li class="nav-item dropdown">
                                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                       {{ Auth::user()->name }}
@@ -66,10 +72,16 @@
 
 <script setup>
 
-</script>
+import { ref } from "vue";
 
+</script>
+ 
 <style lang="scss" scoped>
 
+.fa-user{
+    font-size: 28px;
+
+}
 
 a{
     text-decoration: none;

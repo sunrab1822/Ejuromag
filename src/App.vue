@@ -6,11 +6,17 @@ import AppNav2 from './components/AppNav2.vue';
 </script>
 
 <template>
-  <AppNav/>
-  <AppNav2/>
-  <RouterView />
-  <AppFooter/>
+  <div class="test">
+    <AppNav/>
+    <AppNav2/>
+    <RouterView />
+    <AppFooter/>
+  </div>
+
 </template>
 
 <style scoped>
+.test{
+  background-color: gray  ;
+}
 </style>
