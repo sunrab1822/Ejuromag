@@ -11,6 +11,7 @@ import 'bootstrap'
 import './assets/scss/style.scss'
 import './assets/scss/footerStyle.scss'
 import './assets/scss/homeStyle.scss'
+import 'primeflex/primeflex.css'
 
 const app = createApp(App)
 

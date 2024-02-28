@@ -1,4 +1,5 @@
 <template>
+
 <form action="" >
     <div v-if="LoginOrRegister==true" class="container">
         <div class="row">
@@ -82,13 +83,26 @@
 
                 <div>
                     <p>Jelszó: </p>
-                    <input placeholder="jelszó" required="required" v-model="jelszo" class="inputs" type="password">
-
+                    <Password class="Password" v-model="jelszo" toggleMask >
+                        <template #header>
+                            <h6>Válasz jelszót</h6>
+                        </template>
+                        <template #footer>
+                            <Divider />
+                            <p class="mt-2">Ajánlások</p>
+                            <ul class="pl-2 ml-2 mt-0">
+                                <li>Minimum 1 kisbetü</li>
+                                <li>Minimum 1 nagybetü</li>
+                                <li>Minimum 1 szám</li>
+                                <li>Minimum 8 karakter</li>
+                            </ul>
+                        </template>
+                    </Password>
                 </div>
 
                 <div>
                     <p>Jelszó újra: </p>
-                    <Input placeholder="jelszó Újra" required="required" id="jelszoRepeat" label="Password Repeat" v-model="jelszoRepeat" type="password" />
+                    <input placeholder="jelszó Újra" required="required" id="jelszoRepeat" label="Password Repeat" v-model="jelszoRepeat" type="password" />
                 </div>
 
             </div>
@@ -108,6 +122,8 @@
 </template>
 
 <script setup>
+    import Password from 'primevue/password';
+
     import { computed, ref } from 'vue';    
     const LoginOrRegister = ref(true)
     const vezeteknev = ref()
@@ -171,7 +187,7 @@ button{
     width: 150px;
 }
 
-input { 
+input, .Password{ 
     width: 200px; 
     height: 30px; 
     margin-top: 15px; 
@@ -181,6 +197,13 @@ input {
     border-radius: 10px;
 
 } 
+
+.Password{
+    height: 40px;
+}
+.p-inputtext{
+    width: 50px;
+}
 
 p{
     width: 180px; 
