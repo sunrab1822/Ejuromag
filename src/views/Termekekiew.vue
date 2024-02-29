@@ -110,32 +110,32 @@
                         "Tablet Processzor", "Tablet Kapacitás", "Tablet Operációs Rendszer", "Tablet Tömeg"]
     var MintaKonzol = ["Konzol képe","Konzol neve", "Konzol ar", "Konzol Gyártó" , "Konzol Processzor Sebesség","Konzol Processzor", "Konzol Kapacitás", "Konzol Tömeg"]
                     
-    // onBeforeMount(() => {
-    //     MintaTermekek = [];
-    //     console.log(MintaTermekek);
-    //     switch (pathname){
-    //         case '/laptopok':
-    //             console.log("laptopok");
-    //             MintaTermekek.push(MintaLaptop)
-    //             console.log(MintaTermekek);
+    onBeforeMount(() => {
+        MintaTermekek = [];
+        console.log(MintaTermekek);
+        switch (pathname){
+            case '/laptopok':
+                console.log("laptopok");
+                MintaTermekek.push(MintaLaptop)
+                console.log(MintaTermekek);
 
-    //             break;
-    //         case '/konzolok':
-    //             console.log("konzolok");
-    //             MintaTermekek.push(MintaKonzol)
-    //             console.log(MintaTermekek);
+                break;
+            case '/konzolok':
+                console.log("konzolok");
+                MintaTermekek.push(MintaKonzol)
+                console.log(MintaTermekek);
 
-    //             break;
-    //         case '/tabletek':
-    //             console.log("tabletek");
-    //             MintaTermekek.push(MintaTablet)
-    //             console.log(MintaTermekek);
+                break;
+            case '/tabletek':
+                console.log("tabletek");
+                MintaTermekek.push(MintaTablet)
+                console.log(MintaTermekek);
 
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // })
+                break;
+            default:
+                break;
+        }
+    })
     
     const Kuldes = () => {
         const adat = MintaTermekek[0][0]

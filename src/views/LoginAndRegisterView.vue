@@ -15,7 +15,8 @@
                
                 <div>
                     <p>Jelszó: </p>
-                    <input  class="inputs" type="password" placeholder="Jelszó" v-model="password">
+                    <Password id="jelszoRepeat" placeholder="Jelszó" required="required" class="Password" v-model="password" toggleMask></Password>
+
                 </div>
                 
 
@@ -40,17 +41,17 @@
             <div class="col-md-4 col-lg-4 Adatok button-85">
                 <div >
                     <p>Vezetéknév: </p>
-                    <input placeholder="Fity" required="required" v-model="vezeteknev" class="inputs" type="text" name="" id="">
+                    <input placeholder="Fity" required="required" v-model="vezeteknev" class="inputs" type="text" name="" id="Vezeteknev">
                 </div>
 
                 <div>                
                     <p>Keresztnév: </p>
-                    <input placeholder="Matyi" required="required" v-model="keresztnev" class="inputs" type="text" name="" id="">
+                    <input placeholder="Matyi" required="required" v-model="keresztnev" class="inputs" type="text" name="" id="Keresztnev">
                 </div>
 
                 <div>
                     <p>Irányítószám: </p>
-                    <input placeholder="1234" required="required" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4">
+                    <input placeholder="1234" required="required" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4" id="Iranyitoszam">
 </div>
                 <div>      
 
@@ -82,8 +83,8 @@
                 </div>
 
                 <div>
-                    <p>Jelszó: </p>
-                    <Password class="Password" v-model="jelszo" toggleMask >
+                    <p class="JelszoSzoveg">Jelszó: </p>
+                    <Password class="Password" placeholder="Jelszó" v-model="jelszo" toggleMask >
                         <template #header>
                             <h6>Válasz jelszót</h6>
                         </template>
@@ -101,8 +102,8 @@
                 </div>
 
                 <div>
-                    <p>Jelszó újra: </p>
-                    <input placeholder="jelszó Újra" required="required" id="jelszoRepeat" label="Password Repeat" v-model="jelszoRepeat" type="password" />
+                    <p class="JelszoSzoveg">Jelszó újra: </p>
+                    <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required" class="Password" v-model="jelszoRepeat" toggleMask></Password>
                 </div>
 
             </div>
@@ -149,6 +150,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+.JelszoSzoveg{
+    width: 100px;
+}
 
 .ButtonDiv{
     width: 600px;
@@ -200,9 +205,7 @@ input, .Password{
 
 .Password{
     height: 40px;
-}
-.p-inputtext{
-    width: 50px;
+    width: 280px;
 }
 
 p{
