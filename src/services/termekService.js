@@ -1,16 +1,23 @@
 import axios from "axios";
 
 export default {
-    getAllTermek(){
-        return axios.get('http://bgs.jedlik.eu/ejuromag/')
+    async getTermek(id){
+        return axios.get('http://127.0.0.1:8000/api/product/'+id)
             .then(resp => {
-                // console.log(resp.data);
                 return resp.data;
             })
             .catch(err => {
                 console.log(err);
             })
 
+    },
+    async UserRegister(datas){ 
+        const resp = await axios.post('http://127.0.0.1:8000/api/register', datas)
+        return resp.data
+    },
+    async UserLogin(datas){ 
+        const resp = await axios.post('http://127.0.0.1:8000/api/login', datas)
+        return resp.data
     },
     // getAllAuthor()
     // {

@@ -1,21 +1,20 @@
 <template>
 
-<form action="" >
-    <div v-if="LoginOrRegister==true" class="container">
+    <div v-if="Sites==1" class="container">
         <div class="row">
             
             <h1 class="LoginMain">Belépés</h1>
 
             <div class="Adatok col-md-7 col-lg-7 button-85">
                 <div>
-                    <p>Felhasználónév/Email:</p>
+                    <p>Email:</p>
                     
-                    <input class="inputs" type="text" placeholder="Felhasználónév/Email: " v-model="username">
+                    <input class="inputs" type="text" placeholder="Email: " v-model="LoginEmail">
                 </div>
                
                 <div>
                     <p>Jelszó: </p>
-                    <Password id="jelszoRepeat" placeholder="Jelszó" required="required" class="Password" v-model="password" toggleMask></Password>
+                    <input type="password" id="jelszoRepeat" placeholder="Jelszó" required="required" v-model="LoginPassword"></input>
 
                 </div>
                 
@@ -24,67 +23,96 @@
             </div>
             <div class="col-md-5 col-lg-5">
                 <div class="ButtonDiv">
-                    <button class="button-85">Belépés</button>
-                    <button class="button-85">Elfelejtett Jelszó</button>
-                    <button class="button-85" @click="LoginOrRegister=false">Regisztráció</button>
+                    <button class="button-85" :disabled="Loading ? disabled : ''" @click="Login">Belépés</button>
+                    <button class="button-85" @click="Sites=3" >Elfelejtett Jelszó</button>
+                    <button class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
             </div>
+
+            <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ hiba }}</strong>
+                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                </div>
 
 
         </div>
     </div>
 
-    <div v-if="LoginOrRegister==false" class="container">
+    <div v-if="Sites==3">
+        <div class="row">
+            <h1 class="LoginMain">Elfelejtett jelszó</h1>
+            <div class="Adatok col-md-7 col-lg-7 button-85">
+                <div>
+                    <p>Email cím:</p>
+                    
+                    <input class="inputs" type="text" placeholder="Email " v-model="ResetEmail">
+                </div>
+               
+                <div>
+                    <p>Email cím ismét: </p>
+                    <input class="inputs" type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
+
+                </div>
+
+            </div>
+            <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ hiba }}</strong>
+                    <button type="button" @click="hiba=''" class="btn-close"></button>
+            </div>
+            <div>
+                <button class="button-85">Kűldés</button>
+                <button class="button-85" @click="Sites=1">Mégse</button>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="Sites==2" class="container">
         <div class="row">
             <h1 class="LoginMain">Regisztráció</h1>
 
             <div class="col-md-4 col-lg-4 Adatok button-85">
                 <div >
                     <p>Vezetéknév: </p>
-                    <input placeholder="Fity" required="required" v-model="vezeteknev" class="inputs" type="text" name="" id="Vezeteknev">
+                    <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text" name="" id="Vezeteknev">
                 </div>
 
                 <div>                
                     <p>Keresztnév: </p>
-                    <input placeholder="Matyi" required="required" v-model="keresztnev" class="inputs" type="text" name="" id="Keresztnev">
+                    <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs" type="text" name="" id="Keresztnev">
                 </div>
 
                 <div>
                     <p>Irányítószám: </p>
-                    <input placeholder="1234" required="required" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4" id="Iranyitoszam">
+                    <input placeholder="1234" required="required" v-model="RegisterPostalCode" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4" id="Iranyitoszam">
 </div>
                 <div>      
 
                     <p>Város: </p>
-                    <input placeholder="Nyúl" required="required" v-model="varos" class="inputs" type="text" name="" id="">
+                    <input placeholder="Nyúl" required="required" v-model="RegisterCity" class="inputs" type="text" name="" id="">
                 </div>
 
                 <div>
                     <p>Utca, házszám: </p>
-                    <input placeholder="Iskola utca 7" required="required" v-model="utcaHazszam" class="inputs" type="text" name="" id="">
+                    <input placeholder="Iskola utca 7" required="required" v-model="RegisterStreet" class="inputs" type="text" name="" id="">
                 </div>
 
                 <div>
                     <p>Telefonszám: </p>
-                    <input pattern="\d*" placeholder="06123456789" required="required" v-model="telefonszam" class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
+                    <input pattern="\d*" placeholder="06123456789" required="required" v-model="RegisterPhoneNumber" class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
                 </div>
 
             </div>
 
             <div class="col-md-4 col-lg-4 Adatok button-85">
-                <div>
-                    <p>Felhasználónév: </p>
-                    <input required="required" v-model="felhasznalonev" class="inputs" type="text" placeholder="Felhasználónév">
-                </div>
 
                 <div>
                     <p>Email: </p>
-                    <input required="required" v-model="email" placeholder="Email" type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                    <input required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                 </div>
 
                 <div>
                     <p class="JelszoSzoveg">Jelszó: </p>
-                    <Password class="Password" placeholder="Jelszó" v-model="jelszo" toggleMask >
+                    <Password class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask >
                         <template #header>
                             <h6>Válasz jelszót</h6>
                         </template>
@@ -103,50 +131,107 @@
 
                 <div>
                     <p class="JelszoSzoveg">Jelszó újra: </p>
-                    <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required" class="Password" v-model="jelszoRepeat" toggleMask></Password>
+                    <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required" v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
                 </div>
 
             </div>
 
             <div class="col-md-4 col-lg-4 Adatok button-85">
                 <div >
-                    <button class="RegisterBtn" type="submit">Regisztráció</button>
+                    <button class="RegisterBtn" @click="Register">Regisztráció</button>
                 </div>
                 <div>
-                    <button class="MegseBtn" @click="LoginOrRegister=true">Mégse</button>
+                    <button class="MegseBtn" @click="Sites=1">Mégse</button>
 
                 </div>
             </div>
         </div>
     </div>
-</form>
+
 </template>
 
 <script setup>
-    import Password from 'primevue/password';
 
-    import { computed, ref } from 'vue';    
-    const LoginOrRegister = ref(true)
-    const vezeteknev = ref()
-    const keresztnev = ref()
-    let iranyitoszam = ref(0)
-    const varos = ref()
-    const utcaHazszam = ref()
-    const felhasznalonev = ref()
-    const jelszo = ref()
-    const jelszoRepeat = ref()
-    const email = ref()
-    const telefonszam = ref()
+    import termekService from "../services/termekService"
+
+    import Password from 'primevue/password';
+    import { RouterLink, useRouter  } from "vue-router";
+    import { computed, ref } from 'vue';  
+    const router = useRouter()    
+
+    let hiba = ref()
+    let Sites = ref(1)
+
+    const RegisterLastName = ref()
+    const RegisterFirstName = ref()
+    const RegisterPostalCode = ref(0)
+    const RegisterCity = ref()
+    const RegisterStreet = ref()
+    const RegisterPassword = ref()
+    const RegisterPasswordAgain = ref()
+    const RegisterEmail = ref()
+    const RegisterPhoneNumber = ref()
     
-    const username = ref()
-    const password = ref()
+    const LoginEmail = ref()
+    const LoginPassword = ref()
+
+    const ResetEmail = ref()
+    const ResetEmailAgain = ref()
+
+    let Loading = ref(true)
 
     // const hasPasswordMismatch = computed(() => {
     //     return jelszo.value == jelszoRepeat.value
     // })
 
+    const Register = async() => {
+        const akt_register = {
+        name: RegisterLastName.value + RegisterFirstName.value,
+        email: RegisterEmail.value,
+        password: RegisterPassword.value,
+        password_confirmation: RegisterPasswordAgain.value
+    }
 
-    console.log(iranyitoszam.value.toString().length);
+    console.log(typeof(akt_register.name));
+    console.log(akt_register.email);
+    console.log(akt_register.password);
+    console.log(akt_register.password_confirmation);
+
+    if(akt_register.name !== NaN && akt_register.email !== undefined && akt_register.password !== undefined && akt_register.password_confirmation !== undefined)
+    {
+        try {
+            const res = await termekService.UserRegister(akt_register)
+            Sites.value = 1
+            LoginEmail.value = akt_register.email
+            alert("Sikeresen regisztráltál.")
+
+            }   
+        catch (error) {
+        console.log(error.message);
+
+        }}
+    }
+
+
+
+
+    const Login = async() => {
+        Loading.value = false
+        const akt_login = {
+        email: LoginEmail.value,
+        password: LoginPassword.value,
+    }
+
+    try {
+        const res = await termekService.UserLogin(akt_login)
+        alert("Sikeresen Belépés.")
+        router.push({ name: "Profil" })
+    } catch (error) {
+        hiba.value = error;       
+        Loading.value = true
+        console.log(error.message);
+    }
+    }
 </script>
 
 <style lang="scss" scoped>

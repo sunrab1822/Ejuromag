@@ -5,6 +5,7 @@ import RolunkView from '../views/RolunkView.vue'
 import LoginAndRegisterView from "../views/LoginAndRegisterView.vue"
 import KosarView from "../views/KosarView.vue"
 import Termekekiew from "../views/Termekekiew.vue"
+import ProfileView from "../views/ProfileView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/Login',
       name: 'Belépés',
       component: LoginAndRegisterView
+    },
+    {
+      path: '/Profil',
+      name: 'Profil',
+      component: ProfileView
     },
     {
       path: '/laptopok',

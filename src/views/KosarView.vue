@@ -8,7 +8,7 @@
 
                     <div class="col-md-4 col-lg-4">
                         <!-- <img src="" alt="Termék képe"> -->
-                        <p>{{ kosarKep }}</p>
+                        <p>asd</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4">
@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="col-md-4 col-lg-4">
-                        <p class="text-center Ar">{{ ar }}<span> Ft</span></p>
+                        <p class="text-center Ar">{{ kosarAr }}<span> Ft</span></p>
                         <div class="row">
                             <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Csokkent">-</button></div>
                             <div class="col-md-6 col-lg-6"><p class="db"> {{ db }}</p></div>
@@ -85,7 +85,7 @@ const store = useTermekStore()
 let adatok = []
 let adatok2 = ""
 let kosarNev = ref()
-let kosarKep = ref()
+let kosarAr = ref()
 let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
@@ -93,54 +93,55 @@ const TermekNeve = ref()
 const Torles = () => {
 
     localStorage.clear();
-    kosarKep.value = kosarNev.value = ""
+    kosarAr.value = kosarNev.value = ""
 }
 
 onMounted(async () => {
 
-
+    egyAra = kosarAr.value
 })
     
 onBeforeMount(() => {
 
     kosarNev.value = store.SelectedtermekNev
-    kosarKep.value = store.SelectedtermekKep
-    adatok.push(kosarNev.value, kosarKep.value)
-    adatok2 += localStorage.getItem("kosar")
+    kosarAr.value = store.SelectedtermekAr
+    adatok.value = store.kosar
+    if(adatok.value == "")
+    {
+        console.log(adatok);
 
-
+    }
     if(kosarNev.value == ''){
-        kosarKep.value = localStorage.getItem("kep")
+        kosarAr.value = localStorage.getItem("ar")
         kosarNev.value = localStorage.getItem("nev")
+        adatok.value = JSON.parse(localStorage.getItem("kosar"))
 
     }
     else{
-        localStorage.setItem("kep", kosarKep.value)
+        localStorage.setItem("ar", kosarAr.value)
         localStorage.setItem("nev", kosarNev.value)
-        localStorage.setItem("kosar", adatok2)
+        localStorage.setKosar()
 
-
-    }
-
-
-    console.log(localStorage.getItem("kosar"));
-    
+    } 
     
 })
 
-
-const ar = ref(100000)
-const egyAra = ar;
-const db = ref(0)
+let egyAra;
+let db = ref(1)
 const Novel = () => {
-    db.value++
-    ar.value += ar.value
+        db.value++
+        kosarAr.value += egyAra
+
 }
 const Csokkent = () => {
-    if(db.value > 0)
+    if(db.value > 1)
     {
         db.value--
-        ar.value--
+        kosarAr.value -= egyAra
+    }
+    if(db.value == 0)
+    {
+        db.value = 1
     }
 }
 

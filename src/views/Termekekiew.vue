@@ -55,30 +55,30 @@
             </div>
 
             <div class="col-md-9 col-lg-9 kartyak">
-                <div v-for="i in 5" class="card">
+                <div v-for="termek in MintaTermekek" class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 col-lg-4">
-                                <p>{{MintaTermekek[0][0]}}</p>
+                                <p>{{termek.name}}</p>
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <p>{{MintaTermekek[0][1]}}</p>
-                                <p>{{MintaTermekek[0][3]}}</p>
-                                <p>{{MintaTermekek[0][4]}}</p>
-                                <p>{{MintaTermekek[0][5]}}</p>
-                                <p>{{MintaTermekek[0][6]}}</p>
-                                <p>{{MintaTermekek[0][7]}}</p>
-                                <p>{{MintaTermekek[0][8]}}</p>
-                                <p>{{MintaTermekek[0][9]}}</p>
-                                <p>{{MintaTermekek[0][10]}}</p>
+                                <p>{{termek.description}}</p>
+                                <!-- <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p>
+                                <p>{{termek}}</p> -->
 
 
                             </div>
 
                             <div class="col-md-4 col-lg-4">
-                                <p>{{MintaTermekek[0][2]}}</p>
-                                <router-link to="/Kosar" @click="Kuldes"><button>Vásárlás</button></router-link>
+                                <p>{{termek.price}} Ft</p>
+                                <router-link to="/Kosar" @click="store.setTermekNev(termek.name, termek.price);"><button>Vásárlás</button></router-link>
                                 
 
                             </div>
@@ -102,45 +102,44 @@
     var pathname = window.location.pathname
     var MintaTermekek = ref();
 
-  console.log(MintaTermekek.value);
-    var MintaLaptop = ["Laptop képe" ,"Laptop neve", "Laptop ar", "Laptop Gyártó", "Laptop Memória Tipus", "Laptop Memoria Méret", "Laptop Memória Sebesség",
-                        "Laptop Processzor", "Laptop Integrált Videókártya (Igen vagy nem)", "Laptop Merevlemez Kapacitás",
-                        "Laptop Operációs Rendszer" ]
-    var MintaTablet = ["Tablet képe" ,"Tablet neve", "Tablet ar", "Tablet Gyártó" , "Tablet Képernyő átló", "Tablet Memoria Méret", "Tablet Processzor Sebesség",
-                        "Tablet Processzor", "Tablet Kapacitás", "Tablet Operációs Rendszer", "Tablet Tömeg"]
-    var MintaKonzol = ["Konzol képe","Konzol neve", "Konzol ar", "Konzol Gyártó" , "Konzol Processzor Sebesség","Konzol Processzor", "Konzol Kapacitás", "Konzol Tömeg"]
-                    
-    onBeforeMount(() => {
-        MintaTermekek = [];
-        console.log(MintaTermekek);
-        switch (pathname){
+    switch (pathname){
             case '/laptopok':
                 console.log("laptopok");
-                MintaTermekek.push(MintaLaptop)
+                termekService.getTermek(1)
+                .then(resp => {
+                    MintaTermekek.value = resp[0].product;
+                    console.log(resp[0].product);
+                });
                 console.log(MintaTermekek);
 
                 break;
             case '/konzolok':
                 console.log("konzolok");
-                MintaTermekek.push(MintaKonzol)
-                console.log(MintaTermekek);
+                termekService.getTermek(3)
+                .then(resp => {
+                    MintaTermekek.value = resp[0].product;
+                    console.log(resp[0].product);
+                });
 
                 break;
             case '/tabletek':
                 console.log("tabletek");
-                MintaTermekek.push(MintaTablet)
-                console.log(MintaTermekek);
+                termekService.getTermek(2)
+                .then(resp => {
+                    MintaTermekek.value = resp[0].product;
+                    console.log(resp[0].product);
+                });
 
                 break;
             default:
                 break;
         }
-    })
+
     
     const Kuldes = () => {
-        const adat = MintaTermekek[0][0]
-        const adat2 = MintaTermekek[0][1]
-        store.setTermekNev(adat, adat2)
+        const adat = MintaTermekek.value
+        console.log(termek.id);
+        // store.setTermekNev(adat, adat2)
     }
 </script>
 

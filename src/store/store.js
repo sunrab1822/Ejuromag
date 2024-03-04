@@ -4,12 +4,17 @@ export const useTermekStore = defineStore({
     id: 'termek',
     state: () => ({
         SelectedtermekNev: "",
-        SelectedtermekKep: ""
+        SelectedtermekKep: "",
+        kosar: ""
     }),
     actions: {
         setTermekNev(adat, adat2) {
             this.SelectedtermekNev = adat,
-            this.SelectedtermekKep = adat2
+            this.SelectedtermekAr = adat2
+        },
+        setKosar(termekek)
+        {
+            this.kosar = termekek
         }
     }
 })

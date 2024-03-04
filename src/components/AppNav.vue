@@ -31,7 +31,7 @@
                     </div>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a id="Kosar" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <div class="dropdown">
                         <a class="nav-link fa-solid fa-user" href="/login"></a>

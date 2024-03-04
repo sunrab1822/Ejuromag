@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <h1 class="h1 h1Custom">Rendelés és szállítás</h1>
-        <h2 class="h2 h2Custom">FIZETÉSI MÓDOK: </h2>
+        <h2 id="FizetesiModok" class="h2 h2Custom">FIZETÉSI MÓDOK: </h2>
         <ol>
             <li>Utánvét</li>
             <p>Az áru ellenértékét a csomag kézbesítésekor kell megfizetni a futárnál. Ezzel a fizetési móddal a shop teljes kínálatának ellenértéke fizethető. A futárnál az utánvét összegét csak készpénzzel lehet fizetni, bankkártyával nem.</p>
@@ -17,7 +17,7 @@
             <p>Abban az esetben, ha olyan terméket próbál bankkártyával kifizetni, mely a termék adatlapja szerint jelenleg nincs raktáron (központi vagy külső raktár), a bankkártyás fizetés nem lehetséges, mivel rendelés teljesítése elhúzódhat. Bankkártyás, online fizetéssel csak a 100 EUR összértékhatárt meg nem haladó megrendelések egyenlíthetők ki. Előrendeléseket nem lehet bankkártyával fizetni, mivel azon termékek ára és megjelenési dátuma a kiadó jogaiból fakadóan bármikor változhat, amiért cégünk felelősséget nem tud vállalni.</p>
         </ol>
 
-        <h2 class="h2 h2Custom">SZÁLLÍTÁSI MÓDOK:</h2>
+        <h2 id="SzallitasiModok" class="h2 h2Custom">SZÁLLÍTÁSI MÓDOK:</h2>
         <ol>
             <li>Futár által való kézbesítés</li>
             <p>A termékek kiszállítását logisztikai partnereink és munkatársaink a hét minden munkanapján végzik. A csomag kézbesítése általában a raktárunkról való kiszállítást követő munkanapon történik. A futárszolgálat és mi is emailben értesítjük a csomag érkezéséről a címzettet, rendszerint a kézbesítést megelőző munkanapon. A kézbesítés napján a futárszolgálat a kézbesítés előtt SMS - t küld, míg a futár telefonon is értesíti a címzettet a csomag érkezéséről.Az utánvétes csomag <span class="vastag">szállítás díja 1.590,- Ft</span> / csomag CardPay online kártyás fizetés esetén a <span class="vastag"> szállítás díja 1.190,- Ft</span> / csomag</p>

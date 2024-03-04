@@ -25,9 +25,9 @@
                     <a href="/help/Rolunk">Rólunk</a>
                 </div>
                     <div class=" SocialIcons">
-                        <a href="" ><i class="fa-brands fa-facebook"></i></a>
-                        <a href="" ><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="" ><i class="fa-brands fa-instagram"></i></a>
+                        <a href="" ><i id="fa-facebook" class="fa-brands fa-facebook"></i></a>
+                        <a href="" ><i id="fa-tiktok" class="fa-brands fa-tiktok"></i></a>
+                        <a href="" ><i id="fa-instagram" class="fa-brands fa-instagram"></i></a>
                     </div>
             </div>
             
