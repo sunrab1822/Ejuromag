@@ -6,6 +6,9 @@ import LoginAndRegisterView from "../views/LoginAndRegisterView.vue"
 import KosarView from "../views/KosarView.vue"
 import Termekekiew from "../views/Termekekiew.vue"
 import ProfileView from "../views/ProfileView.vue"
+import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
+import ProfileAdressesViewVue from '@/views/ProfileViews/ProfileAdressesView.vue'
+import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,7 +39,7 @@ const router = createRouter({
       component: LoginAndRegisterView
     },
     {
-      path: '/Profil',
+      path: '/profil',
       name: 'Profil',
       component: ProfileView
     },
@@ -54,6 +57,21 @@ const router = createRouter({
       path: '/konzolok',
       name: 'Konzolok',
       component: Termekekiew
+    },
+    {
+      path: '/profil/sajat_adatok',
+      name: 'Profil_Sajat_Adatok',
+      component: ProfileDatasViewVue
+    },
+    {
+      path: '/profil/cim',
+      name: 'Profil_Cim',
+      component: ProfileAdressesViewVue
+    },
+    {
+      path: '/profil/rendelesek',
+      name: 'Profil_Rendelesek',
+      component: ProfileOrdersViewVue
     }
     
   ]

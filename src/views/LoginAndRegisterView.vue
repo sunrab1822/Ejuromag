@@ -6,27 +6,27 @@
             <h1 class="LoginMain">Belépés</h1>
 
             <div class="Adatok col-md-7 col-lg-7 button-85">
-                <div>
+                <div class="margintop">
                     <p>Email:</p>
                     
-                    <input class="inputs" type="text" placeholder="Email: " v-model="LoginEmail">
+                    <input type="text" placeholder="Email: " v-model="LoginEmail">
                 </div>
                
-                <div>
+                <div class="margintop">
                     <p>Jelszó: </p>
                     <input type="password" id="jelszoRepeat" placeholder="Jelszó" required="required" v-model="LoginPassword"></input>
 
                 </div>
                 
 
-
             </div>
-            <div class="col-md-5 col-lg-5">
-                <div class="ButtonDiv">
+            <div class="ButtonDiv">
                     <button class="button-85" :disabled="Loading ? disabled : ''" @click="Login">Belépés</button>
                     <button class="button-85" @click="Sites=3" >Elfelejtett Jelszó</button>
                     <button class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
+            <div class="col-md-5 col-lg-5">
+
             </div>
 
             <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
@@ -40,30 +40,37 @@
 
     <div v-if="Sites==3">
         <div class="row">
-            <h1 class="LoginMain">Elfelejtett jelszó</h1>
-            <div class="Adatok col-md-7 col-lg-7 button-85">
-                <div>
-                    <p>Email cím:</p>
-                    
-                    <input class="inputs" type="text" placeholder="Email " v-model="ResetEmail">
-                </div>
-               
-                <div>
-                    <p>Email cím ismét: </p>
-                    <input class="inputs" type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
+            <div class="col-md-4 col-lg-4"></div>
+
+            <div class="col-md-4 col-lg-4" style="text-align: center;">
+                    <h1 class="LoginMain">Elfelejtett jelszó</h1>
+                <div class="Adatok button-85">
+                    <div class="row"> 
+                        <p style="vertical-align: bottom;">Email cím:</p>
+                        
+                        <input type="text" placeholder="Email " v-model="ResetEmail">
+                    </div>
+                
+                    <div class="row">
+                        <p>Email cím ismét: </p>
+                        <input type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
+
+                    </div>
 
                 </div>
+                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>{{ hiba }}</strong>
+                        <button type="button" @click="hiba=''" class="btn-close"></button>
+                </div>
+                <div>
+                    <button class="button-85">Kűldés</button>
+                    <button class="button-85" @click="Sites=1">Mégse</button>
+                </div>
+            </div>
+                </div>
 
-            </div>
-            <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ hiba }}</strong>
-                    <button type="button" @click="hiba=''" class="btn-close"></button>
-            </div>
-            <div>
-                <button class="button-85">Kűldés</button>
-                <button class="button-85" @click="Sites=1">Mégse</button>
-            </div>
-        </div>
+            <div class="col-md-4 col-lg-4"></div>
+            
     </div>
 
     <div v-if="Sites==2" class="container">
@@ -71,32 +78,32 @@
             <h1 class="LoginMain">Regisztráció</h1>
 
             <div class="col-md-4 col-lg-4 Adatok button-85">
-                <div >
+                <div class="margintop">
                     <p>Vezetéknév: </p>
                     <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text" name="" id="Vezeteknev">
                 </div>
 
-                <div>                
+                <div class="margintop">                
                     <p>Keresztnév: </p>
                     <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs" type="text" name="" id="Keresztnev">
                 </div>
 
-                <div>
+                <div class="margintop">
                     <p>Irányítószám: </p>
                     <input placeholder="1234" required="required" v-model="RegisterPostalCode" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4" id="Iranyitoszam">
 </div>
-                <div>      
+                <div class="margintop">      
 
                     <p>Város: </p>
                     <input placeholder="Nyúl" required="required" v-model="RegisterCity" class="inputs" type="text" name="" id="">
                 </div>
 
-                <div>
+                <div class="margintop">
                     <p>Utca, házszám: </p>
                     <input placeholder="Iskola utca 7" required="required" v-model="RegisterStreet" class="inputs" type="text" name="" id="">
                 </div>
 
-                <div>
+                <div class="margintop">
                     <p>Telefonszám: </p>
                     <input pattern="\d*" placeholder="06123456789" required="required" v-model="RegisterPhoneNumber" class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
                 </div>
@@ -105,12 +112,12 @@
 
             <div class="col-md-4 col-lg-4 Adatok button-85">
 
-                <div>
+                <div class="margintop">
                     <p>Email: </p>
                     <input required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                 </div>
 
-                <div>
+                <div class="margintop">
                     <p class="JelszoSzoveg">Jelszó: </p>
                     <Password class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask >
                         <template #header>
@@ -129,7 +136,7 @@
                     </Password>
                 </div>
 
-                <div>
+                <div class="margintop">
                     <p class="JelszoSzoveg">Jelszó újra: </p>
                     <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required" v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
                 </div>
@@ -186,7 +193,7 @@
 
     const Register = async() => {
         const akt_register = {
-        name: RegisterLastName.value + RegisterFirstName.value,
+        name: RegisterLastName.value + " " + RegisterFirstName.value,
         email: RegisterEmail.value,
         password: RegisterPassword.value,
         password_confirmation: RegisterPasswordAgain.value
@@ -277,10 +284,13 @@ button{
     width: 150px;
 }
 
+.margintop{
+    margin: 10px 0px 10px 0px;
+}
+
 input, .Password{ 
     width: 200px; 
     height: 30px; 
-    margin-top: 15px; 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
@@ -311,73 +321,6 @@ p, input{
 
 .row{
     text-align: left;
-}
-
-.button-85 {
-  padding: 0.3em 1.5em;
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  background: #111;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-85:before {
-  content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  content: "";
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing-button-85 20s linear infinite;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-}
-
-@keyframes glowing-button-85 {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.button-85:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #222;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
 }
 
 </style>
