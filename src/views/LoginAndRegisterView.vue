@@ -90,7 +90,8 @@
 
                 <div class="margintop">
                     <p>Irányítószám: </p>
-                    <input placeholder="1234" required="required" v-model="RegisterPostalCode" type="text" pattern="\d*" title="Csak számot tartalmazhat az irányítószám" minlength="4" maxlength="4" id="Iranyitoszam">
+                    <InputOtp v-model="RegisterPostalCode" integerOnly />
+
 </div>
                 <div class="margintop">      
 
@@ -160,6 +161,7 @@
 <script setup>
 
     import termekService from "../services/termekService"
+    import InputOtp from 'primevue/inputotp';
 
     import Password from 'primevue/password';
     import { RouterLink, useRouter  } from "vue-router";
