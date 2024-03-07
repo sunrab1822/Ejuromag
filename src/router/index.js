@@ -9,6 +9,7 @@ import ProfileView from "../views/ProfileView.vue"
 import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
 import ProfileAdressesViewVue from '@/views/ProfileViews/ProfileAdressesView.vue'
 import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
+import RendelesVeglegesiteseViewVue from'@/views/RendelesVeglegesiteseView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,12 @@ const router = createRouter({
       name: 'Kosár',
       component: KosarView
     },
+    {
+      path: '/rendeles_osszegzes',
+      name: 'Rendelés összegzése',
+      component: RendelesVeglegesiteseViewVue
+    }
+    ,
     {
       path: '/Login',
       name: 'Belépés',

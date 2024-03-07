@@ -5,6 +5,7 @@ export const useTermekStore = defineStore({
     state: () => ({
         SelectedtermekNev: "",
         SelectedtermekKep: "",
+        SelectedtermekAr: 0,
         kosar: ""
     }),
     actions: {

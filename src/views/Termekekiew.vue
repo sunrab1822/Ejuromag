@@ -107,8 +107,8 @@
                 console.log("laptopok");
                 termekService.getTermek(1)
                 .then(resp => {
-                    MintaTermekek.value = resp[0].product;
-                    console.log(resp[0].product);
+                    MintaTermekek.value = resp.data[0].product;
+                    console.log(resp.data[0].product);
                 });
                 console.log(MintaTermekek);
 
@@ -117,8 +117,8 @@
                 console.log("konzolok");
                 termekService.getTermek(3)
                 .then(resp => {
-                    MintaTermekek.value = resp[0].product;
-                    console.log(resp[0].product);
+                    MintaTermekek.value = resp.data[0].product;
+                    console.log(resp.data[0].product);
                 });
 
                 break;
@@ -126,8 +126,8 @@
                 console.log("tabletek");
                 termekService.getTermek(2)
                 .then(resp => {
-                    MintaTermekek.value = resp[0].product;
-                    console.log(resp[0].product);
+                    MintaTermekek.value = resp.data[0].product;
+                    console.log(resp.data[0].product);
                 });
 
                 break;

@@ -56,7 +56,7 @@
                             </div>
                             <br>
                             
-                            <button class="cursor-pointer button-85" @click="SzamlazasiSzerkesztes=false">Mentés</button>
+                            <button class="cursor-pointer button-33" @click="SzamlazasiSzerkesztes=false">Mentés</button>
                         </fieldset>
                     </form> 
         </div>

@@ -6,9 +6,9 @@
 
     <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11" style="margin-top: 50px;">
         <div class="row">
-            <div style="margin: auto;" class="col-md-5 col-lg-5 button-85">
+            <div id="article" style="margin: auto;" class="col-md-5 col-lg-5 button-85">
                 <div v-if="SzamlazasiSzerkesztes==false">
-                    <h3 >Számlázási cím<a class="cursor-pointer" @click="SzamlazasiSzerkesztes=true">Szerkesztés</a></h3>
+                    <h3 >Számlázási cím<a class="cursor-pointer" @click="SzamlazasiSzerkesztes=true ">Szerkesztés</a></h3>
                     <p>Név</p>
                     <p>Irányítószám, Város</p>
                     <p>Utca, házszám</p>
@@ -52,8 +52,8 @@
                             </div>
                             <br>
                             
-                            <input class="cursor-pointer" @click="SzamlazasiSzerkesztes=false" value="Mentés">
-                            <input class="cursor-pointer" @click="SzamlazasiSzerkesztes=false" value="Mégse">
+                            <input class="cursor-pointer button-33" @click="SzamlazasiSzerkesztes=false" value="Mentés">
+                            <input class="cursor-pointer button-33-red" @click="SzamlazasiSzerkesztes=false" value="Mégse">
                         </fieldset>
                     </form> 
                 </div>
@@ -105,8 +105,8 @@
                             </div>
                             <br>
                             
-                            <input class="cursor-pointer" @click="SzallitasiSzerkesztes=false" value="Mentés">
-                            <input class="cursor-pointer" @click="SzallitasiSzerkesztes=false" value="Mégse">
+                            <input class="cursor-pointer button-33" @click="SzallitasiSzerkesztes=false" value="Mentés">
+                            <input class="cursor-pointer button-33-red" @click="SzallitasiSzerkesztes=false" value="Mégse">
 
                         </fieldset>
                     </form> 
@@ -125,6 +125,8 @@ import InputOtp from 'primevue/inputotp';
 
 import ProfileNavbar from '../../components/ProfileNavbar.vue';
 import { ref } from "vue";
+
+const article = document.getElementById("article");
 
 
 const SzamlazasiSzerkesztes = ref(false)
@@ -148,6 +150,8 @@ p{
 
     text-align: center;
 }
-
+#article{
+    transition:  max-height 0.7s linear;
+}
 
 </style>

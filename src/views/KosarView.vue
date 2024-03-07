@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-8 col-lg-8">
-                <div class="row termekContainer">
+                <div v-if="kosarNev != ''" class="row button-85">
 
                     <div class="col-md-4 col-lg-4">
                         <!-- <img src="" alt="Termék képe"> -->
@@ -43,7 +43,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-5 col-form-label text-md-end">Összeg:</label>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">asd</label>
+                                    <label for="" class="form-control">{{kosarAr}} ft</label>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-5 col-form-label text-md-end">Szállítási költség:</label>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">asd</label>
+                                    <label for="" class="form-control">1200 ft</label>
                                 </div>
                             </div>
 
@@ -60,12 +60,12 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-5 col-form-label text-md-end">Végösszeg:</label>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">asd</label>
+                                    <label for="" class="form-control">{{kosarAr + 1200}}</label>
                                 </div>
                             </div>
 
                             <div class="text-center">
-                                <button id="RendelesFolyatatasaBtn">Folytatás</button>
+                                <router-link to="/rendeles_osszegzes" id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
                         </form>
@@ -85,7 +85,7 @@ const store = useTermekStore()
 let adatok = []
 let adatok2 = ""
 let kosarNev = ref()
-let kosarAr = ref()
+let kosarAr = ref(0)
 let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
@@ -112,7 +112,7 @@ onBeforeMount(() => {
 
     }
     if(kosarNev.value == ''){
-        kosarAr.value = localStorage.getItem("ar")
+        kosarAr.value = parseInt(localStorage.getItem("ar"))
         kosarNev.value = localStorage.getItem("nev")
         adatok.value = JSON.parse(localStorage.getItem("kosar"))
 
@@ -120,7 +120,6 @@ onBeforeMount(() => {
     else{
         localStorage.setItem("ar", kosarAr.value)
         localStorage.setItem("nev", kosarNev.value)
-        localStorage.setKosar()
 
     } 
     
@@ -148,7 +147,6 @@ const Csokkent = () => {
 </script>
 
 <style lang="scss" scoped>
-
 
 
 .db{
