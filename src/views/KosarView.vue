@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-8 col-lg-8">
-                <div v-if="kosarNev != ''" class="row button-85">
+                <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85">
 
                     <div class="col-md-4 col-lg-4">
                         <!-- <img src="" alt="Termék képe"> -->
@@ -12,17 +12,17 @@
                     </div>
 
                     <div class="col-md-4 col-lg-4">
-                        <p>{{ kosarNev }}</p>
+                        <p>{{ termek[0] }}</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4">
-                        <p class="text-center Ar">{{ kosarAr }}<span> Ft</span></p>
+                        <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
                         <div class="row">
                             <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Csokkent">-</button></div>
-                            <div class="col-md-6 col-lg-6"><p class="db"> {{ db }}</p></div>
-                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel">+</button></div>
+                            <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }}</p></div>
+                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel(termek[2])">+</button></div>
                         </div>
-                        <button @click="Torles" id="TorolBtn">Töröl</button>
+                        <button @click="localStorage.removeItem('data')" id="TorolBtn">Töröl</button>
 
                     </div>
 
@@ -99,37 +99,41 @@ const Torles = () => {
 onMounted(async () => {
 
     egyAra = kosarAr.value
+
 })
     
 onBeforeMount(() => {
 
-    kosarNev.value = store.SelectedtermekNev
-    kosarAr.value = store.SelectedtermekAr
-    adatok.value = store.kosar
-    if(adatok.value == "")
+    adatok = JSON.parse(localStorage.getItem('data'))
+    kosarNev.value = JSON.parse(localStorage.getItem('data'))
+    kosarAr.value = store.kosar[1]
+    for(let termek in adatok) 
     {
-        console.log(adatok);
-
+        kosarAr.value += adatok[termek]
+        console.log(kosarAr.value += adatok);
     }
-    if(kosarNev.value == ''){
-        kosarAr.value = parseInt(localStorage.getItem("ar"))
-        kosarNev.value = localStorage.getItem("nev")
-        adatok.value = JSON.parse(localStorage.getItem("kosar"))
+    console.log(kosarAr.value);
+    console.log(JSON.parse(localStorage.getItem('data')));
+    console.log(adatok);
 
-    }
-    else{
-        localStorage.setItem("ar", kosarAr.value)
-        localStorage.setItem("nev", kosarNev.value)
+    // if(kosarNev.value == ''){
+    //     kosarAr.value = parseInt(localStorage.getItem("ar"))
+    //     kosarNev.value = localStorage.getItem("nev")
 
-    } 
+    // }
+    // else{
+    //     localStorage.setItem("ar", kosarAr.value)
+    //     localStorage.setItem("nev", kosarNev.value)
+
+    // } 
     
 })
 
 let egyAra;
 let db = ref(1)
-const Novel = () => {
-        db.value++
-        kosarAr.value += egyAra
+function Novel(darab){
+        this.darab++
+        
 
 }
 const Csokkent = () => {
@@ -157,5 +161,9 @@ const Csokkent = () => {
 .Ar{
     font-size: 32px;
     font-weight: bold;
+}
+
+.button-85  {
+    margin-bottom: 20px;
 }
 </style>

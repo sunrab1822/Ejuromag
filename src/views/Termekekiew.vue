@@ -78,7 +78,7 @@
 
                             <div class="col-md-4 col-lg-4">
                                 <p>{{termek.price}} Ft</p>
-                                <router-link to="/Kosar" @click="store.setTermekNev(termek.name, termek.price);"><button>Vásárlás</button></router-link>
+                                <router-link to="/Kosar" @click="Save(termek.name, termek.price)"><button>Vásárlás</button></router-link>
                                 
 
                             </div>
@@ -98,6 +98,22 @@
     import termekService from "../services/termekService"
 
     const store = useTermekStore()
+
+    function Save (data1, data2){
+        console.log(data1);
+        console.log(data2);
+        var new_data = [data1, data2, 1];
+
+        if(localStorage.getItem('data') == null)
+        {
+            localStorage.setItem('data', '[]');
+        }
+
+        var old_data = JSON.parse(localStorage.getItem("data"))
+        old_data.push(new_data);
+
+        localStorage.setItem('data', JSON.stringify(old_data))
+    }
 
     var pathname = window.location.pathname
     var MintaTermekek = ref();
@@ -139,7 +155,8 @@
     const Kuldes = () => {
         const adat = MintaTermekek.value
         console.log(termek.id);
-        // store.setTermekNev(adat, adat2)
+
+        // store.setKosar(adat, adat2)
     }
 </script>
 

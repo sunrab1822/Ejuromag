@@ -6,16 +6,20 @@ export const useTermekStore = defineStore({
         SelectedtermekNev: "",
         SelectedtermekKep: "",
         SelectedtermekAr: 0,
-        kosar: ""
+        kosar: [],
+        termekek: []
     }),
     actions: {
         setTermekNev(adat, adat2) {
             this.SelectedtermekNev = adat,
             this.SelectedtermekAr = adat2
         },
-        setKosar(termekek)
+        setKosar(adat, adat2)
         {
-            this.kosar = termekek
+            this.termekek = [adat, adat2]
+            this.kosar = this.termekek
+            console.log(this.kosar);
+            console.log(this.termekek[0]);
         }
     }
 })
