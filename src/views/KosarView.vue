@@ -18,12 +18,12 @@
                     <div class="col-md-4 col-lg-4">
                         <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
                         <div class="row">
-                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Csokkent">-</button></div>
+                            <div class="col-md-3 col-lg-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
                             <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }}</p></div>
-                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel(termek[2])">+</button></div>
-                        </div>
-                        <button @click="localStorage.removeItem('data')" id="TorolBtn">Töröl</button>
-
+                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
+                        <!-- console.log(termek[1] += egyAra[1]) -->
+                        <button @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
+                    </div>
                     </div>
 
                 </div>
@@ -83,6 +83,7 @@ import { useTermekStore } from "../store/store"
 
 const store = useTermekStore()
 let adatok = []
+const egyAra = []
 let adatok2 = ""
 let kosarNev = ref()
 let kosarAr = ref(0)
@@ -90,31 +91,80 @@ let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
 
-const Torles = () => {
-
-    localStorage.clear();
-    kosarAr.value = kosarNev.value = ""
+function Novel(asd){
+    const priceindex = 1
+    for(let termek in adatok)
+    {
+        if(adatok[termek][0] == asd)
+        {
+            const index = termek;
+            const egy = JSON.parse(localStorage.getItem('EgyArak'))
+            const newValue = parseInt(adatok[index][priceindex]) + egy[index];
+            adatok[index][priceindex] = newValue;
+            adatok[index][2]++
+            localStorage.setItem('data', JSON.stringify(adatok));
+            location.reload();
+        }
+    }
 }
 
-onMounted(async () => {
+function Csokkent(asd){
+    const priceindex = 1
+    
+    for(let termek in adatok)
+    {
+        if(adatok[termek][0] == asd)
+        {
+            const index = termek;
+            const egy = JSON.parse(localStorage.getItem('EgyArak'))
+            const newValue = parseInt(adatok[index][priceindex]) - egy[index];
+            adatok[index][priceindex] = newValue;
+            adatok[index][2]--
+            localStorage.setItem('data', JSON.stringify(adatok));
+            location.reload();
+        }
+    }
+}
 
-    egyAra = kosarAr.value
+function Torles(asd){
 
-})
+    for(let termek in adatok)
+    {
+        if(adatok[termek][0] == asd)
+        {
+            const index = termek;
+            adatok.splice(index, 1);
+            localStorage.setItem('data', JSON.stringify(adatok));
+            location.reload();
+        }
+    }
+}
     
 onBeforeMount(() => {
 
     adatok = JSON.parse(localStorage.getItem('data'))
-    kosarNev.value = JSON.parse(localStorage.getItem('data'))
-    kosarAr.value = store.kosar[1]
     for(let termek in adatok) 
     {
-        kosarAr.value += adatok[termek]
-        console.log(kosarAr.value += adatok);
+        kosarAr.value += adatok[termek][1]
+        console.log(szamlalo);
+        egyAra.push(adatok[termek][1])
+        console.log(egyAra);
+
     }
+
+    if(localStorage.getItem('EgyArak') == null)
+        {
+            localStorage.setItem('EgyArak', '[]');
+            localStorage.setItem('EgyArak', JSON.stringify(egyAra));
+            console.log(JSON.parse(localStorage.getItem('EgyArak')));
+        }
+
     console.log(kosarAr.value);
     console.log(JSON.parse(localStorage.getItem('data')));
-    console.log(adatok);
+
+    const egy = JSON.parse(localStorage.getItem('EgyArak'))
+    console.log(egy[0]);
+    // console.log(adatok[0][1]);
 
     // if(kosarNev.value == ''){
     //     kosarAr.value = parseInt(localStorage.getItem("ar"))
@@ -129,24 +179,7 @@ onBeforeMount(() => {
     
 })
 
-let egyAra;
 let db = ref(1)
-function Novel(darab){
-        this.darab++
-        
-
-}
-const Csokkent = () => {
-    if(db.value > 1)
-    {
-        db.value--
-        kosarAr.value -= egyAra
-    }
-    if(db.value == 0)
-    {
-        db.value = 1
-    }
-}
 
 </script>
 

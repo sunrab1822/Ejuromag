@@ -1,20 +1,20 @@
 <template>
 
     <div v-if="Sites==1" class="container">
-        <div class="row">
+        <div class="row" style="width: 40rem; margin: auto;">
             
             <h1 class="LoginMain">Belépés</h1>
 
-            <div class="Adatok col-md-7 col-lg-7 button-85">
+            <div  class=" button-85">
                 <div class="margintop">
                     <p>Email:</p>
                     
-                    <input type="text" placeholder="Email: " v-model="LoginEmail">
+                    <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                 </div>
                
                 <div class="margintop">
                     <p>Jelszó: </p>
-                    <input type="password" id="jelszoRepeat" placeholder="Jelszó" required="required" v-model="LoginPassword"></input>
+                    <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó" required="required" v-model="LoginPassword"></input>
 
                 </div>
                 
@@ -24,10 +24,7 @@
                     <button class="button-85" :disabled="Loading ? disabled : ''" @click="Login">Belépés</button>
                     <button class="button-85" @click="Sites=3" >Elfelejtett Jelszó</button>
                     <button class="button-85" @click="Sites=2">Regisztráció</button>
-                </div>
-            <div class="col-md-5 col-lg-5">
-
-            </div>
+            </div>  
 
             <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                     <strong>{{ hiba }}</strong>
@@ -40,13 +37,12 @@
 
     <div v-if="Sites==3">
         <div class="row">
-            <div class="col-md-4 col-lg-4"></div>
 
-            <div class="col-md-4 col-lg-4" style="text-align: center;">
-                    <h1 class="LoginMain">Elfelejtett jelszó</h1>
-                <div class="Adatok button-85">
+            <div class="ResetPasswordDiv">
+                <h1 class="LoginMain">Elfelejtett jelszó</h1>
+                <div class=" button-85" >
                     <div class="row"> 
-                        <p style="vertical-align: bottom;">Email cím:</p>
+                        <p >Email cím:</p>
                         
                         <input type="text" placeholder="Email " v-model="ResetEmail">
                     </div>
@@ -69,7 +65,6 @@
             </div>
                 </div>
 
-            <div class="col-md-4 col-lg-4"></div>
             
     </div>
 
@@ -244,6 +239,16 @@
 </script>
 
 <style lang="scss" scoped>
+.ResetPasswordDiv{
+    width: 35rem; 
+    margin: auto;
+    text-align: center;
+}
+
+.button-85{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
 
 .JelszoSzoveg{
     width: 100px;

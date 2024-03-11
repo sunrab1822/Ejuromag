@@ -14,7 +14,7 @@
         <div class="col-md-4 col-lg-4">
             <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
             <div class="row">
-                <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }}</p></div>
+                <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }} db</p></div>
             </div>
 
         </div>
@@ -91,17 +91,29 @@
 
             <StepperPanel header="Szállítási lehetőségek">
                 <template #content="{ prevCallback, nextCallback }">
-                    <div class="flex flex-column h-16rem">
+                    <div class="flex flex-column h-19rem">
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
 
                         <Button>
-                            <img style="width: 200px;" src="../../public/Posta_szallitas.png" alt="" srcset="">
+                            <figure>
+                                <img style="width: 200px;" src="../../public/Posta_szallitas.png" alt="" srcset="">
+                                <br><br>
+                                <figcaption>1.590,- Ft</figcaption>
+                            </figure>
                         </Button>
                         <Button>
-                            <img style="width: 200px;" src="../../public/PostaPont_szallitas.jpg" alt="" srcset="">
+                            <figure>
+                                <img style="width: 200px;" src="../../public/PostaPont_szallitas.jpg" alt="" srcset="">
+                                <br><br>
+                                <figcaption>990 Ft</figcaption>
+                            </figure>
                         </Button>
                         <Button>
-                            <img style="width: 200px;" src="../../public/Packeta_szallitas.png" alt="" srcset="">
+                            <figure>
+                                <img style="width: 200px;" src="../../public/Packeta_szallitas.png" alt="" srcset="">
+                                <br><br>
+                                <figcaption>1 480 Ft</figcaption>
+                            </figure>
                         </Button>
 
                         </div>
@@ -161,6 +173,13 @@ for(let termek in adatok)
 <style scoped>
 Button{
     margin: 1rem;
+}
+
+.button-85{
+    margin: auto;
+    width: 70%;
+    margin-top: 1rem;   
+    margin-bottom: 1rem;
 }
 
 </style>

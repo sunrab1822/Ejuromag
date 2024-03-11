@@ -110,9 +110,21 @@
         }
 
         var old_data = JSON.parse(localStorage.getItem("data"))
+        for(let termek in old_data)
+        {
+            if(old_data[termek][0] == data1)
+            {
+                const index = termek;
+                const newValue = parseInt(old_data[index][2]) + 1;
+                old_data[index][2] = newValue;
+                localStorage.setItem('data', JSON.stringify(old_data))
+                return
+            }
+        }
         old_data.push(new_data);
-
         localStorage.setItem('data', JSON.stringify(old_data))
+        console.log(old_data);
+
     }
 
     var pathname = window.location.pathname
