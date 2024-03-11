@@ -83,7 +83,7 @@ import { useTermekStore } from "../store/store"
 
 const store = useTermekStore()
 let adatok = []
-const egyAra = []
+let egyAra = []
 let adatok2 = ""
 let kosarNev = ref()
 let kosarAr = ref(0)
@@ -163,7 +163,6 @@ onBeforeMount(() => {
     console.log(JSON.parse(localStorage.getItem('data')));
 
     const egy = JSON.parse(localStorage.getItem('EgyArak'))
-    console.log(egy[0]);
     // console.log(adatok[0][1]);
 
     // if(kosarNev.value == ''){
