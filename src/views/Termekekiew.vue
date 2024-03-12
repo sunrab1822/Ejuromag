@@ -55,7 +55,7 @@
             </div>
 
             <div class="col-md-9 col-lg-9 kartyak">
-                <div v-for="termek in MintaTermekek" class="card">
+                <div v-for="termek in MintaTermekek" class="card button-85">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 col-lg-4">
@@ -78,7 +78,7 @@
 
                             <div class="col-md-4 col-lg-4">
                                 <p>{{termek.price}} Ft</p>
-                                <router-link to="/Kosar" @click="Save(termek.name, termek.price)"><button>Vásárlás</button></router-link>
+                                <router-link to="/Kosar" @click="Save(termek.name, termek.price)"><button class="button-33">Vásárlás</button></router-link>
                                 
 
                             </div>
@@ -98,6 +98,10 @@
     import termekService from "../services/termekService"
 
     const store = useTermekStore()
+    let egyAra = []
+    let adatok = []
+    const egy = JSON.parse(localStorage.getItem('EgyArak'))
+
 
     function Save (data1, data2){
         console.log(data1);
@@ -115,8 +119,12 @@
             if(old_data[termek][0] == data1)
             {
                 const index = termek;
-                const newValue = parseInt(old_data[index][2]) + 1;
-                old_data[index][2] = newValue;
+                const newDb = parseInt(old_data[index][2]) + 1;
+                const newValue = parseInt(old_data[index][1]) + parseInt(egy[termek]);
+                old_data[index][2] = newDb;
+                old_data[index][1] = newValue
+                console.log(                old_data[index][2]);
+                console.log(                old_data[index][1]);
                 localStorage.setItem('data', JSON.stringify(old_data))
                 return
             }
@@ -124,6 +132,18 @@
         old_data.push(new_data);
         localStorage.setItem('data', JSON.stringify(old_data))
         console.log(old_data);
+
+        adatok = JSON.parse(localStorage.getItem('data'))
+        for(let termek in adatok) 
+        {
+            
+            egyAra.push(adatok[termek][1])
+            console.log(egyAra);
+
+        }
+        localStorage.setItem('EgyArak', '[]');
+        localStorage.setItem('EgyArak', JSON.stringify(egyAra));
+        console.log(JSON.parse(localStorage.getItem('EgyArak')));
 
     }
 
@@ -170,9 +190,18 @@
 
         // store.setKosar(adat, adat2)
     }
+
+
+
 </script>
 
 <style lang="scss" scoped>
+
+.button-85{
+    color: aliceblue;
+    margin: auto;
+    margin-top: 2rem;
+}
 
 li{
     list-style: none;

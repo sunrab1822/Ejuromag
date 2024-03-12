@@ -83,7 +83,6 @@ import { useTermekStore } from "../store/store"
 
 const store = useTermekStore()
 let adatok = []
-let egyAra = []
 let adatok2 = ""
 let kosarNev = ref()
 let kosarAr = ref(0)
@@ -133,8 +132,11 @@ function Torles(asd){
         if(adatok[termek][0] == asd)
         {
             const index = termek;
+            const egy = JSON.parse(localStorage.getItem('EgyArak'))
+            egy.splice(index, 1)
             adatok.splice(index, 1);
             localStorage.setItem('data', JSON.stringify(adatok));
+            localStorage.setItem('EgyArak', JSON.stringify(egy));
             location.reload();
         }
     }
@@ -147,17 +149,10 @@ onBeforeMount(() => {
     {
         kosarAr.value += adatok[termek][1]
         console.log(szamlalo);
-        egyAra.push(adatok[termek][1])
-        console.log(egyAra);
 
     }
 
-    if(localStorage.getItem('EgyArak') == null)
-        {
-            localStorage.setItem('EgyArak', '[]');
-            localStorage.setItem('EgyArak', JSON.stringify(egyAra));
-            console.log(JSON.parse(localStorage.getItem('EgyArak')));
-        }
+
 
     console.log(kosarAr.value);
     console.log(JSON.parse(localStorage.getItem('data')));
