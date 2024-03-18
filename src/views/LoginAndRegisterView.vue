@@ -161,6 +161,10 @@
     import Password from 'primevue/password';
     import { RouterLink, useRouter  } from "vue-router";
     import { computed, ref } from 'vue';  
+    import { useUserStore } from "../store/store"
+
+    const store = useUserStore()
+
     const router = useRouter()    
 
     let hiba = ref()
@@ -224,21 +228,27 @@
         const akt_login = {
         email: LoginEmail.value,
         password: LoginPassword.value,
-    }
+        }
 
-    try {
-        const res = await termekService.UserLogin(akt_login)
-        alert("Sikeresen Belépés.")
-        router.push({ name: "Profil" })
-    } catch (error) {
-        hiba.value = error;       
-        Loading.value = true
-        console.log(error.message);
-    }
+        try {
+            const res = await termekService.UserLogin(akt_login)
+            store.setUser(res)
+            store.setLoggedIn(true)
+            router.push({ name: "Profil" })
+        } catch (error) {
+            hiba.value = error;       
+            Loading.value = true
+            console.log(error.message);
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+
+.alert{
+    height: 5rem;
+}
+
 .ResetPasswordDiv{
     width: 35rem; 
     margin: auto;

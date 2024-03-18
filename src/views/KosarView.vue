@@ -79,9 +79,7 @@
 <script setup>
 
 import {ref, onMounted, onBeforeMount, onBeforeUnmount} from "vue";
-import { useTermekStore } from "../store/store"
 
-const store = useTermekStore()
 let adatok = []
 let adatok2 = ""
 let kosarNev = ref()

@@ -9,7 +9,7 @@
             <div id="article" style="margin: auto;" class="col-md-5 col-lg-5 button-85">
                 <div v-if="SzamlazasiSzerkesztes==false">
                     <h3 >Számlázási cím<a class="cursor-pointer" @click="SzamlazasiSzerkesztes=true ">Szerkesztés</a></h3>
-                    <p>Név</p>
+                    <p>Név:  {{ user.user.user.name }}</p>
                     <p>Irányítószám, Város</p>
                     <p>Utca, házszám</p>
                 </div>
@@ -19,15 +19,15 @@
 
                     <form>
                         <fieldset>
-                            <legend>Számlázási cím:</legend>
+                            <legend>Szállítási cím:</legend>
                             <div class="row">
                                 <p class="col-lg-3">Vezetéknév:</p>
-                                <input class="col-lg-6" placeholder="Vezetéknév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-6" required="required" v-model="UserLastName" type="text" name="" id="">
                             </div>
                             <br>
                             <div class="row">
                                 <p class="col-lg-3">Keresztnév:</p>
-                                <input class="col-lg-6" placeholder="Keresztnév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-6" required="required" v-model="UserFirstName" type="text" name="" id="">
                             </div>
                             <br>
                             <div class="row">
@@ -63,7 +63,7 @@
             <div style="margin: auto;" class="col-md-5 col-lg-5 button-85">
                 <div v-if="SzallitasiSzerkesztes==false">
                     <h3 >Szállítási cím<a class="cursor-pointer" @click="SzallitasiSzerkesztes=true">Szerkesztés</a></h3>
-                    <p>Név</p>
+                    <p>Név: {{ user.user.user.name }}</p>
                     <p>Irányítószám, Város</p>
                     <p>Utca, házszám</p>
                 </div>
@@ -75,12 +75,12 @@
                             <legend>Számlázási cím:</legend>
                             <div class="row">
                                 <p class="col-lg-3">Vezetéknév:</p>
-                                <input class="col-lg-6" placeholder="Vezetéknév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-6" required="required"  v-model="UserLastName" type="text" name="" id="">
                             </div>
                             <br>
                             <div class="row">
                                 <p class="col-lg-3">Keresztnév:</p>
-                                <input class="col-lg-6" placeholder="Keresztnév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-6" required="required"  v-model="UserFirstName" type="text" name="" id="">
                             </div>
                             <br>
                             <div class="row">
@@ -125,6 +125,22 @@ import InputOtp from 'primevue/inputotp';
 
 import ProfileNavbar from '../../components/ProfileNavbar.vue';
 import { ref } from "vue";
+import { useUserStore } from "../../store/store"
+import {onBeforeMount} from "vue"
+const user = ref()
+const store = useUserStore()
+
+const RegisterStreet = ref()
+const UserFirstName = ref()
+const UserLastName = ref()
+
+onBeforeMount(() => {
+    user.value = store.getUser
+    UserLastName.value = user.value.user.user.name
+    UserFirstName.value = user.value.user.user.name
+    console.log(user.value);
+})
+
 
 const article = document.getElementById("article");
 

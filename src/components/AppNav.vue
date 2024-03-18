@@ -34,7 +34,7 @@
                         <a id="Kosar" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <div class="dropdown">
-                        <a class="nav-link fa-solid fa-user" href="/login"></a>
+                        <a class="nav-link fa-solid fa-user" @click="Login"></a>
                         <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown button
                         </button> -->
@@ -73,6 +73,26 @@
 <script setup>
 
 import { ref } from "vue";
+import { useUserStore } from "../store/store"
+import { useRouter  } from "vue-router";
+
+
+const router = useRouter()    
+const store = useUserStore()
+
+
+const Login = () => {
+
+    if(store.getLoggedIn){
+        router.push({ name: "Profil" })
+    }
+    else{
+        router.push({ name: "Belépés" })
+
+    }
+
+}
+
 
 </script>
  

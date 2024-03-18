@@ -3,6 +3,8 @@ import 'primevue/resources/themes/aura-light-green/theme.css'
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
 
 import App from './App.vue'
 import router from './router'
@@ -15,7 +17,9 @@ import 'primeflex/primeflex.css'
 
 const app = createApp(App)
 
-app.use(createPinia())
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
 app.use(router)
 app.use(PrimeVue);
 

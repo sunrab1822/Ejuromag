@@ -94,10 +94,8 @@
 
 <script setup>
     import { ref, onMounted, onBeforeMount} from 'vue'
-    import { useTermekStore } from "../store/store"
     import termekService from "../services/termekService"
 
-    const store = useTermekStore()
     let egyAra = []
     let adatok = []
     const egy = JSON.parse(localStorage.getItem('EgyArak'))

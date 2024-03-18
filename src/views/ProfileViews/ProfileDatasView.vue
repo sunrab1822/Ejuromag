@@ -10,22 +10,22 @@
                             <legend>Fiók adatok:</legend>
                             <div class="row">
                                 <p class="col-lg-2">Vezetéknév:</p>
-                                <input class="col-lg-3" placeholder="Vezetéknév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-3" required="required" v-model="UserLastName"  type="text" name="" id="">
                                 <p class="col-lg-2">Keresztnév:</p>
-                                <input class="col-lg-3" placeholder="Keresztnév" required="required" v-model="RegisterStreet"  type="text" name="" id="">
+                                <input class="col-lg-3" required="required" v-model="UserFirstName"  type="text" name="" id="">
                             </div>
                             
                             <br>
                             <div class="row">
                                 <p class="col-lg-3">Email: </p>
-                                <input class="col-lg-6" placeholder="Nyúl" required="required" v-model="RegisterCity" type="text" name="" id="">
+                                <input class="col-lg-6" required="required" v-model="UserEmail" type="text" name="" id="">
                             </div>
                             
                             <br>
 
                             <div class="row">
                                 <p class="col-lg-3">Jelenlegi jelszó: </p>
-                                <Password :feedback="false" style="width: 280px;" toggleMask class="col-lg-6" type="password" id="jelszoRepeat" placeholder="Jelszó" required="required" v-model="LoginPassword"></Password>
+                                <Password :feedback="false" style="width: 280px;" toggleMask class="col-lg-6" type="password" id="jelszoRepeat" required="required" v-model="UserActualPassword"></Password>
 
                             </div>
 
@@ -33,7 +33,7 @@
 
                             <div class="row">
                                 <p class="JelszoSzoveg col-lg-3">Jelszó: </p>
-                                <Password class="Password col-lg-6" style="width: 280px;" placeholder="Jelszó" v-model="RegisterPassword" toggleMask >
+                                <Password class="Password col-lg-6" style="width: 280px;" v-model="UserNewPassword" toggleMask >
                                     <template #header>
                                         <h6>Válasz jelszót</h6>
                                     </template>
@@ -52,7 +52,7 @@
                             <br>
                             <div class="row">
                                 <p class="JelszoSzoveg col-lg-3">Jelszó újra: </p>
-                                <Password id="jelszoRepeat" style="width: 280px;" placeholder="jelszó Újra" required="required" v-model="RegisterPasswordAgain" class="Password col-lg-6" toggleMask></Password>
+                                <Password id="jelszoRepeat" style="width: 280px;" required="required" v-model="UserNewPasswordAgain" class="Password col-lg-6" toggleMask></Password>
                             </div>
                             <br>
                             
@@ -67,7 +67,28 @@
 <script setup>
 import ProfileNavbar from '../../components/ProfileNavbar.vue';
 import Password from 'primevue/password';
+import { ref } from "vue";
 
+import { useUserStore } from "../../store/store"
+import {onBeforeMount} from "vue"
+
+const store = useUserStore()
+const user = ref()
+const UserEmail = ref()
+const UserFirstName = ref()
+const UserLastName = ref()
+const UserActualPassword = ref()
+const UserNewPassword = ref()
+const UserNewPasswordAgain = ref()
+
+
+onBeforeMount(() => {
+    user.value = store.getUser
+    UserEmail.value = user.value.user.user.email
+    UserLastName.value = user.value.user.user.name
+    UserFirstName.value = user.value.user.user.name
+    console.log(user.value.user.user.email);
+})
 
 </script>
 

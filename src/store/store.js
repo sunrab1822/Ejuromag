@@ -1,25 +1,36 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia';
 
-export const useTermekStore = defineStore({
-    id: 'termek',
+export const useUserStore = defineStore('user', {
     state: () => ({
-        SelectedtermekNev: "",
-        SelectedtermekKep: "",
-        SelectedtermekAr: 0,
-        kosar: [],
-        termekek: []
+        user: null,
+        isLoggedIn: false
     }),
-    actions: {
-        setTermekNev(adat, adat2) {
-            this.SelectedtermekNev = adat,
-            this.SelectedtermekAr = adat2
+    persist: true,
+    getters: {
+        getUser() {
+            return this.user;
         },
-        setKosar(adat, adat2)
-        {
-            this.termekek = [adat, adat2]
-            this.kosar = this.termekek
-            console.log(this.kosar);
-            console.log(this.termekek[0]);
+        getLoggedIn() {
+            return this.isLoggedIn;
+        }
+    },
+    actions: {
+        setUser(user) {
+            this.user = user;
+        },
+        
+        setLoggedIn(state) {
+            this.isLoggedIn = state;
+        },
+        updateUserBalance(amount) {
+            if(this.user) {
+                this.user.balance = amount;
+            }
+        },
+        updateUserVaultBalance(amount) {
+            if(this.user) {
+                this.user.vault_balance = amount;
+            }
         }
     }
 })

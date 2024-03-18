@@ -40,7 +40,7 @@
                                     <li>
                                         <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-users mr-2"></i>
-                                            <span class="font-medium">Kijelentkezés</span>
+                                            <span @click="LogOut" class="font-medium">Kijelentkezés</span>
                                         </a>
                                     </li>
                                     <li>
@@ -70,7 +70,7 @@
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <div v-ripple class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <Avatar image="https://jedlik.eu/_next/image?url=https%3A%2F%2Fgyor-jedlik.cms.intezmeny.edir.hu%2Fuploads%2Fsoos_gabor_90c5eb0b76.jpg&w=128&q=75" shape="circle" size="large"/>
-                            <span class="font-bold">XY</span>
+                            <span class="font-bold">{{user.user.user.name}}</span>
                         </div>
                     </div>
                 </div>
@@ -87,6 +87,22 @@ import { ref } from "vue";
 import Sidebar from 'primevue/sidebar';
 import Button from 'primevue/button';
 import Avatar from 'primevue/avatar';
+
+import { useUserStore } from "../store/store"
+import {onBeforeMount} from "vue"
+import router from "@/router";
+const user = ref()
+const store = useUserStore()
+const LogOut = () => {
+    store.setLoggedIn(false);
+    store.setUser(null);
+    router.push({ name: "Főoldal" })
+}
+
+onBeforeMount(() => {
+    user.value = store.getUser
+    console.log(user.value);
+})
 
 
 const visible = ref(false);

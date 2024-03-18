@@ -148,9 +148,7 @@ import Button from 'primevue/button';
 
 import {ref,onBeforeMount} from 'vue'
 
-import { useTermekStore } from "../store/store"
 
-const store = useTermekStore()
 let adatok = []
 let kosarNev = ref()
 let kosarAr = ref(0)
