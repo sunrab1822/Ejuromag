@@ -87,21 +87,25 @@ import { ref } from "vue";
 import Sidebar from 'primevue/sidebar';
 import Button from 'primevue/button';
 import Avatar from 'primevue/avatar';
+import termekService from "../services/termekService"
 
 import { useUserStore } from "../store/store"
 import {onBeforeMount} from "vue"
 import router from "@/router";
+
 const user = ref()
 const store = useUserStore()
-const LogOut = () => {
+const LogOut = async() => {
+    const res = await termekService.UserLogOut(user.value.user.token);
     store.setLoggedIn(false);
     store.setUser(null);
+
     router.push({ name: "Főoldal" })
 }
 
 onBeforeMount(() => {
     user.value = store.getUser
-    console.log(user.value);
+    console.log(user.value.user.token);
 })
 
 

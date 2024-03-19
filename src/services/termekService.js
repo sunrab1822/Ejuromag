@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-    async getTermek(id){
-        return axios.get('http://127.0.0.1:8000/api/product/'+id)
+    async getProducts(id){
+        return axios.get('http://127.0.0.1:8000/api/products/'+id)
             .then(resp => {
                 return resp.data;
             })
@@ -17,6 +17,11 @@ export default {
     },
     async UserLogin(datas){ 
         const resp = await axios.post('http://127.0.0.1:8000/api/login', datas)
+        return resp.data
+    },
+    async UserLogOut(token){ 
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+        const resp = await axios.post('http://127.0.0.1:8000/api/logout')
         return resp.data
     },
     // getAllAuthor()

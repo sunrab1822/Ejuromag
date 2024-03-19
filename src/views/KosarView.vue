@@ -60,12 +60,12 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-5 col-form-label text-md-end">Végösszeg:</label>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">{{kosarAr + 1200}}</label>
+                                    <label for="" class="form-control">{{kosarAr + 1200}} Ft</label>
                                 </div>
                             </div>
 
-                            <div class="text-center">
-                                <router-link to="/rendeles_osszegzes" id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                            <div class="text-center" style="margin:2rem;">
+                                <router-link to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
                         </form>

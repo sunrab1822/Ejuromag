@@ -158,12 +158,13 @@ onBeforeMount(() => {
 
 adatok = JSON.parse(localStorage.getItem('data'))
 kosarNev.value = JSON.parse(localStorage.getItem('data'))
-kosarAr.value = store.kosar[1]
-for(let termek in adatok) 
-{
-    kosarAr.value += adatok[termek]
-    console.log(kosarAr.value += adatok);
-}})
+// kosarAr.value = store.kosar[1]
+// for(let termek in adatok) 
+// {
+//     kosarAr.value += adatok[termek]
+//     console.log(kosarAr.value += adatok);
+// }
+})
 
 </script>
 

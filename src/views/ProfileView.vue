@@ -1,8 +1,8 @@
 <template>
-    <div class="container" style="max-width: 95%;">
+    <div class="container width">
         <h1 class="h1Custom">Üdvözlünk: {{user.user.user.name}}</h1>
     </div>
-    <div class="row" style="max-width: 95%;">
+    <div class="row width">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <ProfileNavbar/>    
     </div>
@@ -38,5 +38,6 @@ const visible = ref(false);
 
 
 <style lang="scss" scoped>
+
 
 </style>

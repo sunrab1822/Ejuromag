@@ -21,26 +21,50 @@ const slides = [
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 " >
+            <div class="col-lg-2 col-md-2 " >
                 <a href="/laptopok">
-                    <div class="button margin-transition Laptop">
+                    <div class="button margin-transition laptopPng">
                         <p class="font">Laptopok</p>
                     </div>
                 </a>
             </div>
 
+            <div class="col-lg-2 col-md-2 " >
+                <a href="/gamer_szamitogepek">
+                    <div class="button margin-transition gamerpcPng">
+                        <p class="font">Gamer Számitógépek</p>
+                    </div>
+                </a>
+            </div>
 
-            <div class="col-lg-4 col-md-4 ">
+            <div class="col-lg-2 col-md-2 " >
+                <a href="/irodai_szamitogepek">
+                    <div class="button margin-transition officepcPng">
+                        <p class="font">Irodai Számítógépek</p>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-lg-2 col-md-2 ">
                 <a href="/konzolok">
-                    <div class="button margin-transition Konzol">
+                    <div class="button margin-transition consolePng">
                         <p class="font">Konzolok</p>
                     </div>
                 </a>
             </div>
 
-            <div class="col-lg-4 col-md-4 ">
+            <div class="col-lg-2 col-md-2 ">
+                <a href="/telefonok">
+                    <div class="button margin-transition phonePng">
+                        <p class="font">Telefonok</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-2 ">
                 <a href="/tabletek">
-                    <div class="button margin-transition Tablet">
+                    <div class="button margin-transition tabletPng">
                         <p class="font">Tabletek</p>
                     </div>
                 </a>

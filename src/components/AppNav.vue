@@ -6,7 +6,7 @@
             <a class="navbar-brand" href="/">
                 <img id="Logo" src="/EjuroMagLogo.png" alt="Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" >
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -35,33 +35,7 @@
                     </li>
                     <div class="dropdown">
                         <a class="nav-link fa-solid fa-user" @click="Login"></a>
-                        <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button> -->
-                        <!-- <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Saját adatok</a></li>
-                            <li><a class="dropdown-item" href="#">Rendelések</a></li>
-                            <li><a class="dropdown-item" href="#">Kijelentkezés</a></li>
-                        </ul> -->
                     </div>
-
-                              <!-- <li class="nav-item dropdown">
-                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                      {{ Auth::user()->name }}
-                                  </a>
-
-                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                      <a class="dropdown-item" href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                          {{ __('Logout') }}
-                                      </a>
-
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                          @csrf
-                                      </form>
-                                  </div>
-                              </li> -->
                 </ul>
             </div>
         </div>
@@ -105,6 +79,7 @@ const Login = () => {
 
 a{
     text-decoration: none;
+    cursor: pointer;
     color: rgb(0, 0, 0);
 }
 a:hover{

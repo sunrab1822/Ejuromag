@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import HelpView from '../views/RendelesEsSzallitasView.vue' 
-import RolunkView from '../views/RolunkView.vue'
+import OrderInfosView from '../views/OrderInfosView.vue' 
+import AboutUsView from '../views/AboutUsView.vue'
 import LoginAndRegisterView from "../views/LoginAndRegisterView.vue"
 import KosarView from "../views/KosarView.vue"
-import Termekekiew from "../views/Termekekiew.vue"
+import ProductsView from "../views/ProductsView.vue"
 import ProfileView from "../views/ProfileView.vue"
 import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
 import ProfileAdressesViewVue from '@/views/ProfileViews/ProfileAdressesView.vue'
 import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
-import RendelesVeglegesiteseViewVue from'@/views/RendelesVeglegesiteseView.vue'
+import OrderFinalizeView from'@/views/OrderFinalizeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,12 +22,12 @@ const router = createRouter({
     {
       path: "/help/Rendeles_es_szallitas",
       name: "Rendelés és szállitás",
-      component: HelpView
+      component: OrderInfosView
     },
     {
       path: '/help/Rolunk',
       name: 'Rólunk',
-      component: RolunkView
+      component: AboutUsView
     },
     {
       path: '/Kosar',
@@ -37,7 +37,7 @@ const router = createRouter({
     {
       path: '/rendeles_osszegzes',
       name: 'Rendelés összegzése',
-      component: RendelesVeglegesiteseViewVue
+      component: OrderFinalizeView
     }
     ,
     {
@@ -53,17 +53,32 @@ const router = createRouter({
     {
       path: '/laptopok',
       name: 'Laptopok',
-      component: Termekekiew
+      component: ProductsView
+    },
+    {
+      path: '/irodai_szamitogepek',
+      name: 'Irodai számítógépek',
+      component: ProductsView
+    },
+    {
+      path: '/gamer_szamitogepek',
+      name: 'Gamer számítógépek',
+      component: ProductsView
+    },
+    {
+      path: '/telefonok',
+      name: 'Telefonok',
+      component: ProductsView
     },
     {
       path: '/tabletek',
       name: 'Tabletek',
-      component: Termekekiew
+      component: ProductsView
     },
     {
       path: '/konzolok',
       name: 'Konzolok',
-      component: Termekekiew
+      component: ProductsView
     },
     {
       path: '/profil/sajat_adatok',
