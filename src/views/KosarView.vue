@@ -78,7 +78,7 @@
 
 <script setup>
 
-import {ref, onMounted, onBeforeMount, onBeforeUnmount} from "vue";
+import {ref, onBeforeMount} from "vue";
 
 let adatok = []
 let adatok2 = ""

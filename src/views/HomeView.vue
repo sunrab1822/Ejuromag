@@ -22,7 +22,7 @@ const slides = [
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-2 " >
-                <a href="/laptopok">
+                <a  href="/laptopok">
                     <div class="button margin-transition laptopPng">
                         <p class="font">Laptopok</p>
                     </div>
@@ -84,6 +84,7 @@ const slides = [
 </template>
 
 <style scoped>
+
 
 
 </style>

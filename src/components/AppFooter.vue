@@ -5,15 +5,14 @@
 
             <div id="QrCodeContainer">
                 <div id="QrCodeImage">
-                    <img id="QrCode" src='/QrCodePlaceholder.png' alt="QrKód" >
-
+                    <img id="QrCode" src='/QrCodePlaceholder.webp' alt="QrKód" >
                 </div>
                 <div id="QrCodeText">
                     <h3 class="text-center text-white">Töltsd le az EjuroMag appot</h3>
                     <h3 class="text-center text-white">Olvasd be a QR-kódot</h3>
                 </div>
                 <div>
-                    <img id="QrCodeSecondaryImage" src='/Phone02.png' alt="">
+                    <img id="QrCodeSecondaryImage" src='/Phone02.webp' alt="">
                 </div>
             </div>
             <div class="FooterContainer">
@@ -55,5 +54,11 @@
     }
     li{
         font-size: 15px;
+    }
+    img {
+        max-width: 90%;
+    }
+    i{
+        min-height: 3.5rem;
     }
 </style>

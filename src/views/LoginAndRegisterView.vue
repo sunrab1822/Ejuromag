@@ -159,8 +159,8 @@
     import InputOtp from 'primevue/inputotp';
 
     import Password from 'primevue/password';
-    import { RouterLink, useRouter  } from "vue-router";
-    import { computed, ref } from 'vue';  
+    import { useRouter  } from "vue-router";
+    import { ref } from 'vue';  
     import { useUserStore } from "../store/store"
 
     const store = useUserStore()

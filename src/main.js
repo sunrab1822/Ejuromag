@@ -4,6 +4,11 @@ import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+// import as component
+import Badge from 'primevue/badge';
+
+// import as directive
+import BadgeDirective from 'primevue/badgedirective';
 
 
 import App from './App.vue'
@@ -13,7 +18,8 @@ import 'bootstrap'
 import './assets/scss/style.scss'
 import './assets/scss/footerStyle.scss'
 import './assets/scss/homeStyle.scss'
-import 'primeflex/primeflex.css'
+
+
 
 const app = createApp(App)
 
@@ -22,6 +28,7 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
 app.use(PrimeVue);
+app.directive('badge', BadgeDirective);
 
 
 app.mount('#app')

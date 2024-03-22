@@ -1,15 +1,14 @@
 <template>
     <div class="container">
+        <h1 class="h1 h1Custom">{{siteName}}</h1>
         <div class="row">
-            <div class="col-md-4 col-lg-3">
-                <div class="card button-85">
+            <div class="col-md-4 col-lg-3 col-sm-3">
+                <div class="card button-85" style="padding: 10px;">
                     <div class="card-header">
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row  ">
-                            <div class="col-md-4 col-lg-4 col-sm-4"><input  type="text" placeholder="Termék neve"></div>
-                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input style="width: 12rem;" type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -20,10 +19,10 @@
                         <h5>Ár:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row ">
-                            <div class="col-md-4 col-lg-4 col-sm-4"><input class="minAndMax" type="text" placeholder="min"></div>
-                            <div class="col-md-4 col-lg-4 col-sm-4"><p style="font-weight: bolder;">-</p></div>
-                            <div class="col-md-4 col-lg-4 col-sm-4"><input class="minAndMax" type="text" placeholder="max"></div>
+                        <div class="row">
+                            <input pattern="\d*" class="inputs" type="text" maxlength="10" name="" id="minPrice" placeholder="Min ár">
+                            <span class="Price-">-</span>
+                            <input pattern="\d*" class="inputs" type="text" maxlength="10" name="" id="maxPrice" placeholder="Max ár">
                         </div>
                     </div>
                 </div>
@@ -37,14 +36,17 @@
                     <div class="card-body">
                         <ul>
                             <li>
-                                <label for=""><input type="checkbox" name="" id="" style="margin-right: 10px;"><span>Sony</span></label>
+                                
+                                <div class="flex align-items-center">
+                                    <RadioButton v-model="ingredient" inputId="ingredient1" name="pizza" value="Cheese" />
+                                    <label for="ingredient1" class="ml-2">Sony</label>
+                                </div>
                             </li>
                             <li>
-                                <label for=""><input type="checkbox" name="" id="" style="margin-right: 10px;"><span>Nintendo</span></label>
-
-                            </li>
-                            <li>
-                                <label for=""><input type="checkbox" name="" id="" style="margin-right: 10px;"><span>Microsoft</span></label>
+                                <div class="flex align-items-center">
+                                    <RadioButton v-model="ingredient" inputId="ingredient1" name="asd" value="asd" />
+                                    <label for="ingredient1" class="ml-2">Microsoft</label>
+                                </div>      
                             </li>
                         </ul>
 
@@ -93,13 +95,17 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, onBeforeMount} from 'vue'
+    import { ref } from 'vue'
+    import RadioButton from 'primevue/radiobutton';
+
     import termekService from "../services/termekService"
 
+    const ingredient = ref('');
     let egyAra = []
     let adatok = []
     var pathname = window.location.pathname
     var Products = ref();
+    const siteName = ref("")
     const egy = JSON.parse(localStorage.getItem('EgyArak'))
 
 
@@ -116,7 +122,7 @@
         var old_data = JSON.parse(localStorage.getItem("data"))
         for(let product in old_data)
         {
-            if(old_data[termek][0] == data1)
+            if(old_data[product][0] == data1)
             {
                 const index = product;
                 const newDb = parseInt(old_data[index][2]) + 1;
@@ -152,12 +158,14 @@
                 termekService.getProducts(1)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Laptopok"
                 });
                 break;
             case '/tabletek':
                 termekService.getProducts(2)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Tabletek"
                 });
 
                 break;
@@ -165,6 +173,7 @@
                 termekService.getProducts(3)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Irodai számítógépek"
                 });
                 
                 break;
@@ -172,6 +181,7 @@
                 termekService.getProducts(4)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Gamer számítógépek"
                 });
                 
                 break;
@@ -179,6 +189,7 @@
                 termekService.getProducts(5)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Telefonok"
                 });
                 
                 break;
@@ -186,6 +197,7 @@
                 termekService.getProducts(6)
                 .then(resp => {
                     Products.value = resp.data[0].product;
+                    siteName.value = "Konzolok"
                 });
 
                 break;
@@ -207,6 +219,18 @@
 </script>
 
 <style lang="scss" scoped>
+.ProductNameDiv{
+    text-align: center;
+}
+
+.Price-{
+    text-align: center;
+    font-weight: bold;
+}
+
+h5{
+    text-align: center;
+}
 
 .button-85{
     color: aliceblue;

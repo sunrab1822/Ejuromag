@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img id="Logo" src="/EjuroMagLogo.png" alt="Logo">
+                <img src="/EjuroMagLogo.webp" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" >
                 <span class="navbar-toggler-icon"></span>
@@ -19,20 +19,13 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Light</a></li>
-                            <li><a class="dropdown-item" href="#">Dark</a></li>
-                            <li><a class="dropdown-item" href="#">Default</a></li>
-                        </ul>
-                    </div>
 
+                    
                     <li class="nav-item">
-                        <a id="Kosar" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a  v-badge="cartCounter" id="Kosar" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+
                     </li>
+
                     <div class="dropdown">
                         <a class="nav-link fa-solid fa-user" @click="Login"></a>
                     </div>
@@ -46,14 +39,18 @@
 
 <script setup>
 
-import { ref } from "vue";
 import { useUserStore } from "../store/store"
 import { useRouter  } from "vue-router";
+import {ref, onBeforeMount} from "vue";
 
+let cartCounter = ref(0)
 
 const router = useRouter()    
 const store = useUserStore()
 
+onBeforeMount(() => {
+    cartCounter.value = (JSON.parse(localStorage.getItem('data')).length);
+})
 
 const Login = () => {
 
