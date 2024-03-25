@@ -16,6 +16,7 @@ import AppNav2 from './components/AppNav2.vue';
 
 <style scoped>
 .test{
-  background-color: gray  ;
+  background-image: url("../public/backTest.jpg");
+  background-size: contain;
 }
 </style>

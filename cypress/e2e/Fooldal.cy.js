@@ -1,34 +1,45 @@
 describe('Főoldal tesztek', () => {
   it('A főoldalon működik, a regisztrációhoz ,belépéshez vezető gomb', () => {
     cy.visit('http://localhost:5173')
-    cy.get('.ms-auto > :nth-child(3) > .nav-link').click()
-    cy.get('.ButtonDiv > :nth-child(1)').contains("Belépés")
-    cy.get('.ButtonDiv > :nth-child(2)').contains("Elfelejtett Jelszó")
-    cy.get('.ButtonDiv > :nth-child(3)').contains("Regisztráció")
-    cy.get('.vueperslide--active > .vueperslide__content-wrapper').should("not.exist")
+    cy.get('[data-cy="navbar-login-link"]').click()
+    cy.location('pathname').should('eq', '/Login')
 
   })
 
   it('A főoldal navbarjában működik kosár gomb', () => {
     cy.visit('http://localhost:5173')
-    cy.get('#Kosar > .fa-solid').click()
-    cy.get('.vueperslide--active > .vueperslide__content-wrapper').should("not.exist")
+    cy.get('[data-cy="navbar-kosar-link"]').click()
+    cy.location('pathname').should('eq', '/Kosar') 
 
   })
 
   it('A navbaron léteznek a különböző termékekhez vezető gombok', () => {
     cy.visit('http://localhost:5173')
-    cy.get(':nth-child(1) > .nav-link').should("exist")
-    cy.get(':nth-child(2) > .nav-link').should("exist")
-    cy.get(':nth-child(3) > .nav-link').should("exist")
+    cy.get('[data-cy="navbar2-laptops-link"]').click()
+    cy.location('pathname').should('eq', '/laptopok') 
+    cy.get('[data-cy="navbar2-gamerPcs-link"]').click()
+    cy.location('pathname').should('eq', '/gamer_szamitogepek') 
+    cy.get('[data-cy="navbar2-officePcs-link"]').click()
+    cy.location('pathname').should('eq', '/irodai_szamitogepek') 
+    cy.get('[data-cy="navbar2-consoles-link"]').click()
+    cy.location('pathname').should('eq', '/konzolok') 
+    cy.get('[data-cy="navbar2-phones-link"]').click()
+    cy.location('pathname').should('eq', '/telefonok') 
+    cy.get('[data-cy="navbar2-tablets-link"]').click()
+    cy.location('pathname').should('eq', '/tabletek') 
+
 
   })
 
   it('A főoldalon a VuperSliders működik', () => {
     cy.visit('http://localhost:5173')
     cy.get('.vueperslide--active > .vueperslide__content-wrapper')
+    cy.get('[data-cy="vueperslide-data"]').as('vueperslidesFirst')
     cy.get('.vueperslides__arrow--next').click()
+    cy.get('[data-cy="vueperslide-data"]').should("not.equal", "vueperslidesFirst")
+    cy.get('[data-cy="vueperslide-data"]').as('vueperslidesSecond')
     cy.get('.vueperslides__arrow--prev').click()
+    cy.get('[data-cy="vueperslide-data"]').should("not.equal", "vueperslidesSecond")
   })
 
   it('A főoldalon található Qr Code kép', () => {

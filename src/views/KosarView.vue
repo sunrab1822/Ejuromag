@@ -1,26 +1,26 @@
 <template>
     <div class="container">
         <h1 class="h1Custom">Kosár</h1>
-        <div class="row">
+        <div class="row" >
 
-            <div class="col-md-8 col-lg-8">
+            <div class="col-md-8 col-lg-8 col-sm-12">
                 <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85">
 
-                    <div class="col-md-4 col-lg-4">
+                    <div class="col-md-4 col-lg-4 col-sm-4  ">
                         <!-- <img src="" alt="Termék képe"> -->
                         <p>asd</p>
                     </div>
 
-                    <div class="col-md-4 col-lg-4">
+                    <div class="col-md-4 col-lg-4 col-sm-4 ">
                         <p>{{ termek[0] }}</p>
                     </div>
 
-                    <div class="col-md-4 col-lg-4">
+                    <div class="col-md-4 col-lg-4 col-sm4 ">
                         <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
                         <div class="row">
-                            <div class="col-md-3 col-lg-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
-                            <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }}</p></div>
-                            <div class="col-md-3 col-lg-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
+                            <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p class="db"> {{ termek[2] }}</p></div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
                         <!-- console.log(termek[1] += egyAra[1]) -->
                         <button @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
                     </div>
@@ -30,8 +30,8 @@
 
             </div>
 
-            <div class="col-md-4 col-lg-4">
-                <div class="card">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                <div class="card button-85">
 
                     <div class="card-header">
                         <h2>Rendelés összegzése</h2>
@@ -41,30 +41,30 @@
                         <form action="POST">
 
                             <div class="row mb-3">
-                                <label for="" class="col-md-5 col-form-label text-md-end">Összeg:</label>
+                                <p class="col-md-5 col-form-label text-md-end">Összeg:</p>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">{{kosarAr}} ft</label>
+                                    <label class="form-control">{{kosarAr}} ft</label>
                                 </div>
                             </div>
 
 
                             <div class="row mb-3">
-                                <label for="" class="col-md-5 col-form-label text-md-end">Szállítási költség:</label>
+                                <p class="col-md-5 col-form-label text-md-end">Szállítási költség:</p>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">1200 ft</label>
+                                    <label class="form-control">1200 ft</label>
                                 </div>
                             </div>
 
                             <hr>
 
                             <div class="row mb-3">
-                                <label for="" class="col-md-5 col-form-label text-md-end">Végösszeg:</label>
+                                <p class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
                                 <div class="col-md-6">
-                                    <label for="" class="form-control">{{kosarAr + 1200}} Ft</label>
+                                    <label class="form-control">{{kosarAr + 1200}} Ft</label>
                                 </div>
                             </div>
 
-                            <div class="text-center" style="margin:2rem;">
+                            <div class="text-center RendelesFolyatatasaBtn">
                                 <router-link to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
@@ -177,6 +177,14 @@ let db = ref(1)
 
 <style lang="scss" scoped>
 
+.RendelesFolyatatasaBtn{
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+p{
+    text-align: center
+}
 
 .db{
     text-align: center;
@@ -190,5 +198,15 @@ let db = ref(1)
 
 .button-85  {
     margin-bottom: 20px;
+
+}
+
+#TorolBtn{
+    margin:auto;
+}
+
+h2{
+    color: white;
+    text-align: center;
 }
 </style>

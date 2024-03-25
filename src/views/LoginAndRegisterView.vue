@@ -1,153 +1,168 @@
 <template>
 
     <div v-if="Sites==1" class="container">
-        <div class="row" style="width: 40rem; margin: auto;">
-            
-            <h1 class="LoginMain">Belépés</h1>
+        <div class="row LoginStyle">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h1 class="LoginMain">Belépés</h1>
 
-            <div  class=" button-85">
-                <div class="margintop">
-                    <p>Email:</p>
-                    
-                    <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                <div class=" button-85">
+                    <div class="margintop">
+                        <p>Email:</p>
+
+                        <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                    </div>
+
+                    <div class="margintop">
+                        <p>Jelszó: </p>
+                        <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
+                            required="required" v-model="LoginPassword"></input>
+
+                    </div>
+
+
                 </div>
-               
-                <div class="margintop">
-                    <p>Jelszó: </p>
-                    <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó" required="required" v-model="LoginPassword"></input>
-
-                </div>
-                
-
-            </div>
-            <div class="ButtonDiv">
+                <div class="">
                     <button class="button-85" :disabled="Loading ? disabled : ''" @click="Login">Belépés</button>
-                    <button class="button-85" @click="Sites=3" >Elfelejtett Jelszó</button>
+                    <button class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
                     <button class="button-85" @click="Sites=2">Regisztráció</button>
-            </div>  
+                </div>
 
-            <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                     <strong>{{ hiba }}</strong>
                     <button type="button" @click="hiba=''" class="btn-close"></button>
                 </div>
+            </div>
+
 
 
         </div>
     </div>
 
-    <div v-if="Sites==3">
+    <div v-if="Sites==3" class="container">
         <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="ResetPasswordDiv">
+                    <h1 class="LoginMain">Elfelejtett jelszó</h1>
+                    <div class=" button-85">
+                        <div class="row">
+                            <p>Email cím:</p>
 
-            <div class="ResetPasswordDiv">
-                <h1 class="LoginMain">Elfelejtett jelszó</h1>
-                <div class=" button-85" >
-                    <div class="row"> 
-                        <p >Email cím:</p>
-                        
-                        <input type="text" placeholder="Email " v-model="ResetEmail">
+                            <input type="text" placeholder="Email " v-model="ResetEmail">
+                        </div>
+
+                        <div class="row">
+                            <p>Email cím ismét: </p>
+                            <input type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
+
+                        </div>
+
                     </div>
-                
-                    <div class="row">
-                        <p>Email cím ismét: </p>
-                        <input type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
-
-                    </div>
-
-                </div>
-                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                    <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                         <strong>{{ hiba }}</strong>
                         <button type="button" @click="hiba=''" class="btn-close"></button>
-                </div>
-                <div>
-                    <button class="button-85">Kűldés</button>
-                    <button class="button-85" @click="Sites=1">Mégse</button>
+                    </div>
+                    <div>
+                        <button class="button-85">Kűldés</button>
+                        <button class="button-85" @click="Sites=1">Mégse</button>
+                    </div>
                 </div>
             </div>
-                </div>
 
-            
+        </div>
+
+
     </div>
 
     <div v-if="Sites==2" class="container">
         <div class="row">
-            <h1 class="LoginMain">Regisztráció</h1>
+            <div class="col-lg-12 col-md-12 col-12">
+                <h1 class="LoginMain">Regisztráció</h1>
 
-            <div class="col-md-4 col-lg-4 Adatok button-85">
-                <div class="margintop">
-                    <p>Vezetéknév: </p>
-                    <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text" name="" id="Vezeteknev">
+                <div class="col-md-4 col-lg-4 Adatok button-85">
+                    <div class="margintop">
+                        <p>Vezetéknév: </p>
+                        <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text"
+                            name="" id="Vezeteknev">
+                    </div>
+
+                    <div class="margintop">
+                        <p>Keresztnév: </p>
+                        <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs"
+                            type="text" name="" id="Keresztnev">
+                    </div>
+
+                    <div class="margintop">
+                        <p>Irányítószám: </p>
+                        <InputOtp v-model="RegisterPostalCode" integerOnly />
+
+                    </div>
+                    <div class="margintop">
+
+                        <p>Város: </p>
+                        <input placeholder="Nyúl" required="required" v-model="RegisterCity" class="inputs" type="text"
+                            name="" id="">
+                    </div>
+
+                    <div class="margintop">
+                        <p>Utca, házszám: </p>
+                        <input placeholder="Iskola utca 7" required="required" v-model="RegisterStreet" class="inputs"
+                            type="text" name="" id="">
+                    </div>
+
+                    <div class="margintop">
+                        <p>Telefonszám: </p>
+                        <input pattern="\d*" placeholder="06123456789" required="required" v-model="RegisterPhoneNumber"
+                            class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
+                    </div>
+
                 </div>
 
-                <div class="margintop">                
-                    <p>Keresztnév: </p>
-                    <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs" type="text" name="" id="Keresztnev">
+                <div class="col-md-4 col-lg-4 Adatok button-85">
+
+                    <div class="margintop">
+                        <p>Email: </p>
+                        <input required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email"
+                            name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                    </div>
+
+                    <div class="margintop">
+                        <p class="JelszoSzoveg">Jelszó: </p>
+                        <Password class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask>
+                            <template #header>
+                                <h6>Válasz jelszót</h6>
+                            </template>
+                            <template #footer>
+                                <Divider />
+                                <p class="mt-2">Ajánlások</p>
+                                <ul class="pl-2 ml-2 mt-0">
+                                    <li>Minimum 1 kisbetü</li>
+                                    <li>Minimum 1 nagybetü</li>
+                                    <li>Minimum 1 szám</li>
+                                    <li>Minimum 8 karakter</li>
+                                </ul>
+                            </template>
+                        </Password>
+                    </div>
+
+                    <div class="margintop">
+                        <p class="JelszoSzoveg">Jelszó újra: </p>
+                        <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required"
+                            v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
+                    </div>
+
                 </div>
 
-                <div class="margintop">
-                    <p>Irányítószám: </p>
-                    <InputOtp v-model="RegisterPostalCode" integerOnly />
+                <div class="col-md-4 col-lg-4 Adatok button-85">
+                    <div>
+                        <button class="RegisterBtn" @click="Register">Regisztráció</button>
+                    </div>
+                    <div>
+                        <button class="MegseBtn" @click="Sites=1">Mégse</button>
 
-</div>
-                <div class="margintop">      
-
-                    <p>Város: </p>
-                    <input placeholder="Nyúl" required="required" v-model="RegisterCity" class="inputs" type="text" name="" id="">
+                    </div>
                 </div>
-
-                <div class="margintop">
-                    <p>Utca, házszám: </p>
-                    <input placeholder="Iskola utca 7" required="required" v-model="RegisterStreet" class="inputs" type="text" name="" id="">
-                </div>
-
-                <div class="margintop">
-                    <p>Telefonszám: </p>
-                    <input pattern="\d*" placeholder="06123456789" required="required" v-model="RegisterPhoneNumber" class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
-                </div>
-
             </div>
 
-            <div class="col-md-4 col-lg-4 Adatok button-85">
-
-                <div class="margintop">
-                    <p>Email: </p>
-                    <input required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
-                </div>
-
-                <div class="margintop">
-                    <p class="JelszoSzoveg">Jelszó: </p>
-                    <Password class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask >
-                        <template #header>
-                            <h6>Válasz jelszót</h6>
-                        </template>
-                        <template #footer>
-                            <Divider />
-                            <p class="mt-2">Ajánlások</p>
-                            <ul class="pl-2 ml-2 mt-0">
-                                <li>Minimum 1 kisbetü</li>
-                                <li>Minimum 1 nagybetü</li>
-                                <li>Minimum 1 szám</li>
-                                <li>Minimum 8 karakter</li>
-                            </ul>
-                        </template>
-                    </Password>
-                </div>
-
-                <div class="margintop">
-                    <p class="JelszoSzoveg">Jelszó újra: </p>
-                    <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required" v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-lg-4 Adatok button-85">
-                <div >
-                    <button class="RegisterBtn" @click="Register">Regisztráció</button>
-                </div>
-                <div>
-                    <button class="MegseBtn" @click="Sites=1">Mégse</button>
-
-                </div>
-            </div>
         </div>
     </div>
 
@@ -250,7 +265,6 @@
 }
 
 .ResetPasswordDiv{
-    width: 35rem; 
     margin: auto;
     text-align: center;
 }
@@ -264,9 +278,6 @@
     width: 100px;
 }
 
-.ButtonDiv{
-    width: 600px;
-}
 
 .RegisterBtn{
     text-align: center;
@@ -289,6 +300,7 @@
 }
 .LoginMain{
     text-align: center;
+    color:white;
 }
 
 div{
@@ -338,6 +350,11 @@ p, input{
 
 .row{
     text-align: left;
+}
+
+.LoginStyle{
+    max-width: 23rem; 
+    margin:auto;
 }
 
 </style>

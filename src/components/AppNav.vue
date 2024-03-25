@@ -1,7 +1,7 @@
 <template>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<div>
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/EjuroMagLogo.webp" alt="Logo">
@@ -21,13 +21,13 @@
                 <!-- Authentication Links -->
 
                     
-                    <li class="nav-item">
-                        <a  v-badge="cartCounter" id="Kosar" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <li class="nav-item" >
+                        <a v-badge="cartCounter" id="Kosar" data-cy="navbar-kosar-link" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
 
                     </li>
 
                     <div class="dropdown">
-                        <a class="nav-link fa-solid fa-user" @click="Login"></a>
+                        <a class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></a>
                     </div>
                 </ul>
             </div>
@@ -49,7 +49,13 @@ const router = useRouter()
 const store = useUserStore()
 
 onBeforeMount(() => {
-    cartCounter.value = (JSON.parse(localStorage.getItem('data')).length);
+    try {
+        cartCounter.value = (JSON.parse(localStorage.getItem('data')).length)
+
+    } 
+    catch (error) {
+        
+    }
 })
 
 const Login = () => {
@@ -87,6 +93,10 @@ li{
     font-size: 15px;
 }
 
+nav{
+    background-color: rgb(20, 147, 202)
+}
+
 
 #search{
   width: 70%;
@@ -101,4 +111,10 @@ li{
   color: darkmagenta;
   font-size: large;
 }
+
+
+
+.p-badge{
+        position: relative;
+    }
 </style>

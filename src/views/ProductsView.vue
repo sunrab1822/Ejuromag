@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <h1 class="h1 h1Custom">{{siteName}}</h1>
+        <h1 class="h1Custom">{{siteName}}</h1>
         <div class="row">
             <div class="col-md-4 col-lg-3 col-sm-3">
-                <div class="card button-85" style="padding: 10px;">
+                <div class="card button-85 NameSearchCard">
                     <div class="card-header">
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input style="width: 12rem;" type="text" placeholder="Termék neve"></div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -60,8 +60,11 @@
                 <div v-for="product in Products" class="card button-85">
                     <div class="card-body">
                         <div class="row">
+                            <h3>{{ product.name }}</h3>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                <p>{{product.name}}</p>
+                                <p>{{product.picture}}</p>
                             </div>
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
@@ -95,8 +98,8 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
     import RadioButton from 'primevue/radiobutton';
+    import {ref} from "vue";
 
     import termekService from "../services/termekService"
 
@@ -152,7 +155,6 @@
         console.log(JSON.parse(localStorage.getItem('EgyArak')));
 
     }
-
     switch (pathname){
             case '/laptopok':
                 termekService.getProducts(1)
@@ -249,6 +251,10 @@ li{
 
 .productCards{
     text-align: center;
+}
+
+.NameSearchCard{
+    padding: 10px;
 }
 
 </style>

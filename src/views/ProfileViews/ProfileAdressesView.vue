@@ -1,12 +1,12 @@
 <template>
     <div class="row width">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 col-2">
         <ProfileNavbar/>    
     </div>
 
-    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11" style="margin-top: 50px;">
+    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 col-10">
         <div class="row">
-            <div id="article" style="margin: auto;" class="col-md-5 col-lg-5 button-85">
+            <div class="col-md-5 col-lg-5 button-85">
                 <div v-if="SzamlazasiSzerkesztes==false">
                     <h3 >Számlázási cím<a class="cursor-pointer" @click="SzamlazasiSzerkesztes=true ">Szerkesztés</a></h3>
                     <p>Név:  {{ user.user.user.name }}</p>
@@ -15,7 +15,7 @@
                 </div>
 
 
-                <div v-if="SzamlazasiSzerkesztes==true" style="margin: auto;">
+                <div v-if="SzamlazasiSzerkesztes==true" >
 
                     <form>
                         <fieldset>
@@ -60,7 +60,7 @@
 
             </div>
 
-            <div style="margin: auto;" class="col-md-5 col-lg-5 button-85">
+            <div class="col-md-5 col-lg-5 button-85">
                 <div v-if="SzallitasiSzerkesztes==false">
                     <h3 >Szállítási cím<a class="cursor-pointer" @click="SzallitasiSzerkesztes=true">Szerkesztés</a></h3>
                     <p>Név: {{ user.user.user.name }}</p>
@@ -142,15 +142,17 @@ onBeforeMount(() => {
 })
 
 
-const article = document.getElementById("article");
-
-
 const SzamlazasiSzerkesztes = ref(false)
 const SzallitasiSzerkesztes = ref(false)
 
 </script>
 
 <style lang="scss" scoped>
+
+.button-85{
+    margin: auto;
+    margin-top: 2rem;
+}
 
 a{
     margin-left: 20%;

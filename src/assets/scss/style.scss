@@ -1,5 +1,9 @@
 @import "bootstrap/scss/bootstrap.scss";
 
+p{
+  color: white;
+}
+
 .vastag{
     font-weight: bold;
 }
@@ -10,18 +14,17 @@ button{
 
 
 .h2Custom{
-    color: rgb(27, 14, 145);
     font-weight: bold;
-
+    color: white;
 }
 
 .h1Custom{
     text-align: center;
     font-size: 6.5vw;
-    color: green;
     -webkit-text-stroke: 2px;
     font-weight: bold;
     padding: 25px;
+    color: white;
 }
 
 
