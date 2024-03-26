@@ -51,7 +51,7 @@
                             <div class="row mb-3">
                                 <p class="col-md-5 col-form-label text-md-end">Szállítási költség:</p>
                                 <div class="col-md-6">
-                                    <label class="form-control">1200 ft</label>
+                                    <label class="form-control">1000 ft</label>
                                 </div>
                             </div>
 

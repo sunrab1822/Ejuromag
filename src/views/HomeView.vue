@@ -76,7 +76,7 @@ const slides = [
   <vueper-slide :style="'background-color:green'" v-for="i in 5" :key="i">
     <template #content>
       <div class="vueperslide__content-wrapper" style="flex-direction: row">
-        <p data-cy="vueperslide-data" >{{ i }}</p>
+        <p data-cy="vueperslide-data" ><img style="width:auto;" src="https://www.gamertech.hu/fejlec_new/263.jpg" alt="" srcset=""></p>
     </div>
     </template>
     </vueper-slide>

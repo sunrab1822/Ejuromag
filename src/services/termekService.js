@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     async getProducts(id){
-        return axios.get('http://127.0.0.1:8000/api/products/'+id)
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products/" + id)
             .then(resp => {
                 return resp.data;
             })
@@ -12,18 +12,23 @@ export default {
 
     },
     async UserRegister(datas){ 
-        const resp = await axios.post('http://127.0.0.1:8000/api/register', datas)
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/register', datas)
         return resp.data
     },
     async UserLogin(datas){ 
-        const resp = await axios.post('http://127.0.0.1:8000/api/login', datas)
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/login', datas)
         return resp.data
     },
     async UserLogOut(token){ 
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-        const resp = await axios.post('http://127.0.0.1:8000/api/logout')
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/logout')
         return resp.data
     },
+    async ResetPasswordToken(data){ 
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password-token', data)
+        return resp.data
+    },
+
     // getAllAuthor()
     // {
     //     return axios.get('http://localhost:8000/api/get-all-authors')

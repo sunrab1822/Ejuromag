@@ -62,7 +62,7 @@
                         <button type="button" @click="hiba=''" class="btn-close"></button>
                     </div>
                     <div>
-                        <button class="button-85">Kűldés</button>
+                        <button @click="EmailReset" class="button-85">Kűldés</button>
                         <button class="button-85" @click="Sites=1">Mégse</button>
                     </div>
                 </div>
@@ -235,7 +235,22 @@
         }}
     }
 
+    const EmailReset = async() => {
+        if(ResetEmail.value == ResetEmailAgain.value && ResetEmail.value!== undefined){
+            try{
+            const res = await termekService.ResetPasswordToken({email: ResetEmail.value})
 
+            }
+            catch(error){
+                hiba.value = error.message;
+            }
+            Sites.value = 1
+        }
+        else{
+            hiba.value = "Nem egyezik a két email"
+        }
+
+    }
 
 
     const Login = async() => {

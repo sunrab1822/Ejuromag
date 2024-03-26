@@ -1,29 +1,29 @@
 <template>
-<div class="card">
+<div class="card hatter">
     <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85">
 
         <div class="col-md-4 col-lg-4">
             <!-- <img src="" alt="Termék képe"> -->
-            <p>asd</p>
+            <p class="ProdcutCard">asd</p>
         </div>
 
         <div class="col-md-4 col-lg-4">
-            <p>{{ termek[0] }}</p>
+            <p class="ProdcutCard">{{ termek[0] }}</p>
         </div>
 
         <div class="col-md-4 col-lg-4">
-            <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
+            <p class="text-center Ar ProdcutCard">{{ termek[1] }}<span> Ft</span></p>
             <div class="row">
-                <div class="col-md-6 col-lg-6"><p class="db"> {{ termek[2] }} db</p></div>
+                <div class="col-md-6 col-lg-6"><p class="ProdcutCard db"> {{ termek[2] }} db</p></div>
             </div>
 
         </div>
 
-    </div>
-        <Stepper orientation="vertical">
-            <StepperPanel header="Személyes Adatok">
-                <template #content="{ nextCallback }">
-                    <div class="flex flex-column h-40rem">
+    </div >
+        <Stepper orientation="vertical" >
+            <StepperPanel header="Személyes Adatok" >
+                <template #content="{ nextCallback }" >
+                    <div class="flex flex-column h-40rem" >
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto font-medium p-3">
 
                             <div class="row">
@@ -95,22 +95,22 @@
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
 
                         <Button>
-                            <figure>
-                                <img style="width: 200px;" src="../../public/Posta_szallitas.png" alt="" srcset="">
+                            <figure @click="nextCallback">
+                                <img style="width: 200px;" src="/Posta_szallitas.png" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1.590,- Ft</figcaption>
                             </figure>
                         </Button>
                         <Button>
-                            <figure>
-                                <img style="width: 200px;" src="../../public/PostaPont_szallitas.jpg" alt="" srcset="">
+                            <figure @click="nextCallback">
+                                <img style="width: 200px;" src="/PostaPont_szallitas.jpg" alt="" srcset="">
                                 <br><br>
                                 <figcaption>990 Ft</figcaption>
                             </figure>
                         </Button>
                         <Button>
-                            <figure>
-                                <img style="width: 200px;" src="../../public/Packeta_szallitas.png" alt="" srcset="">
+                            <figure @click="nextCallback">
+                                <img style="width: 200px;" src="/Packeta_szallitas.png" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1 480 Ft</figcaption>
                             </figure>
@@ -124,7 +124,7 @@
                     </div>
                 </template>
             </StepperPanel>
-            <StepperPanel header="Header III">
+            <StepperPanel header="Összegzés">
                 <template #content="{ prevCallback }">
                     <div class="flex flex-column h-12rem">
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
@@ -170,6 +170,14 @@ kosarNev.value = JSON.parse(localStorage.getItem('data'))
 
 
 <style scoped>
+
+.ProdcutCard{
+    color: white;
+}
+p{
+    color: black;
+}
+
 Button{
     margin: 1rem;
 }
@@ -179,6 +187,10 @@ Button{
     width: 70%;
     margin-top: 1rem;   
     margin-bottom: 1rem;
+}
+
+.hatter{
+    margin: 1.5rem;
 }
 
 </style>
