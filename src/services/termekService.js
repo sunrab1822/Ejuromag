@@ -11,6 +11,16 @@ export default {
             })
 
     },
+    async getManufacturers(){
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/manufacturers")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    },
     async UserRegister(datas){ 
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/register', datas)
         return resp.data

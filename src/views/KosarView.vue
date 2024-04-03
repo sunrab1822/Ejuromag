@@ -4,15 +4,16 @@
         <div class="row" >
 
             <div class="col-md-8 col-lg-8 col-sm-12">
-                <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85">
+                <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85 ">
 
                     <div class="col-md-4 col-lg-4 col-sm-4  ">
-                        <!-- <img src="" alt="Termék képe"> -->
-                        <p>asd</p>
+                        <img class="ProductImg" :src="termek[3]" alt="Termék képe">
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm-4 ">
-                        <p>{{ termek[0] }}</p>
+                        <h3>{{ termek[0] }}</h3>
+                        <br>
+                        <p>{{ termek[4] }}</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm4 ">
@@ -65,7 +66,7 @@
                             </div>
 
                             <div class="text-center RendelesFolyatatasaBtn">
-                                <router-link to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                                <router-link v-if="kosarAr != 0" to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
                         </form>
@@ -150,8 +151,6 @@ onBeforeMount(() => {
 
     }
 
-
-
     console.log(kosarAr.value);
     console.log(JSON.parse(localStorage.getItem('data')));
 
@@ -176,6 +175,14 @@ let db = ref(1)
 </script>
 
 <style lang="scss" scoped>
+
+h3{
+    text-align: center;
+}
+
+.ProductImg{
+    margin-top: 1rem;
+}
 
 .RendelesFolyatatasaBtn{
     margin-top: 2.5rem;

@@ -2,20 +2,44 @@
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 
+
 export default {
-  components: { VueperSlides, VueperSlide }
+  components: { VueperSlides, VueperSlide },
+  data() {
+        return {
+            slides: [
+                {
+                    title: 'El Teide Volcano, Spain',
+                    content: 'Photo by Max Rive',
+                    img: "asd",
+                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                },
+                {
+                    title: 'El Teide Volcano, Spain',
+                    content: 'Photo by Max Rive',
+                    img: "asd",
+                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                },
+                {
+                    title: 'El Teide Volcano, Spain',
+                    content: 'Photo by Max Rive',
+                    img: "asd",
+                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                },
+                {
+                    title: 'El Teide Volcano, Spain',
+                    content: 'Photo by Max Rive',
+                    img: "asd",
+                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                },
+            ]
+        }
+    }
 }
 
-const slides = [
-  {
-    title: 'Slide #1',
-    content: 'Slide 1 content.'
-  },
-  {
-    title: 'Slide #2',
-    content: 'Slide 2 content.'
-  }
-]
+
+
+
 </script>
 
 <template>
@@ -73,13 +97,13 @@ const slides = [
         </div>
     </div>
 <vueper-slides id="vueper-slides" autoplay>
-  <vueper-slide :style="'background-color:green'" v-for="i in 5" :key="i">
-    <template #content>
-      <div class="vueperslide__content-wrapper" style="flex-direction: row">
-        <p data-cy="vueperslide-data" ><img style="width:auto;" src="https://www.gamertech.hu/fejlec_new/263.jpg" alt="" srcset=""></p>
-    </div>
-    </template>
-    </vueper-slide>
+    <vueper-slide
+    v-for="(slide, i) in slides"
+    :key="i"
+    :image="slide.image"
+    :title="slide.title"
+    :content="slide.content"
+    :link="slide.link" />
 </vueper-slides>
 </template>
 

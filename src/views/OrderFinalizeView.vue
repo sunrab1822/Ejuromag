@@ -4,18 +4,16 @@
 
         <div class="col-md-4 col-lg-4">
             <!-- <img src="" alt="Termék képe"> -->
-            <p class="ProdcutCard">asd</p>
+            <img class="ProductImg" :src="termek[3]" alt="" srcset="">
         </div>
 
         <div class="col-md-4 col-lg-4">
-            <p class="ProdcutCard">{{ termek[0] }}</p>
+            <h3 class="ProdcutCard">{{ termek[0] }}</h3>
         </div>
 
         <div class="col-md-4 col-lg-4">
-            <p class="text-center Ar ProdcutCard">{{ termek[1] }}<span> Ft</span></p>
-            <div class="row">
-                <div class="col-md-6 col-lg-6"><p class="ProdcutCard db"> {{ termek[2] }} db</p></div>
-            </div>
+            <h3 class="text-center Ar ProdcutCard">{{ termek[1] }}<span> Ft</span></h3>
+            <h3 class="ProdcutCard"> {{ termek[2] }} db</h3>
 
         </div>
 
@@ -48,38 +46,13 @@
                             </div>
                             <br>
                             <div class="row">
-                                <p style="margin-top: 10px;" class="col-lg-3">Ország:</p>
-
-                                <div class=" flex justify-content-center">
-                                    <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name" placeholder="Select a Country" class="w-full md:w-14rem">
-                                        <template #value="slotProps">
-                                            <div v-if="slotProps.value" class="flex align-items-center">
-                                                <img :alt="slotProps.value.label" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`mr-2 flag flag-${slotProps.value.code.toLowerCase()}`" style="width: 18px" />
-                                                <div>{{ slotProps.value.name }}</div>
-                                            </div>
-                                            <span v-else>
-                                                {{ slotProps.placeholder }}
-                                            </span>
-                                        </template>
-                                        <template #option="slotProps">
-                                            <div class="flex align-items-center">
-                                                <img :alt="slotProps.option.label" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`mr-2 flag flag-${slotProps.option.code.toLowerCase()}`" style="width: 18px" />
-                                                <div>{{ slotProps.option.name }}</div>
-                                            </div>
-                                        </template>
-                                    </Dropdown>
-                                    </div>
-                                    
-                                </div>
-                            <br>
-                            <div class="row">
                                 <p class="col-lg-3">Telefonszám: </p>
-                                <InputMask class="col-lg-6" id="basic" v-model="value" mask="99-99-9999999?99999999" placeholder="99-99-9999999" />
+                                <InputMask class="col-lg-6" id="basic" v-model="value" mask="+36-99-9999999?99999999" placeholder="+36-99-9999999" />
                             </div>
                             <br>
                             <div class="row">
                                 <p class="col-lg-3">Email: </p>
-                                <input class="col-lg-6" placeholder="Nyúl" required="required" v-model="RegisterCity" type="text" name="" id="">
+                                <input class="col-lg-6" placeholder="Email" required="required" v-model="RegisterCity" type="text" name="" id="">
                             </div>
                         </div>
                     </div>
@@ -191,6 +164,18 @@ Button{
 
 .hatter{
     margin: 1.5rem;
+}
+
+.ProductImg{
+    width: 40%;
+}
+
+h3{
+    text-align: center
+}
+
+.db{
+    text-align: center
 }
 
 </style>

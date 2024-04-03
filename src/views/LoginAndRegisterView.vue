@@ -6,13 +6,13 @@
                 <h1 class="LoginMain">Belépés</h1>
 
                 <div class=" button-85">
-                    <div class="margintop">
+                    <div class="margintop row">
                         <p>Email:</p>
 
                         <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                     </div>
 
-                    <div class="margintop">
+                    <div class="margintop row">
                         <p>Jelszó: </p>
                         <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
                             required="required" v-model="LoginPassword"></input>
@@ -39,22 +39,21 @@
     </div>
 
     <div v-if="Sites==3" class="container">
-        <div class="row">
+        <div class="row LoginStyle">
             <div class="col-lg-12 col-md-12 col-12">
-                <div class="ResetPasswordDiv">
-                    <h1 class="LoginMain">Elfelejtett jelszó</h1>
-                    <div class=" button-85">
-                        <div class="row">
-                            <p>Email cím:</p>
+                <h1 class="LoginMain">Elfelejtett jelszó</h1>
 
-                            <input type="text" placeholder="Email " v-model="ResetEmail">
-                        </div>
+                <div class=" button-85">
+                    <div class="margintop row">
+                        <p>Email:</p>
 
-                        <div class="row">
-                            <p>Email cím ismét: </p>
-                            <input type="text" placeholder="Email ismét " v-model="ResetEmailAgain">
+                        <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                    </div>
 
-                        </div>
+                    <div class="margintop row">
+                        <p>Jelszó: </p>
+                        <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
+                            required="required" v-model="LoginPassword"></input>
 
                     </div>
                     <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
@@ -77,8 +76,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Regisztráció</h1>
-
+                <br>
                 <div class="col-md-4 col-lg-4 Adatok button-85">
+
                     <div class="margintop">
                         <p>Vezetéknév: </p>
                         <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text"
@@ -90,34 +90,6 @@
                         <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs"
                             type="text" name="" id="Keresztnev">
                     </div>
-
-                    <div class="margintop">
-                        <p>Irányítószám: </p>
-                        <InputOtp v-model="RegisterPostalCode" integerOnly />
-
-                    </div>
-                    <div class="margintop">
-
-                        <p>Város: </p>
-                        <input placeholder="Nyúl" required="required" v-model="RegisterCity" class="inputs" type="text"
-                            name="" id="">
-                    </div>
-
-                    <div class="margintop">
-                        <p>Utca, házszám: </p>
-                        <input placeholder="Iskola utca 7" required="required" v-model="RegisterStreet" class="inputs"
-                            type="text" name="" id="">
-                    </div>
-
-                    <div class="margintop">
-                        <p>Telefonszám: </p>
-                        <input pattern="\d*" placeholder="06123456789" required="required" v-model="RegisterPhoneNumber"
-                            class="inputs" type="text" name="" id="" maxlength="15" minlength="8">
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 col-lg-4 Adatok button-85">
 
                     <div class="margintop">
                         <p>Email: </p>
@@ -152,7 +124,7 @@
 
                 </div>
 
-                <div class="col-md-4 col-lg-4 Adatok button-85">
+                <div class="button-85 row">
                     <div>
                         <button class="RegisterBtn" @click="Register">Regisztráció</button>
                     </div>
@@ -280,6 +252,7 @@
 }
 
 .ResetPasswordDiv{
+    width: 50%;
     margin: auto;
     text-align: center;
 }
@@ -364,12 +337,13 @@ p, input{
 }
 
 .row{
-    text-align: left;
+    text-align: center;
 }
 
 .LoginStyle{
-    max-width: 23rem; 
+    width: 50%;
     margin:auto;
+    text-align: center
 }
 
 </style>

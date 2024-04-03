@@ -35,19 +35,14 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            <li>
+                            <li v-for="manu in Manufacturers">
                                 
                                 <div class="flex align-items-center">
                                     <RadioButton v-model="ingredient" inputId="ingredient1" name="pizza" value="Cheese" />
-                                    <label for="ingredient1" class="ml-2">Sony</label>
+                                    <label for="ingredient1" class="ml-2">{{manu.name}}</label>
                                 </div>
                             </li>
-                            <li>
-                                <div class="flex align-items-center">
-                                    <RadioButton v-model="ingredient" inputId="ingredient1" name="asd" value="asd" />
-                                    <label for="ingredient1" class="ml-2">Microsoft</label>
-                                </div>      
-                            </li>
+
                         </ul>
 
                     </div>
@@ -64,7 +59,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                <p>{{product.picture}}</p>
+                                <img class="ProductImg":src="product.picture" alt="" srcset="">
                             </div>
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
@@ -82,8 +77,8 @@
                             </div>
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                <p>{{product.price}} Ft</p>
-                                <router-link to="/Kosar" @click="Save(product.name, product.price)"><button class="button-33">Vásárlás</button></router-link>
+                                <h3>{{product.price}} Ft</h3>
+                                <router-link to="/Kosar" @click="Save(product.name, product.price, product.picture, product.description)"><button class="button-33">Vásárlás</button></router-link>
                                 
 
                             </div>
@@ -108,14 +103,18 @@
     let adatok = []
     var pathname = window.location.pathname
     var Products = ref();
+    var Manufacturers = ref();
     const siteName = ref("")
     const egy = JSON.parse(localStorage.getItem('EgyArak'))
 
+    termekService.getManufacturers()
+    .then(resp => {
+        Manufacturers.value = resp.data;
+        console.log(resp.data);
+    });
 
-    function Save (data1, data2){
-        console.log(data1);
-        console.log(data2);
-        var new_data = [data1, data2, 1];
+    function Save (ProductName, ProductPrice, ProductPicture, ProductDescription){
+        var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription];
 
         if(localStorage.getItem('data') == null)
         {
@@ -125,7 +124,7 @@
         var old_data = JSON.parse(localStorage.getItem("data"))
         for(let product in old_data)
         {
-            if(old_data[product][0] == data1)
+            if(old_data[product][0] == ProductName)
             {
                 const index = product;
                 const newDb = parseInt(old_data[index][2]) + 1;
@@ -221,6 +220,12 @@
 </script>
 
 <style lang="scss" scoped>
+
+
+h3{
+    margin-bottom: 2rem;
+}
+
 .ProductNameDiv{
     text-align: center;
 }
