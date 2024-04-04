@@ -6,13 +6,13 @@
                 <h1 class="LoginMain">Belépés</h1>
 
                 <div class=" button-85">
-                    <div class="margintop row">
+                    <div class="margintop row LoginMobile">
                         <p>Email:</p>
 
                         <input class="EmailAndPasswordInput"type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                     </div>
 
-                    <div class="margintop row">
+                    <div class="margintop row LoginMobile">
                         <p>Jelszó: </p>
                         <input class="EmailAndPasswordInput" type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
                             required="required" v-model="LoginPassword"></input>
@@ -22,7 +22,7 @@
 
                 </div>
                 <div class="">
-                    <button class="button-85" :disabled="Loading ? disabled : ''"  @click="Login">Belépés</button>
+                    <button class="button-85" @click="Login">Belépés</button>
                     <button class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
                     <button class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
@@ -44,10 +44,10 @@
                 <h1 class="LoginMain">Elfelejtett jelszó</h1>
 
                 <div class=" button-85">
-                    <div class="margintop row">
+                    <div class="margintop row LoginMobile">
                         <p >Email:</p>
 
-                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " v-model="ResetEmail">
                     </div>
 
                 </div>
@@ -192,18 +192,17 @@
     }
 
     const EmailReset = async() => {
-        if(ResetEmail.value == ResetEmailAgain.value && ResetEmail.value!== undefined){
+        if(ResetEmail.value && ResetEmail.value!== undefined){
             try{
             const res = await termekService.ResetPasswordToken({email: ResetEmail.value})
 
             }
             catch(error){
-                hiba.value = error.message;
+                hiba.value = "Nem található az email"
+                return
             }
+            ResetEmail.value = null
             Sites.value = 1
-        }
-        else{
-            hiba.value = "Nem egyezik a két email"
         }
 
     }
@@ -348,4 +347,13 @@ p, input{
     width: 20%
 }
 
+
+@media (max-width: 770px) {
+    .LoginStyle{
+    width: 100%;
+    }
+    .LoginMobile{
+        margin-left: 55px;
+    }
+}
 </style>

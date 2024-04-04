@@ -105,7 +105,7 @@ nav{
 }
 
 @media (max-width: 770px) {
-    #Cart{
+    a{
     margin-top: 1rem;
     }
 }
