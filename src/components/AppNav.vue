@@ -17,19 +17,16 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
+                <div class="row">
 
-                    
-                    <li class="nav-item" >
-                        <a v-badge="cartCounter" id="Kosar" data-cy="navbar-kosar-link" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <div class="nav-item col-6" >
+                        <a v-badge="cartCounter" id="Cart" data-cy="navbar-kosar-link" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
 
-                    </li>
-
-                    <div class="dropdown">
+                    </div>
+                    <div class="dropdown col-6">
                         <a class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></a>
                     </div>
-                </ul>
+                </div>
             </div>
         </div>
 
@@ -102,8 +99,15 @@ nav{
   width: 70%;
 }
 
-#kocsi{
+#Cart{
   font-size: larger;
+  width: 3rem;
+}
+
+@media (max-width: 770px) {
+    #Cart{
+    margin-top: 1rem;
+    }
 }
 
 #ToHome{

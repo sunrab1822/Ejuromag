@@ -150,6 +150,7 @@ onBeforeMount(() => {
         console.log(szamlalo);
 
     }
+    localStorage.setItem("CartPrice", kosarAr.value)
 
     console.log(kosarAr.value);
     console.log(JSON.parse(localStorage.getItem('data')));

@@ -9,12 +9,12 @@
                     <div class="margintop row">
                         <p>Email:</p>
 
-                        <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                        <input class="EmailAndPasswordInput"type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                     </div>
 
                     <div class="margintop row">
                         <p>Jelszó: </p>
-                        <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
+                        <input class="EmailAndPasswordInput" type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
                             required="required" v-model="LoginPassword"></input>
 
                     </div>
@@ -22,7 +22,7 @@
 
                 </div>
                 <div class="">
-                    <button class="button-85" :disabled="Loading ? disabled : ''" @click="Login">Belépés</button>
+                    <button class="button-85" :disabled="Loading ? disabled : ''"  @click="Login">Belépés</button>
                     <button class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
                     <button class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
@@ -39,32 +39,26 @@
     </div>
 
     <div v-if="Sites==3" class="container">
-        <div class="row LoginStyle">
-            <div class="col-lg-12 col-md-12 col-12">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <h1 class="LoginMain">Elfelejtett jelszó</h1>
 
                 <div class=" button-85">
                     <div class="margintop row">
-                        <p>Email:</p>
+                        <p >Email:</p>
 
-                        <input type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                     </div>
 
-                    <div class="margintop row">
-                        <p>Jelszó: </p>
-                        <input type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
-                            required="required" v-model="LoginPassword"></input>
-
+                </div>
+                <div>
+                        <button @click="EmailReset" class="button-85">Kűldés</button>
+                        <button class="button-85" @click="Sites=1">Mégse</button>
                     </div>
                     <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                         <strong>{{ hiba }}</strong>
                         <button type="button" @click="hiba=''" class="btn-close"></button>
                     </div>
-                    <div>
-                        <button @click="EmailReset" class="button-85">Kűldés</button>
-                        <button class="button-85" @click="Sites=1">Mégse</button>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -77,7 +71,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Regisztráció</h1>
                 <br>
-                <div class="col-md-4 col-lg-4 Adatok button-85">
+                <div class="col-md-4 col-lg-4 col-sl-4 col-4 Adatok button-85">
 
                     <div class="margintop">
                         <p>Vezetéknév: </p>
@@ -87,13 +81,13 @@
 
                     <div class="margintop">
                         <p>Keresztnév: </p>
-                        <input placeholder="Matyi" required="required" v-model="RegisterFirstName" class="inputs"
+                        <input placeholder="Matyi" required="required" v-model="RegisterFirstName" 
                             type="text" name="" id="Keresztnev">
                     </div>
 
                     <div class="margintop">
                         <p>Email: </p>
-                        <input required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email"
+                        <input class="EmailAndPasswordInput" required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email"
                             name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                     </div>
 
@@ -104,7 +98,6 @@
                                 <h6>Válasz jelszót</h6>
                             </template>
                             <template #footer>
-                                <Divider />
                                 <p class="mt-2">Ajánlások</p>
                                 <ul class="pl-2 ml-2 mt-0">
                                     <li>Minimum 1 kisbetü</li>
@@ -123,8 +116,8 @@
                     </div>
 
                 </div>
-
-                <div class="button-85 row">
+                <br><br><br>
+                <div class="button-85 RegisterDiv">
                     <div>
                         <button class="RegisterBtn" @click="Register">Regisztráció</button>
                     </div>
@@ -143,7 +136,6 @@
 <script setup>
 
     import termekService from "../services/termekService"
-    import InputOtp from 'primevue/inputotp';
 
     import Password from 'primevue/password';
     import { useRouter  } from "vue-router";
@@ -159,13 +151,10 @@
 
     const RegisterLastName = ref()
     const RegisterFirstName = ref()
-    const RegisterPostalCode = ref(0)
-    const RegisterCity = ref()
-    const RegisterStreet = ref()
+
     const RegisterPassword = ref()
     const RegisterPasswordAgain = ref()
     const RegisterEmail = ref()
-    const RegisterPhoneNumber = ref()
     
     const LoginEmail = ref()
     const LoginPassword = ref()
@@ -186,11 +175,6 @@
         password: RegisterPassword.value,
         password_confirmation: RegisterPasswordAgain.value
     }
-
-    console.log(typeof(akt_register.name));
-    console.log(akt_register.email);
-    console.log(akt_register.password);
-    console.log(akt_register.password_confirmation);
 
     if(akt_register.name !== NaN && akt_register.email !== undefined && akt_register.password !== undefined && akt_register.password_confirmation !== undefined)
     {
@@ -238,14 +222,26 @@
             store.setLoggedIn(true)
             router.push({ name: "Profil" })
         } catch (error) {
-            hiba.value = error;       
+
+            if(error.response.status == 401){
+                hiba.value = "Nem megfelelő email vagy jelszó"
+            }
+            if(error.response.status == 500){
+                hiba.value = "Hiba a szerveren"
+            }
+            if(error.response.status == 422){
+                hiba.value = "A mezők kitöltése kötelező"  
+            }
             Loading.value = true
-            console.log(error.message);
         }
     }
 </script>
 
 <style lang="scss" scoped>
+
+strong{
+    font-size: large;
+}
 
 .alert{
     height: 5rem;
@@ -292,7 +288,7 @@
 }
 
 div{
-    padding: 5px;
+    padding: 5px
     
 }
 
@@ -344,6 +340,12 @@ p, input{
     width: 50%;
     margin:auto;
     text-align: center
+}
+.RegisterDiv{
+
+    margin: auto;
+    min-width: 55%;
+    width: 20%
 }
 
 </style>

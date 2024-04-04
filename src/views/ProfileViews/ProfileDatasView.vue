@@ -86,8 +86,8 @@ const UserNewPasswordAgain = ref()
 onBeforeMount(() => {
     user.value = store.getUser
     UserEmail.value = user.value.user.user.email
-    UserLastName.value = user.value.user.user.name
-    UserFirstName.value = user.value.user.user.name
+    UserLastName.value = user.value.user.user.name.split(" ")[0]
+    UserFirstName.value = user.value.user.user.name.split(" ")[1]
     console.log(user.value.user.user.email);
 })
 

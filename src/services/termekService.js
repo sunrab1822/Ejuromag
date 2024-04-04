@@ -7,7 +7,6 @@ export default {
                 return resp.data;
             })
             .catch(err => {
-                console.log(err);
             })
 
     },
@@ -17,7 +16,6 @@ export default {
                 return resp.data;
             })
             .catch(err => {
-                console.log(err);
             })
 
     },

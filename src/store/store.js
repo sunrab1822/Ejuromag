@@ -3,7 +3,8 @@ import {defineStore} from 'pinia';
 export const useUserStore = defineStore('user', {
     state: () => ({
         user: null,
-        isLoggedIn: false
+        isLoggedIn: false,
+        CartProductPrice: 0,
     }),
     persist: true,
     getters: {
@@ -12,25 +13,21 @@ export const useUserStore = defineStore('user', {
         },
         getLoggedIn() {
             return this.isLoggedIn;
+        },
+        getProductsPrice() {
+            return this.CartProductPrice;
         }
     },
     actions: {
         setUser(user) {
             this.user = user;
         },
+        setProductPrice(price) {
+            this.CartProductPrice = price;
+        },
         
         setLoggedIn(state) {
             this.isLoggedIn = state;
-        },
-        updateUserBalance(amount) {
-            if(this.user) {
-                this.user.balance = amount;
-            }
-        },
-        updateUserVaultBalance(amount) {
-            if(this.user) {
-                this.user.vault_balance = amount;
-            }
         }
     }
 })
