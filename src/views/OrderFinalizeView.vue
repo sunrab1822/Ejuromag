@@ -56,6 +56,7 @@
                                 <p class="col-lg-3">Email: </p>
                                 <input class="col-lg-6" placeholder="Email" required="required" v-model="OrderEmail" type="text" name="" id="">
                             </div>
+                            
                         </div>
                     </div>
                     <div class="flex py-4">
@@ -156,7 +157,7 @@
                                             <label class="form-control">{{kosarAr}} Ft</label>
                                         </div>
                                     </div>
-                                    <button to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</button>
+                                    <button v-if="OrderShippingImg != 0" to="/rendeles_osszegzes" id="RendelesFolyatatasaBtn">Folytatás</button>
 
                                 </div>
                             </div>
@@ -181,6 +182,8 @@ import Button from 'primevue/button';
 
 import {ref,onBeforeMount} from 'vue'
 import { useUserStore } from "../store/store"
+import Dialog from 'primevue/dialog';
+
 
 
 const store = useUserStore()
@@ -196,9 +199,10 @@ let OrderCity = ref()
 let OrderCityStreet = ref()
 let OrderPhoneNumber = ref()
 let OrderZipCode = ref()
-let OrderShippingImg = ref()
+let OrderShippingImg = ref(0)
 let OrderShippingPrice = ref()
 let user = ref()
+console.log(OrderShippingImg.value);
 
 onBeforeMount(() => {
 
@@ -215,6 +219,7 @@ try{
 catch(err)
 {
 }
+
 // OrderLastName.value = user.
 
 // kosarAr.value = store.kosar[1]
