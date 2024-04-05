@@ -89,11 +89,11 @@ let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
 
-function Novel(asd){
+function Novel(number){
     const priceindex = 1
     for(let termek in adatok)
     {
-        if(adatok[termek][0] == asd)
+        if(adatok[termek][0] == number)
         {
             const index = termek;
             const egy = JSON.parse(localStorage.getItem('EgyArak'))
@@ -106,12 +106,12 @@ function Novel(asd){
     }
 }
 
-function Csokkent(asd){
+function Csokkent(number){
     const priceindex = 1
     
     for(let termek in adatok)
     {
-        if(adatok[termek][0] == asd)
+        if(adatok[termek][0] == number)
         {
             const index = termek;
             const egy = JSON.parse(localStorage.getItem('EgyArak'))
@@ -124,11 +124,11 @@ function Csokkent(asd){
     }
 }
 
-function Torles(asd){
+function Torles(number){
 
     for(let termek in adatok)
     {
-        if(adatok[termek][0] == asd)
+        if(adatok[termek][0] == number)
         {
             const index = termek;
             const egy = JSON.parse(localStorage.getItem('EgyArak'))

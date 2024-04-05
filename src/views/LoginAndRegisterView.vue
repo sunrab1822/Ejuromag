@@ -1,6 +1,7 @@
 <template>
 
     <div v-if="Sites==1" class="container">
+
         <div class="row LoginStyle">
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Belépés</h1>
@@ -33,7 +34,10 @@
                 </div>
             </div>
 
-
+            <div v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
+                        <strong>{{ Succesmessage }}</strong>
+                        <button type="button" @click="Succesmessage=''" class="btn-close"></button>
+            </div>
 
         </div>
     </div>
@@ -47,7 +51,7 @@
                     <div class="margintop row LoginMobile">
                         <p >Email:</p>
 
-                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " v-model="ResetEmail">
+                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="EmailReset" v-model="ResetEmail">
                     </div>
 
                 </div>
@@ -147,6 +151,7 @@
     const router = useRouter()    
 
     let hiba = ref()
+    let Succesmessage = ref()
     let Sites = ref(1)
 
     const RegisterLastName = ref()
@@ -164,11 +169,15 @@
 
     let Loading = ref(true)
 
+
+
     // const hasPasswordMismatch = computed(() => {
     //     return jelszo.value == jelszoRepeat.value
     // })
 
     const Register = async() => {
+        hiba.value = ""
+        Succesmessage.value = ""
         const akt_register = {
         name: RegisterLastName.value + " " + RegisterFirstName.value,
         email: RegisterEmail.value,
@@ -182,33 +191,39 @@
             const res = await termekService.UserRegister(akt_register)
             Sites.value = 1
             LoginEmail.value = akt_register.email
-            alert("Sikeresen regisztráltál.")
 
             }   
         catch (error) {
         console.log(error.message);
 
         }}
+        Succesmessage.value =  "Sikeresen regisztráltál!"
     }
 
     const EmailReset = async() => {
+        hiba.value = ""
+        Succesmessage.value = ""
         if(ResetEmail.value && ResetEmail.value!== undefined){
             try{
             const res = await termekService.ResetPasswordToken({email: ResetEmail.value})
 
             }
             catch(error){
+                console.log(error.message);
                 hiba.value = "Nem található az email"
                 return
             }
             ResetEmail.value = null
             Sites.value = 1
+            Succesmessage.value = "Email elküldve"
         }
 
     }
 
 
     const Login = async() => {
+        hiba.value = ""
+        Succesmessage.value = ""
         Loading.value = false
         const akt_login = {
         email: LoginEmail.value,

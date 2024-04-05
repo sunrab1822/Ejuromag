@@ -40,6 +40,7 @@
 </template>
 
 <script setup>
+import '../assets/scss/footerStyle.scss'
 
 </script>
 

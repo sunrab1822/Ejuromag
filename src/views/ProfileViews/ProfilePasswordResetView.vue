@@ -8,20 +8,6 @@
             <form>
                         <fieldset>
                             <legend>Fiók adatok:</legend>
-                            <div class="row">
-                                <p class="col-lg-2">Vezetéknév:</p>
-                                <InputText class="col-lg-3 Inputs" required="required" v-model="UserLastName"  type="text" name="" id=""/>
-                                <p class="col-lg-2">Keresztnév:</p>
-                                <InputText class="col-lg-3 Inputs" required="required" v-model="UserFirstName"  type="text" name="" id=""/>
-                            </div>
-                            
-                            <br>
-                            <div class="row">
-                                <p class="col-lg-3">Email: </p>
-                                <InputText class="col-lg-6 Inputs EmailInput" required="required" v-model="UserEmail" type="text" name="" id=""/>
-                            </div>
-                            
-                            <br>
 
                             <div class="row">
                                 <p class="col-lg-3">Jelenlegi jelszó: </p>
@@ -67,7 +53,6 @@
 <script setup>
 import ProfileNavbar from '../../components/ProfileNavbar.vue';
 import Password from 'primevue/password';
-import InputText from 'primevue/inputtext';
 import { ref } from "vue";
 
 import { useUserStore } from "../../store/store"
@@ -100,7 +85,7 @@ onBeforeMount(() => {
     margin: auto;
 }
 
-.EmailInput{
+.asd{
     width: 40rem;
     margin-left: 1%;
 }
@@ -109,7 +94,7 @@ onBeforeMount(() => {
     width: 280px;
 }
 @media screen and (max-width: 600px) {
-  .EmailInput {
+  .asd {
     width: 260px;
     margin: auto;
   }

@@ -28,7 +28,7 @@
                                     <li>
                                         <a href="/profil/cim" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-bookmark mr-2"></i>
-                                            <span class="font-medium">Címek</span>
+                                            <span class="font-medium">Jelszó csere</span>
                                         </a>
                                     </li>
                                     <li>
@@ -43,25 +43,7 @@
                                             <span @click="LogOut" class="font-medium">Kijelentkezés</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-comments mr-2"></i>
-                                            <span class="font-medium">Messages</span>
-                                            <span class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle" style="min-width: 1.5rem; height: 1.5rem">3</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-calendar mr-2"></i>
-                                            <span class="font-medium">Calendar</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-cog mr-2"></i>
-                                            <span class="font-medium">Settings</span>
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                             </li>
                         </ul>
@@ -69,7 +51,7 @@
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <div v-ripple class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <Avatar image="https://jedlik.eu/_next/image?url=https%3A%2F%2Fgyor-jedlik.cms.intezmeny.edir.hu%2Fuploads%2Fsoos_gabor_90c5eb0b76.jpg&w=128&q=75" shape="circle" size="large"/>
+                            <Avatar image="UserImg.jpg" shape="circle" size="large"/>
                             <span class="font-bold">{{user.user.user.name}}</span>
                         </div>
                     </div>

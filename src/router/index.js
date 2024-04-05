@@ -10,6 +10,8 @@ import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
 import ProfileAdressesViewVue from '@/views/ProfileViews/ProfileAdressesView.vue'
 import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
 import OrderFinalizeView from'@/views/OrderFinalizeView.vue'
+import PasswordResetView from '@/views/PasswordResetView.vue'
+import ProfilePasswordResetView from '@/views/ProfileViews/ProfilePasswordResetView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +46,11 @@ const router = createRouter({
       path: '/Login',
       name: 'Belépés',
       component: LoginAndRegisterView
+    },
+    {
+      path: '/jelszo_modositasa/:token',
+      name: 'Jelszó visszaállítás',
+      component: PasswordResetView
     },
     {
       path: '/profil',
@@ -86,9 +93,9 @@ const router = createRouter({
       component: ProfileDatasViewVue
     },
     {
-      path: '/profil/cim',
-      name: 'Profil_Cim',
-      component: ProfileAdressesViewVue
+      path: '/profil/jelszo_csere',
+      name: 'Jelszo_csere',
+      component: ProfilePasswordResetView
     },
     {
       path: '/profil/rendelesek',

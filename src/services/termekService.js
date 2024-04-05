@@ -19,6 +19,22 @@ export default {
             })
 
     },
+    // async SearchByName(data){ 
+    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
+    //     return resp.data
+    // },
+    // async SearchByManufacturer(data){ 
+    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
+    //     return resp.data
+    // },
+    // async SearchByPrice(data){ 
+    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
+    //     return resp.data
+    // },
+    // async SendBuy(data){ 
+    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
+    //     return resp.data
+    // },
     async UserRegister(datas){ 
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/register', datas)
         return resp.data
@@ -36,6 +52,11 @@ export default {
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password-token', data)
         return resp.data
     },
+    async ResetPassword(data){ 
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
+        return resp.data
+    },
+
 
     // getAllAuthor()
     // {

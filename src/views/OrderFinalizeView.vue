@@ -66,26 +66,26 @@
 
             <StepperPanel header="Szállítási lehetőségek">
                 <template #content="{ prevCallback, nextCallback }">
-                    <div class="flex flex-column h-19rem">
-                        <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                    <div class="flex flex-column OrderFinalize">
+                        <div class="container border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
 
                         <Button @click="OrderShippingImg ='/Posta_szallitas.png', OrderShippingPrice = 1590">
                             <figure @click="nextCallback">
-                                <img style="width: 200px;" src="/Posta_szallitas.png" alt="" srcset="">
+                                <img class="ShippingImgs" src="/Posta_szallitas.png" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1.590,- Ft</figcaption>
                             </figure>
                         </Button>
                         <Button @click="OrderShippingImg = '/PostaPont_szallitas.jpg', OrderShippingPrice = 990">
                             <figure @click="nextCallback">
-                                <img style="width: 200px;" src="/PostaPont_szallitas.jpg" alt="" srcset="">
+                                <img class="ShippingImgs" src="/PostaPont_szallitas.jpg" alt="" srcset="">
                                 <br><br>
                                 <figcaption>990 Ft</figcaption>
                             </figure>
                         </Button>
-                        <Button @click="OrderShippingImg = '/Packeta_szallitas.png', OrderShippingPrice = 1480">
+                        <Button class="row" @click="OrderShippingImg = '/Packeta_szallitas.png', OrderShippingPrice = 1480">
                             <figure @click="nextCallback">
-                                <img style="width: 200px;" src="/Packeta_szallitas.png" alt="" srcset="">
+                                <img class="ShippingImgs" src="/Packeta_szallitas.png" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1 480 Ft</figcaption>
                             </figure>
@@ -101,8 +101,8 @@
             <StepperPanel header="Rendelés összegzése">
                 <template #content="{ prevCallback }">
                     <div class="flex flex-column h-20rem contrainer">
-                        <div  class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                            <div class="card col-3" >
+                        <div  class=" row border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                            <div class="card col-lg-3 col-md-3 col-12" >
                                 <div class="card-header">
                                     <h5>Személyes adatok:</h5>
                                 </div>
@@ -114,7 +114,7 @@
                                     <p>Email: <span>{{OrderEmail}}</span></p>
                                 </div>
                             </div>
-                            <div class="card col-3">
+                            <div class="card col-lg-3 col-md-3 col-12">
                                 <div class="card-header">
                                     <h5>Szállítás</h5>
                                 </div>
@@ -128,7 +128,7 @@
                                     </Button>
                                 </div>
                             </div>
-                            <div class="card col-3">
+                            <div class="card col-lg-3 col-md-3 col-12">
                                 <div class="card-header">
                                     <h5>Leadás</h5>
                                 </div>
@@ -229,6 +229,13 @@ catch(err)
 
 
 <style scoped>
+    .OrderFinalize{
+        height: 19rem;
+    }
+
+.ShippingImgs{
+    width: 180px;
+}
 
 .ProdcutCard{
     color: white;
@@ -251,6 +258,9 @@ Button{
 @media (max-width: 1250px) {
     .button-85{
     width: 100%;
+    }
+    .ShippingImgs{
+        width: 60px;
     }
 }
 

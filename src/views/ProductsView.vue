@@ -38,8 +38,8 @@
                             <li v-for="manu in Manufacturers">
                                 
                                 <div class="flex align-items-center">
-                                    <RadioButton v-model="ingredient" inputId="ingredient1" name="pizza" value="Cheese" />
-                                    <label for="ingredient1" class="ml-2">{{manu.name}}</label>
+                                    <RadioButton v-model="ingredient" inputId="manufacturerId" name="manufacturer" :value=manu.name />
+                                    <label for="manufacturerId" class="ml-2">{{manu.name}}</label>
                                 </div>
                             </li>
 
