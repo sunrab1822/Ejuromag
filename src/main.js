@@ -3,6 +3,7 @@ import 'primevue/resources/themes/aura-light-green/theme.css'
 import { createApp } from 'vue'
 
 import PrimeVue from 'primevue/config'
+
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 // import as component
@@ -31,6 +32,5 @@ app.use(router)
 app.use(PrimeVue);
 
 app.directive('badge', BadgeDirective);
-
 
 app.mount('#app')

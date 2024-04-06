@@ -22,6 +22,10 @@
 
 
                 </div>
+
+                <ProgressSpinner v-if="loading"/>
+
+
                 <div class="">
                     <button class="button-85" @click="Login">Belépés</button>
                     <button class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
@@ -54,7 +58,10 @@
                         <input class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="EmailReset" v-model="ResetEmail">
                     </div>
 
+
                 </div>
+                <ProgressSpinner v-if="loading" />
+
                 <div>
                         <button @click="EmailReset" class="button-85">Kűldés</button>
                         <button class="button-85" @click="Sites=1">Mégse</button>
@@ -121,6 +128,8 @@
 
                 </div>
                 <br><br><br>
+                <ProgressSpinner v-if="loading" />
+
                 <div class="button-85 RegisterDiv">
                     <div>
                         <button class="RegisterBtn" @click="Register">Regisztráció</button>
@@ -145,6 +154,8 @@
     import { useRouter  } from "vue-router";
     import { ref } from 'vue';  
     import { useUserStore } from "../store/store"
+    import ProgressSpinner from 'primevue/progressspinner';
+
 
     const store = useUserStore()
 
@@ -160,6 +171,8 @@
     const RegisterPassword = ref()
     const RegisterPasswordAgain = ref()
     const RegisterEmail = ref()
+
+    const loading = ref(false)
     
     const LoginEmail = ref()
     const LoginPassword = ref()
@@ -167,15 +180,13 @@
     const ResetEmail = ref()
     const ResetEmailAgain = ref()
 
-    let Loading = ref(true)
-
-
 
     // const hasPasswordMismatch = computed(() => {
     //     return jelszo.value == jelszoRepeat.value
     // })
 
     const Register = async() => {
+        loading.value = true
         hiba.value = ""
         Succesmessage.value = ""
         const akt_register = {
@@ -199,8 +210,11 @@
         }}
         Succesmessage.value =  "Sikeresen regisztráltál!"
     }
+    loading.value = false
+
 
     const EmailReset = async() => {
+        loading.value = true
         hiba.value = ""
         Succesmessage.value = ""
         if(ResetEmail.value && ResetEmail.value!== undefined){
@@ -211,20 +225,22 @@
             catch(error){
                 console.log(error.message);
                 hiba.value = "Nem található az email"
+                loading.value = false
                 return
             }
             ResetEmail.value = null
             Sites.value = 1
             Succesmessage.value = "Email elküldve"
         }
+        loading.value = false
 
     }
 
 
     const Login = async() => {
+        loading.value = true
         hiba.value = ""
         Succesmessage.value = ""
-        Loading.value = false
         const akt_login = {
         email: LoginEmail.value,
         password: LoginPassword.value,
@@ -246,8 +262,8 @@
             if(error.response.status == 422){
                 hiba.value = "A mezők kitöltése kötelező"  
             }
-            Loading.value = true
         }
+        loading.value = false
     }
 </script>
 

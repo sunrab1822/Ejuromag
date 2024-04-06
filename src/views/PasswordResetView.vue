@@ -1,8 +1,6 @@
 <template>
 
     <div class="container">
-        <Toast position="top-left" group="tl" />
-
         <div class="row LoginStyle">
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Új jelszó megadása</h1>
@@ -37,6 +35,10 @@
 
 
                 </div>
+
+                <ProgressSpinner v-if="loading"/>
+
+
                 <div class="">
                     <button class="button-85" @click="ResetPassword">Mentés</button>
                 </div>
@@ -62,8 +64,7 @@
 <script setup>
 
     import termekService from "../services/termekService"
-    import Toast from 'primevue/toast';
-
+    import ProgressSpinner from 'primevue/progressspinner';
     import Password from 'primevue/password';
     import { useRouter  } from "vue-router";
     import { ref } from 'vue';  
@@ -79,30 +80,40 @@
     let hiba = ref()
     let Succesmessage = ref()
 
+    const loading = ref(false)
+
     const resetPassword = ref()
     const resetPasswordAgain = ref()
 
     const ResetPassword = async() => {
+        loading.value = true
         const akt_newpassword = {
         token: token,
         password: resetPassword.value
     }
-    console.log(akt_newpassword);
+    console.log(typeof akt_newpassword.password);
+    if(akt_newpassword.password === void 0 )
+    {
+        hiba.value = "A jelszó nem lehet üres!"
+        loading.value = false
+        return
+    }
 
-    if(akt_newpassword.password !== NaN && akt_newpassword.password == resetPasswordAgain.value)
+    if(akt_newpassword.password == resetPasswordAgain.value)
     {
         try {
-            const res = await termekService.ResetPasswordToken(akt_newpassword)
-            toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', group: 'tl', life: 3000 });
-
+            const res = await termekService.ResetPassword(akt_newpassword)
 
             }   
         catch (error) {
             hiba.value = "A két jelszó nem egyezik!"
             console.log(error.message);
+            loading.value = false
 
+            return
         }}
         Succesmessage.value = "A jelszó sikeresen megváltoztatva!"
+        loading.value = false
     }
 
 

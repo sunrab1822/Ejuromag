@@ -26,7 +26,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/profil/cim" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <a href="/profil/jelszo_csere" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-bookmark mr-2"></i>
                                             <span class="font-medium">Jelszó csere</span>
                                         </a>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-                        <div v-ripple class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                        <div class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <Avatar image="UserImg.jpg" shape="circle" size="large"/>
                             <span class="font-bold">{{user.user.user.name}}</span>
                         </div>
@@ -74,6 +74,7 @@ import termekService from "../services/termekService"
 import { useUserStore } from "../store/store"
 import {onBeforeMount} from "vue"
 import router from "@/router";
+
 
 const user = ref()
 const store = useUserStore()

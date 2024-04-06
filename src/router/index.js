@@ -7,7 +7,6 @@ import KosarView from "../views/KosarView.vue"
 import ProductsView from "../views/ProductsView.vue"
 import ProfileView from "../views/ProfileView.vue"
 import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
-import ProfileAdressesViewVue from '@/views/ProfileViews/ProfileAdressesView.vue'
 import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
 import OrderFinalizeView from'@/views/OrderFinalizeView.vue'
 import PasswordResetView from '@/views/PasswordResetView.vue'
@@ -48,7 +47,7 @@ const router = createRouter({
       component: LoginAndRegisterView
     },
     {
-      path: '/jelszo_modositasa/:token',
+      path: '/resetPassword/:token',
       name: 'Jelszó visszaállítás',
       component: PasswordResetView
     },
