@@ -10,6 +10,15 @@ export default {
             })
 
     },
+    async getAllProducts(){
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products ")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
+
+    },
     async getManufacturers(){
         return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/manufacturers")
             .then(resp => {
@@ -37,10 +46,10 @@ export default {
             })
 
     },
-    // async SearchByName(data){ 
-    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
-    //     return resp.data
-    // },
+    async SearchByName(data){ 
+        const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productbyName/' + data)
+        return resp.data
+    },
     // async SearchByManufacturer(data){ 
     //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
     //     return resp.data

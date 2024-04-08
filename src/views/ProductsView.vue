@@ -8,7 +8,7 @@
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input type="text" placeholder="Termék neve"></div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input @keyup="SearchByProductName" v-model="ProductName" type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                             <li v-for="manu in Manufacturers">
                                 
                                 <div class="flex align-items-center">
-                                    <RadioButton v-model="ingredient" inputId="manufacturerId" name="manufacturer" :value=manu.name />
+                                    <RadioButton v-model="SelectedManufacturer" inputId="manufacturerId" name="manufacturer" :value=manu />
                                     <label for="manufacturerId" class="ml-2">{{manu.name}}</label>
                                 </div>
                             </li>
@@ -52,6 +52,9 @@
             </div>
 
             <div class="col-md-8 col-lg-9 col-sm-8 productCards">
+                <div v-if="Products == 0">
+                    <h2 class="h2Custom">Nincs ilyen termék</h2>
+                </div>
                 <div v-for="product in Products" class="card button-85">
                     <div class="card-body">
                         <div class="row">
@@ -94,67 +97,24 @@
 
 <script setup>
     import RadioButton from 'primevue/radiobutton';
-    import {ref} from "vue";
+    import {ref, watch} from "vue";
 
     import termekService from "../services/termekService"
 
-    const ingredient = ref('');
-    let egyAra = []
-    let adatok = []
-    var pathname = window.location.pathname
-    var Products = ref();
-    var Manufacturers = ref();
-    const siteName = ref("")
-    const egy = JSON.parse(localStorage.getItem('EgyArak'))
+    let SelectedManufacturer = ref();
 
-    termekService.getManufacturers()
+    watch(SelectedManufacturer, (SelectedManufacturer) => {
+        console.log(SelectedManufacturer);
+    termekService.getProductsByManufacturer(SelectedManufacturer.id)
     .then(resp => {
-        Manufacturers.value = resp.data;
+        Products.value = resp.data[0].product;
+        siteName.value = SelectedManufacturer.name + " Termékek";
         console.log(resp.data);
     });
+    })
 
-    function Save (ProductName, ProductPrice, ProductPicture, ProductDescription){
-        var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription];
-
-        if(localStorage.getItem('data') == null)
-        {
-            localStorage.setItem('data', '[]');
-        }
-
-        var old_data = JSON.parse(localStorage.getItem("data"))
-        for(let product in old_data)
-        {
-            if(old_data[product][0] == ProductName)
-            {
-                const index = product;
-                const newDb = parseInt(old_data[index][2]) + 1;
-                const newValue = parseInt(old_data[index][1]) + parseInt(egy[product]);
-                old_data[index][2] = newDb;
-                old_data[index][1] = newValue
-                console.log(old_data[index][2]);
-                console.log(old_data[index][1]);
-                localStorage.setItem('data', JSON.stringify(old_data))
-                return
-            }
-        }
-        old_data.push(new_data);
-        localStorage.setItem('data', JSON.stringify(old_data))
-        console.log(old_data);
-
-        adatok = JSON.parse(localStorage.getItem('data'))
-        for(let product in adatok) 
-        {
-            
-            egyAra.push(adatok[product][1])
-            console.log(egyAra);
-
-        }
-        localStorage.setItem('EgyArak', '[]');
-        localStorage.setItem('EgyArak', JSON.stringify(egyAra));
-        console.log(JSON.parse(localStorage.getItem('EgyArak')));
-
-    }
-    switch (pathname){
+    function ProductShow(){
+        switch (pathname){
             case '/laptopok':
                 termekService.getProducts(1)
                 .then(resp => {
@@ -206,7 +166,80 @@
 
                 break;
         }
+    }
+    let egyAra = []
+    let adatok = []
+    var pathname = window.location.pathname
+    var Products = ref();
+    var Manufacturers = ref();
+    const siteName = ref("")
+    let ProductName = ref()
+    const egy = JSON.parse(localStorage.getItem('EgyArak'))
 
+    termekService.getManufacturers()
+    .then(resp => {
+        Manufacturers.value = resp.data;
+        console.log(resp.data);
+    });
+
+    const SearchByProductName = () => {
+        if(ProductName.value == []){
+            ProductShow()
+        }
+        else{
+            termekService.SearchByName(ProductName.value)    
+       .then(resp => {
+        Products.value = resp.data;
+        console.log(resp.data);
+    });
+        }
+
+    }
+
+    function Save (ProductName, ProductPrice, ProductPicture, ProductDescription){
+        var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription];
+
+        if(localStorage.getItem('data') == null)
+        {
+            localStorage.setItem('data', '[]');
+        }
+
+        var old_data = JSON.parse(localStorage.getItem("data"))
+        for(let product in old_data)
+        {
+            if(old_data[product][0] == ProductName)
+            {
+                const index = product;
+                const newDb = parseInt(old_data[index][2]) + 1;
+                const newValue = parseInt(old_data[index][1]) + parseInt(egy[product]);
+                old_data[index][2] = newDb;
+                old_data[index][1] = newValue
+                console.log(old_data[index][2]);
+                console.log(old_data[index][1]);
+                localStorage.setItem('data', JSON.stringify(old_data))
+                return
+            }
+        }
+        old_data.push(new_data);
+        localStorage.setItem('data', JSON.stringify(old_data))
+        console.log(old_data);
+
+        adatok = JSON.parse(localStorage.getItem('data'))
+        for(let product in adatok) 
+        {
+            
+            egyAra.push(adatok[product][1])
+            console.log(egyAra);
+
+        }
+        localStorage.setItem('EgyArak', '[]');
+        localStorage.setItem('EgyArak', JSON.stringify(egyAra));
+        console.log(JSON.parse(localStorage.getItem('EgyArak')));
+
+    }
+
+
+    ProductShow();
 
 
 </script>
