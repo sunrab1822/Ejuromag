@@ -19,6 +19,24 @@ export default {
             })
 
     },
+    async getCategories(){
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/categories")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
+
+    },
+    async getProductsByManufacturer(id){
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productwManuf/" + id)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
+
+    },
     // async SearchByName(data){ 
     //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
     //     return resp.data
@@ -57,28 +75,5 @@ export default {
         return resp.data
     },
 
-
-    // getAllAuthor()
-    // {
-    //     return axios.get('http://localhost:8000/api/get-all-authors')
-    //     .then(resp => {
-    //         // console.log(resp.data);
-    //         return resp.data;
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // },
-    // getBooksByAuthor(authorName)
-    // {
-    //     return axios.get('http://localhost:8000/api/book-by-author'+authorName)
-    //     .then(resp => {
-    //         // console.log(resp.data);
-    //         return resp.data;
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // }
 
 }

@@ -1,0 +1,18 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+.main{
+    background-color: black;
+}
+
+.LoginCard{
+    width: fit-content;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+#LoginName{
+    text-align: center;
+}
+#LoginBtn{
+    margin: auto;
+}

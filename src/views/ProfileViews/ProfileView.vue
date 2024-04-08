@@ -20,8 +20,8 @@
 
 <script setup>
 import { ref } from "vue";
-import ProfileNavbar from '../components/ProfileNavbar.vue';
-import { useUserStore } from "../store/store"
+import ProfileNavbar from '../../components/ProfileNavbar.vue';
+import { useUserStore } from "../../store/store"
 import {onBeforeMount} from "vue"
 const user = ref()
 const store = useUserStore()
@@ -30,9 +30,6 @@ onBeforeMount(() => {
     user.value = store.getUser
     console.log(user.value);
 })
-
-
-const visible = ref(false);
 
 </script>
 

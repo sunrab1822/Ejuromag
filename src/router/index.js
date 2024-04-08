@@ -5,12 +5,23 @@ import AboutUsView from '../views/AboutUsView.vue'
 import LoginAndRegisterView from "../views/LoginAndRegisterView.vue"
 import KosarView from "../views/KosarView.vue"
 import ProductsView from "../views/ProductsView.vue"
-import ProfileView from "../views/ProfileView.vue"
+import ProfileView from "../views/ProfileViews/ProfileView.vue"
 import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
 import ProfileOrdersViewVue from '@/views/ProfileViews/ProfileOrdersView.vue'
 import OrderFinalizeView from'@/views/OrderFinalizeView.vue'
 import PasswordResetView from '@/views/PasswordResetView.vue'
 import ProfilePasswordResetView from '@/views/ProfileViews/ProfilePasswordResetView.vue'
+import ErrorView from '../views/ErrorView.vue'
+
+import AdminLoginView from '@/views/AdminViews/AdminLoginView.vue'
+import AdminMainView from '@/views/AdminViews/AdminMainView.vue'
+import {ref} from 'vue'
+import { useRouter  } from "vue-router";
+
+
+
+
+import { useUserStore } from "../store/store.js"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +30,12 @@ const router = createRouter({
       path: '/',
       name: 'Főoldal',
       component: HomeView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: "404",
+      component: ErrorView
+
     },
     {
       path: "/help/Rendeles_es_szallitas",
@@ -100,11 +117,40 @@ const router = createRouter({
       path: '/profil/rendelesek',
       name: 'Profil_Rendelesek',
       component: ProfileOrdersViewVue
-    }
-    
+    },
+
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: AdminLoginView
+    },    {
+      path: '/admin/main',
+      name: 'Admin_Main',
+      beforeEnter: checkAdminRights,
+      component: AdminMainView
+    },
   ]
   
 })
+
+
+
+function checkAdminRights(to, from, next) {
+  
+  let user;
+  let store = useUserStore()
+  let routerLocal = useRouter()    
+
+  user = store.getUser
+  console.log(user.user.user.role);
+  if(user.user.user.role === 1) {
+    console.log(user.user.user.role);
+      next();       
+  } else {
+    console.log("asd");
+      routerLocal.push("/");
+  }
+}
 
 router.beforeEach((to, from, next) => {
   document.title = to.name + " - Ejuromag";
@@ -112,3 +158,4 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router
+

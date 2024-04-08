@@ -34,3 +34,4 @@ app.use(PrimeVue);
 app.directive('badge', BadgeDirective);
 
 app.mount('#app')
+

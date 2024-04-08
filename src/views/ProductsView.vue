@@ -207,14 +207,6 @@
                 break;
         }
 
-    
-    const Kuldes = () => {
-        const adat = Products.value
-        console.log(termek.id);
-
-        // store.setKosar(adat, adat2)
-    }
-
 
 
 </script>
