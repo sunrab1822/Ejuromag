@@ -50,18 +50,10 @@ export default {
         const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productbyName/' + data)
         return resp.data
     },
-    // async SearchByManufacturer(data){ 
-    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
-    //     return resp.data
-    // },
-    // async SearchByPrice(data){ 
-    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
-    //     return resp.data
-    // },
-    // async SendBuy(data){ 
-    //     const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password', data)
-    //     return resp.data
-    // },
+    async SendBuy(data){ 
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/create-order', data)
+        return resp.data
+    },
     async UserRegister(datas){ 
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/register', datas)
         return resp.data

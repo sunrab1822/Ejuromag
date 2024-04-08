@@ -157,7 +157,7 @@
                                             <label class="form-control">{{kosarAr}} Ft</label>
                                         </div>
                                     </div>
-                                    <button v-if="OrderShippingImg != 0" to="/rendeles_osszegzes" id="RendelesFolyatatasaBtn">Folytatás</button>
+                                    <button v-if="OrderShippingImg != 0" @click="SendOrder" id="RendelesFolyatatasaBtn">Folytatás</button>
 
                                 </div>
                             </div>
@@ -177,12 +177,11 @@ import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
 import InputOtp from 'primevue/inputotp';
 import InputMask from 'primevue/inputmask';
-import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
 
 import {ref,onBeforeMount} from 'vue'
 import { useUserStore } from "../store/store"
-import Dialog from 'primevue/dialog';
+import termekService from "../services/termekService"
 
 
 
@@ -218,6 +217,23 @@ try{
 }
 catch(err)
 {
+}
+
+const SendOrder = () => {
+    const akt_Order = {
+        name: RegisterLastName.value + " " + RegisterFirstName.value,
+        email: RegisterEmail.value,
+        password: RegisterPassword.value,
+        address: RegisterPasswordAgain.value,
+        products: RegisterEmail.value,
+    }
+        try {
+            termekService.SendBuy(akt_Order)    
+        } 
+        catch (error) {
+            
+        }
+
 }
 
 // OrderLastName.value = user.
