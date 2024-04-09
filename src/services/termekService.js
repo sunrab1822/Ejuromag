@@ -50,7 +50,8 @@ export default {
         const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productbyName/' + data)
         return resp.data
     },
-    async SendBuy(data){ 
+    async SendBuy(data, token){ 
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/create-order', data)
         return resp.data
     },

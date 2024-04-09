@@ -1,6 +1,61 @@
 <template class="main">
     <div class="container" style="height: 50rem">
         <div class="row">
+            <div class="col-1">
+                <table>
+                    <tr>
+                        <th>Menu</th>
+                    </tr>
+                    <tr>
+                        <td><button @click="New=true, Modositas=false">New</button></td>
+                    </tr>
+                    <tr>
+                        <td><button @click="Modositas=true, New=false">Change</button></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div v-if="New" class="col-10">
+                <div class="card button-85">
+                    <div class="card-body">
+                        <div class="row">
+                            <h3>Cím</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-4">
+                                <p>Kép</p>
+                            </div>
+
+                            <div class="col-md-4 col-lg-4 col-sm-4">
+                                <p>Leírás</p>
+                            </div>
+
+                            <div class="col-md-4 col-lg-4 col-sm-4">
+                                <h3>Ára Ft</h3>
+                                <router-link to="/Kosar"><button class="button-33">Vásárlás</button></router-link>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="Modositas" class="col-10">
+                <DataTable v-model:selection="selectedProduct" selectionMode="single" paginator :rows="3"
+                    :value="products" removableSort tableStyle="min-width: 50rem">
+                    <Column field="id" header="id" sortable></Column>
+                    <Column field="picture" header="picture" sortable>
+                        <template #body="slotProps">
+                            <img :src="slotProps.data.picture"
+                                :alt="slotProps.data.picture" class="shadow-4" width="100" />
+                        </template>
+                    </Column>
+                    <Column field="name" header="Name" sortable></Column>
+                    <Column style="width: 20rem;" field="description" header="description" sortable></Column>
+                    <Column field="price" header="price" sortable></Column>
+                </DataTable>
+            </div>
 
             <div class="col-1">
                 <table>
@@ -12,39 +67,6 @@
                 <Button @click="LogOut">Logout</Button>
             </div>
 
-            <div class="col-2 boxs">
-                <DataTable v-model:selection="selectedCategory" selectionMode="single" :value="categorys">
-                    <Column field="categoryName" header="Category"></Column>
-                </DataTable>
-            </div>
-
-            <div class="col-2 boxs"   v-if="selectedCategory">
-                <DataTable v-model:selection="selectedManufacturer" selectionMode="single" :value="manufacturers">
-                    <Column field="name" header="Manufacturer"></Column>
-                </DataTable>
-            </div>
-
-
-            <div class="col-2 boxs" v-if="selectedManufacturer" >
-                <OrderList v-model="products" listStyle="height:auto" dataKey="id">
-                    <template #header> List of Products </template>
-                    <template #item="slotProps">
-                        <div class="flex flex-wrap p-2 items-center gap-4">
-                            <img style="width: 70px;" class="w-[4rem] shadow-md shrink-0 rounded-md"
-                                :src="slotProps.item.picture" :alt="slotProps.item.name" />
-                            <div class="flex-1 flex flex-col gap-2">
-                                <span class="font-bold">{{ slotProps.item.name }}</span>
-                                <div class="flex items-center gap-2">
-                                    <i class="pi pi-tag text-sm"></i>
-                                    <span>{{ slotProps.item.category }}</span>
-                                </div>
-                            </div>
-                            <span class="font-bold text-surface-900 dark:text-surface-0">{{ slotProps.item.price
-                                }} Ft</span>
-                        </div>
-                    </template>
-                </OrderList>
-            </div>
         </div>
 
     </div>
@@ -52,7 +74,6 @@
 
 <script setup>
 import Button from 'primevue/button';
-import OrderList from 'primevue/orderlist';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import router from "@/router";
@@ -69,8 +90,12 @@ const selectedCategory = ref()
 const products = ref();
 const productsByCategory = ref()
 const productsByManufacturer = ref()
-const manufacturers = ref()
+const manufacturers = []
 const categorys = ref()
+let selectedProduct = ref()
+
+let Modositas = ref(false)
+let New = ref(false)
 
 const user = ref()
 const store = useUserStore()
@@ -85,29 +110,21 @@ const LogOut = async() => {
 onBeforeMount(() => {
     user.value = store.getUser
     console.log(user.value.user.user.name);
+    termekService.getManufacturers()
+    .then(resp => {
+        manufacturers.push(resp.data);
+        console.log(resp.data);
+        console.log(manufacturers[0])
+    });
+    console.log(manufacturers);
 })
-
-watch(selectedManufacturer, (selectedManufacturer) => {
-    console.log(selectedManufacturer.id);
-    termekService.getProductsByManufacturer(selectedManufacturer.id)
-                .then(resp => {
-                    console.log( resp.data[0]);
-                    products.value =  resp.data[0].product;
-                    console.log(products.value);
-                });
-})
-
 
 onMounted(() => {
-    termekService.getManufacturers()
-        .then(resp => {
-            manufacturers.value = resp.data;
-            console.log(manufacturers.value);
-        });
-    termekService.getCategories()
-        .then(resp => {
-            categorys.value = resp.data;
-        });
+    termekService.getAllProducts()
+                .then(resp => {
+                    products.value = resp.data;
+                });
+
         
 });
 

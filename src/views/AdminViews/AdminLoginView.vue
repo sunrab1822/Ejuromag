@@ -79,7 +79,7 @@ const LoginAdmin = async() => {
                 router.push({ name: "Admin_Main" })
             }
             else{
-                hiba.value = "Nem vagy admin!"
+                hiba.value = "You are not admin!"
             }
             console.log(res.user.user.role);
 
@@ -88,13 +88,13 @@ const LoginAdmin = async() => {
             console.log(error);
 
             if(error.response.status == 401){
-                hiba.value = "Nem megfelelő email vagy jelszó!"
+                hiba.value = "Email or password is incorrect!"
             }
             if(error.response.status == 500){
-                hiba.value = "Hiba a szerveren!"
+                hiba.value = "Error on server!"
             }
             if(error.response.status == 422){
-                hiba.value = "A mezők kitöltése kötelező!"  
+                hiba.value = "Please fill every field!"  
             }
         }
         loading.value = false

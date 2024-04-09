@@ -139,17 +139,20 @@ function checkAdminRights(to, from, next) {
   
   let user;
   let store = useUserStore()
-  let routerLocal = useRouter()    
 
-  user = store.getUser
-  console.log(user.user.user.role);
-  if(user.user.user.role === 1) {
-    console.log(user.user.user.role);
+  try {
+    user = store.getUser
+
+    if(user.user.user.role === 1) {
       next();       
   } else {
-    console.log("asd");
-      routerLocal.push("/");
+    window.location.href = 'http://localhost:5173';
   }
+  } catch (error) {
+    window.location.href = 'http://localhost:5173';
+    console.log(window.location.pathname);
+  }
+
 }
 
 router.beforeEach((to, from, next) => {

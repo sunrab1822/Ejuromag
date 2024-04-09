@@ -81,7 +81,7 @@
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
                                 <h3>{{product.price}} Ft</h3>
-                                <router-link to="/Kosar" @click="Save(product.name, product.price, product.picture, product.description)"><button class="button-33">Vásárlás</button></router-link>
+                                <router-link to="/Kosar" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
                                 
 
                             </div>
@@ -196,8 +196,8 @@
 
     }
 
-    function Save (ProductName, ProductPrice, ProductPicture, ProductDescription){
-        var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription];
+    function Save (ProductName, ProductPrice, ProductPicture, ProductDescription, ProductId){
+        var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription, ProductId];
 
         if(localStorage.getItem('data') == null)
         {

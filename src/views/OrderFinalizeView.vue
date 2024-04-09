@@ -157,7 +157,7 @@
                                             <label class="form-control">{{kosarAr}} Ft</label>
                                         </div>
                                     </div>
-                                    <button v-if="OrderShippingImg != 0" @click="SendOrder" id="RendelesFolyatatasaBtn">Folytatás</button>
+                                    <router-link to="/" v-if="OrderShippingImg != 0" id="RendelesFolyatatasaBtn" @click="SendOrder">Folytatás</router-link>
 
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ import Button from 'primevue/button';
 import {ref,onBeforeMount} from 'vue'
 import { useUserStore } from "../store/store"
 import termekService from "../services/termekService"
-
+import router from '@/router';
 
 
 const store = useUserStore()
@@ -201,7 +201,6 @@ let OrderZipCode = ref()
 let OrderShippingImg = ref(0)
 let OrderShippingPrice = ref()
 let user = ref()
-console.log(OrderShippingImg.value);
 
 onBeforeMount(() => {
 
@@ -213,38 +212,40 @@ try{
     OrderLastName.value = user.value.user.user.name.split(" ")[0];
     OrderFirstName.value = user.value.user.user.name.split(" ")[1];
     OrderEmail.value = user.value.user.user.email;
+    console.log(adatok[0][5]);
 
 }
 catch(err)
 {
 }
 
+})
+
 const SendOrder = () => {
-    const akt_Order = {
-        name: RegisterLastName.value + " " + RegisterFirstName.value,
-        email: RegisterEmail.value,
-        password: RegisterPassword.value,
-        address: RegisterPasswordAgain.value,
-        products: RegisterEmail.value,
+    console.log("kuki");
+    const ProductsId = []
+    for (let index = 0; index < adatok.length; index++) {
+        console.log(adatok[index][5]);
+        ProductsId.push(adatok[index][5])
+        
     }
+    const akt_Order = {
+        address: `${OrderZipCode.value}, ${OrderCity.value} ${OrderCityStreet.value}`,
+        products: ProductsId
+    }
+    console.log(akt_Order);
         try {
-            termekService.SendBuy(akt_Order)    
+            termekService.SendBuy(akt_Order, user.value.user.token)   
+            alert("Rendelés leadva") 
         } 
         catch (error) {
-            
+            alert("UwU")
         }
 
+    localStorage.removeItem('data')
+    
+
 }
-
-// OrderLastName.value = user.
-
-// kosarAr.value = store.kosar[1]
-// for(let termek in adatok) 
-// {
-//     kosarAr.value += adatok[termek]
-//     console.log(kosarAr.value += adatok);
-// }
-})
 
 </script>
 
