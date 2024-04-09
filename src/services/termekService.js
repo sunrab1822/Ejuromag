@@ -77,5 +77,14 @@ export default {
         return resp.data
     },
 
+    async CreateNewProduct(data,token){ 
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/createProduct', data)
+        return resp.data
+    },
 
+    async UpdateProduct(data, id){
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/modifyProduct/' + id, data)
+        return resp.data
+    }
 }

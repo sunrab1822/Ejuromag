@@ -19,7 +19,11 @@
                 <div class="card button-85">
                     <div class="card-body">
                         <div class="row">
-                            <input v-model="selectedName" type="text" class="NameInput" placeholder="Product name" name="" id="">
+                            <FloatLabel class="NameInputFloatLabel" >
+                                <InputText class="NameInput" id="username" v-model="selectedName" />
+                                <label for="username">Product name</label>
+                            </FloatLabel>
+
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
@@ -40,8 +44,8 @@
                             </div>
 
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <input class="PriceInput" placeholder="Price in Ft" type="text">
-                                <button style="margin-left: 3rem;" class="button-33">Mentés</button>
+                                <input v-model="selectedPrice" class="PriceInput" placeholder="Price in Ft" type="text">
+                                <button style="margin-left: 3rem;" class="button-33" @click="AddNewProduct">Mentés</button>
 
                             </div>
                         </div>
@@ -98,7 +102,7 @@ import router from "@/router";
 import Dropdown from 'primevue/dropdown';
 import Textarea from 'primevue/textarea';
 import FloatLabel from 'primevue/floatlabel';
-
+import InputText from 'primevue/inputtext';
 
 
 import { ref, onMounted, watch, onBeforeMount } from 'vue';
@@ -109,6 +113,7 @@ const selectedManufacturer = ref()
 const selectedCategory = ref()
 const selectedDescription = ref()
 const selectedName = ref()
+const selectedPrice = ref()
 
 const products = ref();
 const productsByManufacturer = ref()
@@ -157,14 +162,37 @@ onBeforeMount(() => {
     })
 })
 
+const AddNewProduct = () => {
+
+    const new_product = {
+        category_id: selectedCategory.value.id,
+        manufacturer_id: selectedManufacturer.value.id,
+        name: selectedName.value,
+        description: selectedDescription.value,
+        price: selectedPrice.value
+    }
+    try {
+        termekService.CreateNewProduct(new_product, user.value.user.token)   
+        alert("termék felvéve")
+    } catch (error) {
+        
+    }
+
+}
+
 
 </script>
 
 <style scoped>
 
+.NameInputFloatLabel{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .NameInput{
     text-align: center;
-    margin-bottom: 1.5rem;
+    width: 48rem;
 }
 .DescriptionInput{
 }
