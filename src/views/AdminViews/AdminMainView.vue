@@ -19,21 +19,29 @@
                 <div class="card button-85">
                     <div class="card-body">
                         <div class="row">
-                            <h3>Cím</h3>
+                            <input v-model="selectedName" type="text" class="NameInput" placeholder="Product name" name="" id="">
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-lg-4 col-sm-4">
-                                <p>Kép</p>
+                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                <Dropdown v-model="selectedCategory" :options="categorys" optionLabel="categoryName"
+                                    placeholder="Select a Category" checkmark :highlightOnSelect="false"
+                                    style="margin-bottom: 1.3rem;" class=" md:w-14rem" />
+
+                                <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
+                                    placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
+                                    class=" md:w-14rem" />
+
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                <FloatLabel>
+                                    <Textarea v-model="selectedDescription" rows="5" cols="30" />
+                                    <label>Description</label>
+                                </FloatLabel>
                             </div>
 
-                            <div class="col-md-4 col-lg-4 col-sm-4">
-                                <p>Leírás</p>
-                            </div>
-
-                            <div class="col-md-4 col-lg-4 col-sm-4">
-                                <h3>Ára Ft</h3>
-                                <router-link to="/Kosar"><button class="button-33">Vásárlás</button></router-link>
-
+                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                <input class="PriceInput" placeholder="Price in Ft" type="text">
+                                <button style="margin-left: 3rem;" class="button-33">Mentés</button>
 
                             </div>
                         </div>
@@ -47,13 +55,23 @@
                     <Column field="id" header="id" sortable></Column>
                     <Column field="picture" header="picture" sortable>
                         <template #body="slotProps">
-                            <img :src="slotProps.data.picture"
-                                :alt="slotProps.data.picture" class="shadow-4" width="100" />
+                            <img :src="slotProps.data.picture" :alt="slotProps.data.picture" class="shadow-4"
+                                width="100" />
                         </template>
                     </Column>
                     <Column field="name" header="Name" sortable></Column>
                     <Column style="width: 20rem;" field="description" header="description" sortable></Column>
                     <Column field="price" header="price" sortable></Column>
+                    <Column field="category_id" header="category" sortable>
+                        <template #body="slotProps">
+                            <p style="color: black;">{{ slotProps.data.category_id }}</p>
+                        </template>
+                    </Column>
+                    <Column field="manufacturer_id" header="manufacturer" sortable>
+                        <template #body="slotProps">
+                            <p style="color: black;">{{ slotProps.data.manufacturer_id }}</p>
+                        </template>
+                    </Column>
                 </DataTable>
             </div>
 
@@ -77,6 +95,9 @@ import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import router from "@/router";
+import Dropdown from 'primevue/dropdown';
+import Textarea from 'primevue/textarea';
+import FloatLabel from 'primevue/floatlabel';
 
 
 
@@ -86,11 +107,12 @@ import { useUserStore } from "../../store/store.js"
 
 const selectedManufacturer = ref()
 const selectedCategory = ref()
+const selectedDescription = ref()
+const selectedName = ref()
 
 const products = ref();
-const productsByCategory = ref()
 const productsByManufacturer = ref()
-const manufacturers = []
+const manufacturers = ref()
 const categorys = ref()
 let selectedProduct = ref()
 
@@ -107,30 +129,48 @@ const LogOut = async() => {
     router.push({ path: "/admin" })
 }
 
+function SearchCategory(){
+    let asd = manufacturers.length;
+    return asd
+}
+
 onBeforeMount(() => {
     user.value = store.getUser
     console.log(user.value.user.user.name);
+
     termekService.getManufacturers()
     .then(resp => {
-        manufacturers.push(resp.data);
+        manufacturers.value = resp.data;
         console.log(resp.data);
         console.log(manufacturers[0])
     });
-    console.log(manufacturers);
+
+    termekService.getAllProducts()
+        .then(resp => {
+        products.value = resp.data;
+        });
+
+    termekService.getCategories()
+    .then(resp=> {
+        categorys.value = resp.data;
+        console.log(categorys.value);
+    })
 })
 
-onMounted(() => {
-    termekService.getAllProducts()
-                .then(resp => {
-                    products.value = resp.data;
-                });
-
-        
-});
 
 </script>
 
 <style scoped>
+
+.NameInput{
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.DescriptionInput{
+}
+.PriceInput{
+    text-align: center; 
+}
 
 Button{
     margin-top: 4rem;
