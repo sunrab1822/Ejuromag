@@ -20,7 +20,7 @@
 
                                 <ul class="list-none p-0 m-0 overflow-hidden">
                                     <li>
-                                        <a href="/profil/sajat_adatok"  v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <a href="/profil/rendelesek"  v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-home mr-2"></i>
                                             <span class="font-medium">Rendelések</span>
                                         </a>
@@ -51,7 +51,7 @@
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <div class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <Avatar image="UserImg.jpg" shape="circle" size="large"/>
+                            <Avatar image="UserImg.webp" shape="circle" size="large"/>
                             <span class="font-bold">{{user.user.user.name}}</span>
                         </div>
                     </div>

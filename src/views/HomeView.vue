@@ -9,7 +9,7 @@ export default {
         return {
             slides: [
                 {
-                    image: "/public/teszt.png",
+                    image: "/public/vueperSlides1.webp",
                     link: 'http://localhost:5173/help/Rolunk'
                 },
                 {

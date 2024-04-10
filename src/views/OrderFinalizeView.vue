@@ -72,21 +72,21 @@
 
                         <Button @click="OrderShippingImg ='/Posta_szallitas.png', OrderShippingPrice = 1590">
                             <figure @click="nextCallback">
-                                <img class="ShippingImgs" src="/Posta_szallitas.png" alt="" srcset="">
+                                <img class="ShippingImgs" src="/Posta_szallitas.webp" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1.590,- Ft</figcaption>
                             </figure>
                         </Button>
                         <Button @click="OrderShippingImg = '/PostaPont_szallitas.jpg', OrderShippingPrice = 990">
                             <figure @click="nextCallback">
-                                <img class="ShippingImgs" src="/PostaPont_szallitas.jpg" alt="" srcset="">
+                                <img class="ShippingImgs" src="/PostaPont_szallitas.webp" alt="" srcset="">
                                 <br><br>
                                 <figcaption>990 Ft</figcaption>
                             </figure>
                         </Button>
                         <Button class="row" @click="OrderShippingImg = '/Packeta_szallitas.png', OrderShippingPrice = 1480">
                             <figure @click="nextCallback">
-                                <img class="ShippingImgs" src="/Packeta_szallitas.png" alt="" srcset="">
+                                <img class="ShippingImgs" src="/Packeta_szallitas.webp" alt="" srcset="">
                                 <br><br>
                                 <figcaption>1 480 Ft</figcaption>
                             </figure>

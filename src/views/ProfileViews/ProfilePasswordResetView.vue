@@ -7,9 +7,9 @@
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 col-10 button-85">
                 <fieldset>
 
-                    <div class="row">
+                    <div class="row PasswordRest">
                         <div class="col-lg-6">
-                            <h3>Biztosan szeretnéd megváltoztatni a jelszavadat?</h3>
+                            <h2>Biztosan szeretnéd megváltoztatni a jelszavadat?</h2>
                         </div>
 
                         <div class="col-lg-6">
@@ -77,4 +77,7 @@ const EmailReset = async() => {
 <style lang="scss" scoped>
 
 
+.PasswordRest{
+    margin: 5rem;
+}
 </style>

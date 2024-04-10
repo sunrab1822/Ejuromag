@@ -20,7 +20,7 @@ console.log(pathname);
 
 <style scoped>
 .test{
-  background-image: url("/backTest.jpg");
+  background-image: url("/backgroundPicture.webp");
   background-size: contain;
 }
 </style>
