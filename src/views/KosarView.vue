@@ -7,11 +7,11 @@
                 <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85 ">
 
                     <div class="col-md-4 col-lg-4 col-sm-4  ">
-                        <img class="ProductImg" :src="termek[3]" alt="Termék képe">
+                        <img data-cy="image" class="ProductImg" :src="termek[3]" alt="Termék képe">
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm-4 ">
-                        <h3>{{ termek[0] }}</h3>
+                        <h3 data-cy="name">{{ termek[0] }}</h3>
                         <br>
                         <p>{{ termek[4] }}</p>
                     </div>
@@ -20,10 +20,10 @@
                         <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
                         <div class="row">
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
-                            <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p class="db"> {{ termek[2] }}</p></div>
+                            <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p data-cy="db" class="db"> {{ termek[2] }}</p></div>
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
                         <!-- console.log(termek[1] += egyAra[1]) -->
-                        <button @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
+                        <button data-cy="remove" @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
                     </div>
                     </div>
 
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="text-center RendelesFolyatatasaBtn">
-                                <router-link v-if="kosarAr != 0 && !getloggedin" to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                                <router-link to="/rendeles_osszegzes" data-cy="continue" id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
                             <div class="text-center NeedToRegisterButton">

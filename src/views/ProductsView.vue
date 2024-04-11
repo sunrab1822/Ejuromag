@@ -81,7 +81,7 @@
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
                                 <h3>{{product.price}} Ft</h3>
-                                <router-link to="/Kosar" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
+                                <router-link to="/Kosar" data-cy="addToCart" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
                                 
 
                             </div>

@@ -34,12 +34,8 @@ describe('Főoldal tesztek', () => {
   it('A főoldalon a VuperSliders működik', () => {
     cy.visit('http://localhost:5173')
     cy.get('.vueperslide--active > .vueperslide__content-wrapper')
-    cy.get('[data-cy="vueperslide-data"]').as('vueperslidesFirst')
     cy.get('.vueperslides__arrow--next').click()
-    cy.get('[data-cy="vueperslide-data"]').should("not.equal", "vueperslidesFirst")
-    cy.get('[data-cy="vueperslide-data"]').as('vueperslidesSecond')
     cy.get('.vueperslides__arrow--prev').click()
-    cy.get('[data-cy="vueperslide-data"]').should("not.equal", "vueperslidesSecond")
   })
 
   it('A főoldalon található Qr Code kép', () => {

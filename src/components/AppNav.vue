@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="/EjuroMagLogo.webp" alt="Logo">
+                <img data-cy="logo-img" src="/EjuroMagLogo.webp" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" >
                 <span class="navbar-toggler-icon"></span>
