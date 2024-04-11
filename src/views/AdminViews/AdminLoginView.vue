@@ -1,5 +1,5 @@
 <template class="main">
-    <div class="container" style="height: 50rem">
+    <div class="container">
         <div class="row">
 
             <div class="card col-12 LoginCard">
@@ -38,9 +38,13 @@
         </div>
 
     </div>
+
+    <AdminFooter/>
+
 </template>
 
 <script setup>
+import AdminFooter from '../../components/AdminFooter.vue';
 import Button from 'primevue/button';
 import {ref} from "vue";
 import { useRouter  } from "vue-router";

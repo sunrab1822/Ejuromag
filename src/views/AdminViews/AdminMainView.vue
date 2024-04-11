@@ -1,5 +1,5 @@
 <template class="main">
-    <div class="container" style="height: 50rem">
+    <div class="container">
         <div class="row">
             <div class="col-1">
                 <table>
@@ -7,10 +7,10 @@
                         <th>Menu</th>
                     </tr>
                     <tr>
-                        <td><button @click="New=true, Modositas=false, ErrorMessage = '', Succesmessage=''">New</button></td>
+                        <td><button @click="New=true, Modositas=false, selectedProduct=0, ErrorMessage = '', Succesmessage=''">New</button></td>
                     </tr>
                     <tr>
-                        <td><button @click="Modositas=true, New=false, ErrorMessage = '',Succesmessage=''">Change</button></td>
+                        <td><button @click="Modositas=true, New=false, selectedProduct=0, ErrorMessage = '',Succesmessage=''">Change</button></td>
                     </tr>
                 </table>
             </div>
@@ -34,6 +34,11 @@
                                 <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
                                     placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
                                     class=" md:w-14rem" />
+                                
+                                <FloatLabel class="ImageInputFloatLabel">
+                                    <InputText class="ImageInput" id="username" v-model="selectedImageLink" />
+                                    <label for="username">Product image link</label>
+                                </FloatLabel>
 
                             </div>
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
@@ -69,12 +74,12 @@
                     <Column field="price" header="price" sortable></Column>
                     <Column field="category_id" header="category" sortable>
                         <template #body="slotProps">
-                            <p style="color: black;">{{ slotProps.data.category_id }}</p>
+                            <p style="color: black;">{{ categorys[slotProps.data.category_id-1].categoryName }}</p>
                         </template>
                     </Column>
                     <Column field="manufacturer_id" header="manufacturer" sortable>
                         <template #body="slotProps">
-                            <p style="color: black;">{{ slotProps.data.manufacturer_id }}</p>
+                            <p style="color: black;">{{ manufacturers[slotProps.data.manufacturer_id-1].name }}</p>
                         </template>
                     </Column>
                 </DataTable>
@@ -92,14 +97,20 @@
 
                         </div>
                         <div class="row">
+                            
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <Dropdown v-model="selectedCategory"  :options="categorys" optionLabel="categoryName"
-                                    placeholder="Select a Category" :highlightOnSelect="false"
-                                    style="margin-bottom: 1.3rem;" class=" md:w-14rem" />
+                                <select :value="selectedProduct.category_id" v-model="selectedCategory" name="" id="">
+                                    <option v-for="category in categorys" value="">{{ category.categoryName }}</option>
+                                </select>
 
                                 <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
                                     placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
                                     class=" md:w-14rem" />
+                                    
+                                <FloatLabel class="ImageInputFloatLabel">
+                                    <InputText class="ImageInput" id="username" v-model="selectedProduct.picture" />
+                                    <label for="username">Product image link</label>
+                                </FloatLabel>
 
                             </div>
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
@@ -144,9 +155,12 @@
         </div>
 
     </div>
+    <AdminFooter/>
 </template>
 
 <script setup>
+import AdminFooter from '@/components/AdminFooter.vue'
+
 import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -169,6 +183,7 @@ const selectedCategory = ref()
 const selectedDescription = ref()
 const selectedName = ref()
 const selectedPrice = ref()
+const selectedImageLink = ref()
 
 const products = ref();
 const productsByManufacturer = ref()
@@ -247,6 +262,7 @@ const AddNewProduct = () => {
 }
 
 const ChangeProduct = () => {
+    console.log(selectedProduct.id);
     Succesmessage.value = ""
     ErrorMessage.value = ''
     console.log(selectedProduct.value.name);
@@ -267,7 +283,8 @@ const ChangeProduct = () => {
     }
 
     try {
-        termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
+        log(selectedCategory)
+        // termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
         selectedCategory.value.id = selectedManufacturer.value.id = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price =  null
@@ -285,6 +302,15 @@ const ChangeProduct = () => {
 </script>
 
 <style scoped>
+
+.ImageInputFloatLabel{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ImageInput{
+    width: 14rem;
+}
 
 .NameInputFloatLabel{
     margin-top: 1rem;

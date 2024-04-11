@@ -13,16 +13,12 @@ export default {
                     link: 'http://localhost:5173/help/Rolunk'
                 },
                 {
-                    title: 'El Teide Volcano, Spain',
-                    content: 'Photo by Max Rive',
-                    image: "asd",
-                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                    image: "/public/NeedToRegisterSlides2.webp",
+                    link: 'http://localhost:5173/Login'
                 },
                 {
-                    title: 'El Teide Volcano, Spain',
-                    content: 'Photo by Max Rive',
-                    image: "asd",
-                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+
+                    image: "/public/SocialMediaSlides33.webp",
                 },
                 {
                     title: 'El Teide Volcano, Spain',
@@ -109,6 +105,12 @@ export default {
 
 #vueper-slides{
     margin: 1rem;
+}
+
+.vueperslide__title, .vueperslide__content{
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
 }
 
 </style>

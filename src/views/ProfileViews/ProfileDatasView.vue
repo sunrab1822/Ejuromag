@@ -22,39 +22,10 @@
                             </div>
                             
                             <br>
-
                             <div class="row">
-                                <p class="col-lg-3">Jelenlegi jelszó: </p>
-                                <Password :feedback="false" toggleMask class="col-lg-6 Password" type="password" id="jelszoRepeat" required="required" v-model="UserActualPassword"></Password>
-
+                                <p class="JelszoSzoveg col-lg-3">Jelszó megerősítés: </p>
+                                <Password :feedback="false" required="required" v-model="UserActualPassword" class="Password col-lg-6" toggleMask></Password>
                             </div>
-
-                            <br>
-
-                            <div class="row">
-                                <p class="JelszoSzoveg col-lg-3">Jelszó: </p>
-                                <Password class="Password col-lg-6" v-model="UserNewPassword" toggleMask >
-                                    <template #header>
-                                        <h6>Válasz jelszót</h6>
-                                    </template>
-                                    <template #footer>
-                                        <Divider />
-                                        <p class="mt-2">Ajánlások</p>
-                                        <ul class="pl-2 ml-2 mt-0">
-                                            <li>Minimum 1 kisbetü</li>
-                                            <li>Minimum 1 nagybetü</li>
-                                            <li>Minimum 1 szám</li>
-                                            <li>Minimum 8 karakter</li>
-                                        </ul>
-                                    </template>
-                                </Password>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <p class="JelszoSzoveg col-lg-3">Jelszó újra: </p>
-                                <Password id="jelszoRepeat" required="required" v-model="UserNewPasswordAgain" class="Password col-lg-6" toggleMask></Password>
-                            </div>
-                            <br>
                             
                             <button class="cursor-pointer button-33" @click="SzamlazasiSzerkesztes=false">Mentés</button>
                         </fieldset>
@@ -79,8 +50,6 @@ const UserEmail = ref()
 const UserFirstName = ref()
 const UserLastName = ref()
 const UserActualPassword = ref()
-const UserNewPassword = ref()
-const UserNewPasswordAgain = ref()
 
 
 onBeforeMount(() => {

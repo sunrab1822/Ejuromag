@@ -9,7 +9,7 @@
 
     <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 col-9">
         <p>
-            A fiókban megtekinthetők a legutóbbi rendelések, módosíthatók a szállítási és számlázási címek és szerkeszthető a jelszó, valamint egyéb fiók adatok.
+            A fiókban megtekinthetők a legutóbbi rendelések, szerkeszthető a jelszó, valamint egyéb fiók adatok.
         </p>
     </div>
     </div>    

@@ -66,7 +66,11 @@
                             </div>
 
                             <div class="text-center RendelesFolyatatasaBtn">
-                                <router-link v-if="kosarAr != 0" to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                                <router-link v-if="kosarAr != 0 && !getloggedin" to="/rendeles_osszegzes"  id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                            </div>
+
+                            <div class="text-center NeedToRegisterButton">
+                                <router-link v-if="getloggedin" to="/Login"  id="NeedToRegisterButton">Jelentkezz be a rendelés leadásához</router-link>
                             </div>
 
                         </form>
@@ -80,14 +84,27 @@
 <script setup>
 
 import {ref, onBeforeMount} from "vue";
+import { useUserStore } from "../store/store"
+
+
 
 let adatok = []
-let adatok2 = ""
+let getloggedin = ref()
 let kosarNev = ref()
 let kosarAr = ref(0)
 let szamlalo = 0;
 const selectedTermekNeve = ref()
 const TermekNeve = ref()
+const user = ref()
+
+const store = useUserStore()
+if(store.getLoggedIn){
+        getloggedin.value = false
+    }
+    else{
+        getloggedin.value = true
+
+    }
 
 function Novel(number){
     const priceindex = 1
@@ -123,6 +140,7 @@ function Csokkent(number){
         }
     }
 }
+
 
 function Torles(number){
 
@@ -176,6 +194,11 @@ let db = ref(1)
 </script>
 
 <style lang="scss" scoped>
+
+.NeedToRegisterButton{
+    font-weight: bolder;
+}
+
 
 h3{
     text-align: center;

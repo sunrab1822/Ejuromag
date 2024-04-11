@@ -230,6 +230,7 @@ const SendOrder = () => {
         
     }
     const akt_Order = {
+        email: OrderEmail.value,
         address: `${OrderZipCode.value}, ${OrderCity.value} ${OrderCityStreet.value}`,
         products: ProductsId
     }
