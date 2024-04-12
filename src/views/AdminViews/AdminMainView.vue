@@ -99,11 +99,11 @@
                         <div class="row">
                             
                             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <select :value="selectedProduct.category_id" v-model="selectedCategory" name="" id="">
-                                    <option v-for="category in categorys" value="">{{ category.categoryName }}</option>
-                                </select>
+                                <Dropdown v-model=" categorys[selectedProduct.category_id-1]" id="category" :options="categorys" optionLabel="categoryName"
+                                    placeholder="Select a Category" checkmark :highlightOnSelect="false"
+                                    style="margin-bottom: 1.3rem;" class=" md:w-14rem" />
 
-                                <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
+                                <Dropdown v-model="manufacturers[selectedProduct.manufacturer_id-1]" :value="manufacturers.id" id="manufacturer" :options="manufacturers" optionLabel="name"
                                     placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
                                     class=" md:w-14rem" />
                                     
@@ -177,6 +177,7 @@ import { useUserStore } from "../../store/store.js"
 
 const ErrorMessage = ref()
 const Succesmessage = ref()
+
 
 const selectedManufacturer = ref()
 const selectedCategory = ref()
@@ -262,20 +263,20 @@ const AddNewProduct = () => {
 }
 
 const ChangeProduct = () => {
-    console.log(selectedProduct.id);
+    let categoryId = document.getElementById("category").querySelector("span").textContent;
+    let manufacturerId = document.getElementById("manufacturer");
+    console.log(manufacturerId);
     Succesmessage.value = ""
     ErrorMessage.value = ''
-    console.log(selectedProduct.value.name);
-
-    if(selectedCategory.value.id == null || selectedManufacturer.value.id == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){
+    if(categoryId == null || manufacturerId == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){
         ErrorMessage.value = "Please fill all fields"
         return
     }
     
 
     const changed_product = {
-        category_id: selectedCategory.value.id,
-        manufacturer_id: selectedManufacturer.value.id,
+        category_id: categoryId,
+        manufacturer_id: manufacturerId,
         name: selectedProduct.value.name,
         description: selectedProduct.value.description,
         price: selectedProduct.value.price,
@@ -283,11 +284,10 @@ const ChangeProduct = () => {
     }
 
     try {
-        log(selectedCategory)
         // termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
-        selectedCategory.value.id = selectedManufacturer.value.id = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price =  null
+        selectedCategory.value = selectedManufacturer.value = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price =  null
         selectedProduct.value = 0
         termekService.getAllProducts()
         .then(resp => {
@@ -295,7 +295,7 @@ const ChangeProduct = () => {
         });
 
     } catch (error) {
-        ErrorMessage.value = "Error adding product"
+        ErrorMessage.value = error.message
     }
 }
 

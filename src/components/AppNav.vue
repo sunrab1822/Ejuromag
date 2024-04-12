@@ -81,6 +81,7 @@ a{
     text-decoration: none;
     cursor: pointer;
     color: rgb(0, 0, 0);
+
 }
 a:hover{
     text-decoration: underline;

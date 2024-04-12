@@ -10,7 +10,16 @@ describe('Kosár és rendelés tesztelése', () => {
     it('megjelenik a termék összege', () => {
       cy.visit('http://localhost:5173/Kosar')
       cy.get('[data-cy="fullPriceText"]').contains("Végösszeg:")
-      cy.get('[data-cy="fullPrice"]').should("contain", /\d/)
+      cy.get('[data-cy="fullPrice"]').invoke('text').then((text) => {
+        const numberPattern = /\d+/; // Számokat tartalmazó minta
+  
+        // Számok kinyerése a label szövegéből
+        const numbers = text.match(numberPattern);
+  
+        // Számok ellenőrzése
+        expect(numbers).to.not.be.null; // Ellenőrizzük, hogy találtunk-e számokat
+        expect(numbers.length).to.be.greaterThan(0); // Ellenőrizzük, hogy legalább egy számot találtunk
+      });
     }),
 
     it('A kosár oldalon van darabszám', () => {

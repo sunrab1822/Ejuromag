@@ -88,7 +88,7 @@ describe('Elfelejtett jelszó oldal tesztje', () => {
   it('Sikeres jelszó visszaállítás', () => {
     cy.visit('http://localhost:5173/Login')
     cy.get('[data-cy="PasswordResetButton"]').click()
-    cy.get('[data-cy="ResetEmailInput"]').type('asd@gmail.com');
+    cy.get('[data-cy="ResetEmailInput"]').type('dassayss@gmail.com');
     cy.get('[data-cy="EmailResetButton"]').click()
     cy.get('[data-cy="Succesmessage"]').should('be.visible').should('have.text', 'Email elküldve')})
 
