@@ -8,6 +8,9 @@ describe('navBarTesztje', () => {
     cy.get('.nav-link').its('length').should('eq', 8)
   })
 
+  it('Van-e navbar', () => {
+    cy.get('.navbar').should('exist')
+  })
 
   it('át kell mennie az oldalakra', () => {
       cy.get('.nav-link').contains('Laptopok').click()

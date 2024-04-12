@@ -59,9 +59,9 @@
                             <hr>
 
                             <div class="row mb-3">
-                                <p class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
+                                <p data-cy="fullPriceText" class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
                                 <div class="col-md-6">
-                                    <label class="form-control">{{kosarAr + 1200}} Ft</label>
+                                    <label data-cy="fullPrice" class="form-control">{{kosarAr + 1200}} Ft</label>
                                 </div>
                             </div>
 

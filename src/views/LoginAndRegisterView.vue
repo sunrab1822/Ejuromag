@@ -10,12 +10,12 @@
                     <div class="margintop row LoginMobile">
                         <p>Email:</p>
 
-                        <input class="EmailAndPasswordInput"type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
+                        <input data-cy="EmailInput" class="EmailAndPasswordInput"type="text" placeholder="Email: " @keyup.enter="Login" v-model="LoginEmail">
                     </div>
 
                     <div class="margintop row LoginMobile">
                         <p>Jelszó: </p>
-                        <input class="EmailAndPasswordInput" type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
+                        <input data-cy="PasswordInput" class="EmailAndPasswordInput" type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
                             required="required" v-model="LoginPassword"></input>
 
                     </div>
@@ -27,18 +27,18 @@
 
 
                 <div class="">
-                    <button class="button-85" @click="Login">Belépés</button>
-                    <button class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
-                    <button class="button-85" @click="Sites=2">Regisztráció</button>
+                    <button data-cy="LoginButton" class="button-85" @click="Login">Belépés</button>
+                    <button data-cy="PasswordResetButton" class="button-85" @click="Sites=3">Elfelejtett Jelszó</button>
+                    <button data-cy="RegisterButton" class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
 
-                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                     <strong>{{ hiba }}</strong>
                     <button type="button" @click="hiba=''" class="btn-close"></button>
                 </div>
             </div>
 
-            <div v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
+            <div data-cy="Succesmessage" v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
                         <strong>{{ Succesmessage }}</strong>
                         <button type="button" @click="Succesmessage=''" class="btn-close"></button>
             </div>
@@ -55,7 +55,7 @@
                     <div class="margintop row LoginMobile">
                         <p >Email:</p>
 
-                        <input class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="EmailReset" v-model="ResetEmail">
+                        <input data-cy="ResetEmailInput" class="EmailAndPasswordInput" type="text" placeholder="Email: " @keyup.enter="EmailReset" v-model="ResetEmail">
                     </div>
 
 
@@ -63,10 +63,10 @@
                 <ProgressSpinner v-if="loading" />
 
                 <div>
-                        <button @click="EmailReset" class="button-85">Kűldés</button>
-                        <button class="button-85" @click="Sites=1">Mégse</button>
+                        <button data-cy="EmailResetButton" @click="EmailReset" class="button-85">Kűldés</button>
+                        <button class="button-85" @click="Sites=1, hiba = ''">Mégse</button>
                     </div>
-                    <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                    <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                         <strong>{{ hiba }}</strong>
                         <button type="button" @click="hiba=''" class="btn-close"></button>
                     </div>
@@ -86,25 +86,25 @@
 
                     <div class="margintop">
                         <p>Vezetéknév: </p>
-                        <input placeholder="Fity" required="required" v-model="RegisterLastName" class="inputs" type="text"
+                        <input data-cy="VezeteknevInput" required="required" v-model="RegisterLastName" class="inputs" type="text"
                             name="" id="Vezeteknev">
                     </div>
 
                     <div class="margintop">
                         <p>Keresztnév: </p>
-                        <input placeholder="Matyi" required="required" v-model="RegisterFirstName" 
+                        <input data-cy="KeresztnevInput" required="required" v-model="RegisterFirstName" 
                             type="text" name="" id="Keresztnev">
                     </div>
 
                     <div class="margintop">
                         <p>Email: </p>
-                        <input class="EmailAndPasswordInput" required="required" v-model="RegisterEmail" placeholder="Email" type="email" id="email"
+                        <input data-cy="EmailInput" class="EmailAndPasswordInput" required="required" v-model="RegisterEmail" type="email" id="email"
                             name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                     </div>
 
                     <div class="margintop">
                         <p class="JelszoSzoveg">Jelszó: </p>
-                        <Password class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask>
+                        <Password data-cy="JelszoInput" class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask>
                             <template #header>
                                 <h6>Válasz jelszót</h6>
                             </template>
@@ -122,7 +122,7 @@
 
                     <div class="margintop">
                         <p class="JelszoSzoveg">Jelszó újra: </p>
-                        <Password id="jelszoRepeat" placeholder="jelszó Újra" required="required"
+                        <Password data-cy="JelszoUjraInput" id="jelszoRepeat" placeholder="jelszó Újra" required="required"
                             v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
                     </div>
 
@@ -130,12 +130,17 @@
                 <br><br><br>
                 <ProgressSpinner v-if="loading" />
 
+                <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ hiba }}</strong>
+                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                </div>
+
                 <div class="button-85 RegisterDiv">
                     <div>
-                        <button class="RegisterBtn" @click="Register">Regisztráció</button>
+                        <button data-cy="RegisztrácioButton" class="RegisterBtn" @click="Register">Regisztráció</button>
                     </div>
                     <div>
-                        <button class="MegseBtn" @click="Sites=1">Mégse</button>
+                        <button class="MegseBtn" @click="Sites=1, hiba = ''">Mégse</button>
 
                     </div>
                 </div>
@@ -178,8 +183,6 @@
     const LoginPassword = ref()
 
     const ResetEmail = ref()
-    const ResetEmailAgain = ref()
-
 
     // const hasPasswordMismatch = computed(() => {
     //     return jelszo.value == jelszoRepeat.value
@@ -206,11 +209,18 @@
             }   
         catch (error) {
         console.log(error.message);
-
-        }}
+        hiba.value = "A két jelszó nem egyezik vagy az emailcím már használatban van"
+        }
         Succesmessage.value =  "Sikeresen regisztráltál!"
+
     }
-    loading.value = false
+    else{
+        hiba.value = "A mezők kitöltése kötelező!"
+
+    }
+        loading.value = false
+
+    }
 
 
     const EmailReset = async() => {

@@ -1,33 +1,32 @@
 describe('Főoldal tesztek', () => {
-  it('A főoldalon működik, a regisztrációhoz ,belépéshez vezető gomb', () => {
-    cy.visit('http://localhost:5173')
-    cy.get('[data-cy="navbar-login-link"]').click()
-    cy.location('pathname').should('eq', '/Login')
 
+  it('A színek helyesek', () => {
+    cy.visit('http://localhost:5173')
+    cy.get('[data-cy="KosarBelepesNav"]').should('have.css', 'background-color', 'rgb(20, 147, 202)'); 
+    cy.get('[data-cy="TermekekNavbar"]').should('have.css', 'background-color', 'rgb(2, 102, 145)'); 
+    cy.get('[data-cy="Footer"]').should('have.css', 'background-color', 'rgb(0, 0, 0)'); 
+    cy.get('[data-cy="TabletButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
+    cy.get('[data-cy="LaptopButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
+    cy.get('[data-cy="GamerPcButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
+    cy.get('[data-cy="OfficePcButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
+    cy.get('[data-cy="ConsoleButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
+    cy.get('[data-cy="PhoneButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 
   })
 
-  it('A főoldal navbarjában működik kosár gomb', () => {
-    cy.visit('http://localhost:5173')
-    cy.get('[data-cy="navbar-kosar-link"]').click()
-    cy.location('pathname').should('eq', '/Kosar') 
 
+  it("Létezik a Navbar és a Footer", () =>{
+    cy.visit('http://localhost:5173')
+    cy.get('[data-cy="KosarBelepesNav"]').should("exist")
+    cy.get('[data-cy="TermekekNavbar"]').should("exist")
+    cy.get('[data-cy="Footer"]').should("exist")
   })
 
-  it('A navbaron léteznek a különböző termékekhez vezető gombok', () => {
+  it('A főoldal footerjében található közösségi média ikonok és Qr Code kép', () => {
     cy.visit('http://localhost:5173')
-    cy.get('[data-cy="navbar2-laptops-link"]').click()
-    cy.location('pathname').should('eq', '/laptopok') 
-    cy.get('[data-cy="navbar2-gamerPcs-link"]').click()
-    cy.location('pathname').should('eq', '/gamer_szamitogepek') 
-    cy.get('[data-cy="navbar2-officePcs-link"]').click()
-    cy.location('pathname').should('eq', '/irodai_szamitogepek') 
-    cy.get('[data-cy="navbar2-consoles-link"]').click()
-    cy.location('pathname').should('eq', '/konzolok') 
-    cy.get('[data-cy="navbar2-phones-link"]').click()
-    cy.location('pathname').should('eq', '/telefonok') 
-    cy.get('[data-cy="navbar2-tablets-link"]').click()
-    cy.location('pathname').should('eq', '/tabletek') 
-
+    cy.get('#fa-facebook').should("exist")
+    cy.get('#fa-tiktok').should("exist")
+    cy.get('#fa-instagram').should("exist")
+    cy.get('#QrCode').should("exist")
 
   })
 
@@ -38,16 +37,5 @@ describe('Főoldal tesztek', () => {
     cy.get('.vueperslides__arrow--prev').click()
   })
 
-  it('A főoldalon található Qr Code kép', () => {
-    cy.visit('http://localhost:5173')
-    cy.get('#QrCode').should("exist")
-  })
 
-  it('•	A főoldal footerjében található közösségi média ikonok', () => {
-    cy.visit('http://localhost:5173')
-    cy.get('#fa-facebook').should("exist")
-    cy.get('#fa-tiktok').should("exist")
-    cy.get('#fa-instagram').should("exist")
-
-  })
 })

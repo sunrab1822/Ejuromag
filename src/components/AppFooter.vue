@@ -1,7 +1,7 @@
 <template>
 <div id="page-container">
     <footer id="footer">
-        <div id="FooterBackgroundColor">
+        <div data-cy="Footer" id="FooterBackgroundColor">
 
             <div id="QrCodeContainer">
                 <div id="QrCodeImage">

@@ -1,5 +1,5 @@
 <template>
-            <nav class="navbar navbar-expand-md" >
+            <nav data-cy="TermekekNavbar" class="navbar navbar-expand-md" >
             <div class="container-fluid">
               <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
