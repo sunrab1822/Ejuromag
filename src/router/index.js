@@ -15,11 +15,6 @@ import ErrorView from '../views/ErrorView.vue'
 
 import AdminLoginView from '@/views/AdminViews/AdminLoginView.vue'
 import AdminMainView from '@/views/AdminViews/AdminMainView.vue'
-import {ref} from 'vue'
-import { useRouter  } from "vue-router";
-
-
-
 
 import { useUserStore } from "../store/store.js"
 

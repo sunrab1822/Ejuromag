@@ -58,25 +58,27 @@
 </script>
 
 <style scoped>
+
 .SlightlyBackground
 {
     background-color: rgba(54, 54, 54, 0.1);
 }
 
-p, td{
+p {
     font-size: 17px;
+}
+
+li {
+    font-size: 25px;
     color: white;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+
+ul > li{
+    font-size: 17px;
+
 }
 
-tr:nth-child(even) {
-  background-color: #060924;
-}
 
 </style>
 

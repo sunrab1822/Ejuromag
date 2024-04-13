@@ -16,10 +16,10 @@
                 <div class="FooterContainer">
                     <div></div>
                     <div>
-                        <p style="color: black">DropBox + https://www.the-qrcode-generator.com</p>
-                        <a style="color: black">Rendelés és Szállítási információk</a>
-                        <br>
-                        <a style="color: black">Rólunk</a>
+                        <p>DropBox + https://www.the-qrcode-generator.com</p>
+                        <p>Rendelés és Szállítási információk</p>
+                        
+                        <p>Rólunk</p>
                     </div>
                         <div class=" SocialIcons">
 
@@ -41,13 +41,8 @@
     </script>
     
     <style lang="scss" scoped>
-        a{
-            text-decoration: none;
-            color: lightblue;
-        }
-        a:hover{
-            text-decoration: underline;
-            color: blue;
+        p{
+            color: black;
         }
         li{
             font-size: 15px;

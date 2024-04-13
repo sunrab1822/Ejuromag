@@ -20,8 +20,10 @@
                 <div>
                     <p style="color: white">DropBox + https://www.the-qrcode-generator.com</p>
                     <a href="/help/Rendeles_es_szallitas">Rendelés és Szállítási információk</a>
-                    <br>
+                <div>
                     <a href="/help/Rolunk">Rólunk</a>
+
+                </div>
                 </div>
                     <div class=" SocialIcons">
                         <a href="" ><i id="fa-facebook" class="fa-brands fa-facebook"></i></a>

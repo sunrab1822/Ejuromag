@@ -27,7 +27,6 @@ describe('navBarTesztje', () => {
       cy.url().should('include','/tabletek')
   })
 
-
   it('A képre kattintva vissza kell vinnie a főoldalra', () => {
       cy.get('[data-cy="logo-img"]').click()
       cy.url().should('eq', "http://localhost:5173/")

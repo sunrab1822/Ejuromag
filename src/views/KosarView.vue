@@ -12,7 +12,6 @@
 
                     <div class="col-md-4 col-lg-4 col-sm-4 ">
                         <h3 data-cy="name">{{ termek[0] }}</h3>
-                        <br>
                         <p>{{ termek[4] }}</p>
                     </div>
 
@@ -174,18 +173,6 @@ onBeforeMount(() => {
     console.log(JSON.parse(localStorage.getItem('data')));
 
     const egy = JSON.parse(localStorage.getItem('EgyArak'))
-    // console.log(adatok[0][1]);
-
-    // if(kosarNev.value == ''){
-    //     kosarAr.value = parseInt(localStorage.getItem("ar"))
-    //     kosarNev.value = localStorage.getItem("nev")
-
-    // }
-    // else{
-    //     localStorage.setItem("ar", kosarAr.value)
-    //     localStorage.setItem("nev", kosarNev.value)
-
-    // } 
     
 })
 
@@ -193,7 +180,7 @@ let db = ref(1)
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 .NeedToRegisterButton{
     font-weight: bolder;
@@ -202,6 +189,7 @@ let db = ref(1)
 
 h3{
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .ProductImg{
@@ -240,4 +228,8 @@ h2{
     color: white;
     text-align: center;
 }
+
+
+
+
 </style>

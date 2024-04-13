@@ -12,8 +12,6 @@
                     </div>
                 </div>
 
-                <br>
-
                 <div class="card button-85">
                     <div class="card-header">
                         <h5>Ár:</h5>
@@ -26,8 +24,6 @@
                         </div>
                     </div>
                 </div>
-
-                <br>
 
                 <div class="card button-85">
                     <div class="card-header">

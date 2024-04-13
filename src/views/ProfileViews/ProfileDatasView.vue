@@ -17,14 +17,12 @@
                             name="" id="" />
                     </div>
 
-                    <br>
-                    <div class="row">
+                    <div class="row EmailDiv">
                         <p class="col-lg-3">Email: </p>
                         <InputText class="col-lg-6 Inputs EmailInput" required="required" v-model="UserEmail"
                             type="text" name="" id="" />
                     </div>
 
-                    <br>
                     <div class="row">
                         <p class="JelszoSzoveg col-lg-3">Jelszó megerősítés: </p>
                         <Password :feedback="false" required="required" v-model="UserActualPassword"
@@ -92,6 +90,11 @@ const Save = () => {
 </script>
 
 <style lang="scss" scoped>
+
+.EmailDiv{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
 .Inputs{
     width: 260px; 

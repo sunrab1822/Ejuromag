@@ -1,137 +1,148 @@
 <template class="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-1">
+    <div>
+        <div class="row MainRow">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1">
                 <table>
                     <tr>
                         <th>Menu</th>
                     </tr>
                     <tr>
-                        <td><button @click="New=true, Modositas=false, selectedProduct=0, ErrorMessage = '', Succesmessage=''">New</button></td>
+                        <td><button
+                                @click="New=true, Modositas=false, selectedProduct=0, ErrorMessage = '', Succesmessage=''">New</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td><button @click="Modositas=true, New=false, selectedProduct=0, ErrorMessage = '',Succesmessage=''">Change</button></td>
+                        <td><button
+                                @click="Modositas=true, New=false, selectedProduct=0, ErrorMessage = '',Succesmessage=''">Change</button>
+                        </td>
                     </tr>
                 </table>
             </div>
 
-            <div v-if="New" class="col-10">
-                <div class="card button-85">
-                    <div class="card-body">
-                        <div class="row">
-                            <FloatLabel class="NameInputFloatLabel">
-                                <InputText class="NameInput" id="username" v-model="selectedName" />
-                                <label for="username">Product name</label>
-                            </FloatLabel>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <Dropdown v-model="selectedCategory" :options="categorys" optionLabel="categoryName"
-                                    placeholder="Select a Category" checkmark :highlightOnSelect="false"
-                                    style="margin-bottom: 1.3rem;" class=" md:w-14rem" />
-
-                                <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
-                                    placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
-                                    class=" md:w-14rem" />
-                                
-                                <FloatLabel class="ImageInputFloatLabel">
-                                    <InputText class="ImageInput" id="username" v-model="selectedImageLink" />
-                                    <label for="username">Product image link</label>
+            <div class="col-lg-10 col-md-10 col-sm-7 col-7">
+                
+                <div v-if="New">
+                    <div class="card button-85">
+                        <div class="card-body">
+                            <div class="row">
+                                <FloatLabel class="NameInputFloatLabel">
+                                    <InputText class="NameInput" id="username" v-model="selectedName" />
+                                    <label for="username">Product name</label>
                                 </FloatLabel>
 
                             </div>
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <FloatLabel>
-                                    <Textarea v-model="selectedDescription" rows="5" cols="30" />
-                                    <label>Description</label>
-                                </FloatLabel>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <Dropdown v-model="selectedCategory" :options="categorys" optionLabel="categoryName"
+                                        placeholder="Select a Category" checkmark :highlightOnSelect="false"
+                                        class="categoryDropDown md:w-14rem" />
 
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <input v-model="selectedPrice" class="PriceInput" placeholder="Price in Ft" type="text">
-                                <button style="margin-left: 3rem;" class="button-33"
-                                    @click="AddNewProduct">Mentés</button>
+                                    <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
+                                        placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
+                                        class=" md:w-14rem" />
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <FloatLabel class="ImageInputFloatLabel">
+                                        <InputText class="ImageInput" id="username" v-model="selectedImageLink" />
+                                        <label for="username">Product image link</label>
+                                    </FloatLabel>
 
-            <div v-if="Modositas && selectedProduct == 0" class="col-10">
-                <DataTable v-model:selection="selectedProduct" selectionMode="single" paginator :rows="3"
-                    :value="products" removableSort tableStyle="min-width: 50rem">
-                    <Column field="id" header="id" sortable></Column>
-                    <Column field="picture" header="picture" sortable>
-                        <template #body="slotProps">
-                            <img :src="slotProps.data.picture" :alt="slotProps.data.picture" class="shadow-4"
-                                width="100" />
-                        </template>
-                    </Column>
-                    <Column field="name" header="Name" sortable></Column>
-                    <Column style="width: 20rem;" field="description" header="description" sortable></Column>
-                    <Column field="price" header="price" sortable></Column>
-                    <Column field="category_id" header="category" sortable>
-                        <template #body="slotProps">
-                            <p style="color: black;">{{ categorys[slotProps.data.category_id-1].categoryName }}</p>
-                        </template>
-                    </Column>
-                    <Column field="manufacturer_id" header="manufacturer" sortable>
-                        <template #body="slotProps">
-                            <p style="color: black;">{{ manufacturers[slotProps.data.manufacturer_id-1].name }}</p>
-                        </template>
-                    </Column>
-                </DataTable>
-            </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <FloatLabel>
+                                        <Textarea v-model="selectedDescription" rows="5" cols="30" />
+                                        <label>Description</label>
+                                    </FloatLabel>
+                                </div>
 
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <input v-model="selectedPrice" class="PriceInput" placeholder="Price in Ft"
+                                        type="text">
+                                    <button class="button-33"
+                                        @click="AddNewProduct">Mentés</button>
 
-            <div v-if="Modositas && selectedProduct != 0" class="col-10">
-                <div class="card button-85">
-                    <div class="card-body">
-                        <div class="row">
-                            <FloatLabel class="NameInputFloatLabel">
-                                <InputText class="NameInput" id="username" v-model="selectedProduct.name" />
-                                <label for="username">Product name</label>
-                            </FloatLabel>
-
-                        </div>
-                        <div class="row">
-                            
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <Dropdown v-model=" categorys[selectedProduct.category_id-1]" id="category" :options="categorys" optionLabel="categoryName"
-                                    placeholder="Select a Category" checkmark :highlightOnSelect="false"
-                                    style="margin-bottom: 1.3rem;" class=" md:w-14rem" />
-
-                                <Dropdown v-model="manufacturers[selectedProduct.manufacturer_id-1]" :value="manufacturers.id" id="manufacturer" :options="manufacturers" optionLabel="name"
-                                    placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
-                                    class=" md:w-14rem" />
-                                    
-                                <FloatLabel class="ImageInputFloatLabel">
-                                    <InputText class="ImageInput" id="username" v-model="selectedProduct.picture" />
-                                    <label for="username">Product image link</label>
-                                </FloatLabel>
-
-                            </div>
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <FloatLabel>
-                                    <Textarea v-model="selectedProduct.description" rows="5" cols="30" />
-                                    <label>Description</label>
-                                </FloatLabel>
-                            </div>
-
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
-                                <input v-model="selectedProduct.price" class="PriceInput" placeholder="Price in Ft" type="text">
-                                <button style="margin-left: 3rem;" class="button-33"
-                                    @click="ChangeProduct">Modosít</button>
-
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div v-if="Modositas && selectedProduct == 0">
+                    <DataTable v-model:selection="selectedProduct" selectionMode="single" paginator :rows="3"
+                        :value="products" removableSort tableStyle="min-width: 50rem">
+                        <Column field="id" header="id" sortable></Column>
+                        <Column field="picture" header="picture" sortable>
+                            <template #body="slotProps">
+                                <img :src="slotProps.data.picture" :alt="slotProps.data.picture" class="shadow-4"
+                                    width="100" />
+                            </template>
+                        </Column>
+                        <Column field="name" header="Name" sortable></Column>
+                        <Column style="width: 20rem;" field="description" header="description" sortable></Column>
+                        <Column field="price" header="price" sortable></Column>
+                        <Column field="category_id" header="category" sortable>
+                            <template #body="slotProps">
+                                <p class="SlotTextBlack">{{ categorys[slotProps.data.category_id-1].categoryName }}</p>
+                            </template>
+                        </Column>
+                        <Column field="manufacturer_id" header="manufacturer" sortable>
+                            <template #body="slotProps">
+                                <p class="SlotTextBlack" >{{ manufacturers[slotProps.data.manufacturer_id-1].name }}</p>
+                            </template>
+                        </Column>
+                    </DataTable>
+                </div>
+
+                <div v-if="Modositas && selectedProduct != 0">
+                    <div class="card button-85">
+                        <div class="card-body">
+                            <div class="row">
+                                <FloatLabel class="NameInputFloatLabel">
+                                    <InputText class="NameInput" id="username" v-model="selectedProduct.name" />
+                                    <label for="username">Product name</label>
+                                </FloatLabel>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <Dropdown v-model="selectedCategory" id="category" :options="categorys"
+                                        optionLabel="categoryName" placeholder="Select a Category" checkmark
+                                        :highlightOnSelect="false" class="categoryDropDown md:w-14rem" />
+
+                                    <Dropdown v-model="manufacturers[selectedProduct.manufacturer_id-1]"
+                                        :value="manufacturers.id" id="manufacturer" :options="manufacturers"
+                                        optionLabel="name" placeholder="Select a Manufacturer" checkmark
+                                        :highlightOnSelect="false" class=" md:w-14rem" />
+
+                                    <FloatLabel class="ImageInputFloatLabel">
+                                        <InputText class="ImageInput" id="username" v-model="selectedProduct.picture" />
+                                        <label for="username">Product image link</label>
+                                    </FloatLabel>
+
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <FloatLabel>
+                                        <Textarea v-model="selectedProduct.description" rows="5" cols="30" />
+                                        <label>Description</label>
+                                    </FloatLabel>
+                                </div>
+
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <input v-model="selectedProduct.price" class="PriceInput" placeholder="Price in Ft"
+                                        type="text">
+                                    <button class="button-33"
+                                        @click="ChangeProduct">Modosít</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="col-1">
+
+            <div class="col-lg-1 col-md-1 col-sm-2 col-2 WelcomeDiv">
                 <table>
                     <DataTable class="WelcomeTable" :value="user.user">
                         <Column field="name" id="WelcomeText" header="Welcome"></Column>
@@ -142,7 +153,6 @@
             </div>
 
         </div>
-        <br>
 
         <div v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
             <strong>{{ ErrorMessage }}</strong>
@@ -155,7 +165,7 @@
         </div>
 
     </div>
-    <AdminFooter/>
+    <AdminFooter />
 </template>
 
 <script setup>
@@ -171,7 +181,7 @@ import FloatLabel from 'primevue/floatlabel';
 import InputText from 'primevue/inputtext';
 
 
-import { ref, onMounted, watch, onBeforeMount } from 'vue';
+import { ref, onMounted, watch, onBeforeMount, computed } from 'vue';
 import termekService from "../../services/termekService.js"
 import { useUserStore } from "../../store/store.js"
 
@@ -231,7 +241,9 @@ onBeforeMount(() => {
         categorys.value = resp.data;
         console.log(categorys.value);
     })
+
 })
+
 
 const AddNewProduct = () => {
     Succesmessage.value = ""
@@ -303,62 +315,7 @@ const ChangeProduct = () => {
 
 <style scoped>
 
-.ImageInputFloatLabel{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
+@import '../../assets/scss/adminStyle.scss'
 
-.ImageInput{
-    width: 14rem;
-}
-
-.NameInputFloatLabel{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.NameInput{
-    text-align: center;
-    width: 48rem;
-}
-.DescriptionInput{
-}
-.PriceInput{
-    text-align: center; 
-}
-
-Button{
-    margin-top: 4rem;
-}
-
-#WelcomeText{
-    text-align: center;
-}
-.WelcomeTable{
-    width: 10rem;
-}
-
-.p-icon, .p-button-label{
-    display: none !important;
-}
-.boxs{
-    margin-left: 7rem;
-    margin-top: 2rem;
-}
-
-table{
-    background-color: white;
-}
-
-td{
-    font-size: 17px;
-    color: white;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 8px;
-}
 </style>
 

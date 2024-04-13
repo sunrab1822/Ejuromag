@@ -4,6 +4,10 @@
     background-color: black;
 }
 
+li{
+    margin-top: 1rem;
+}
+
 .LoginCard{
     width: fit-content;
     margin: auto;
@@ -15,4 +19,82 @@
 }
 #LoginBtn{
     margin: auto;
+}
+
+.categoryDropDown{
+    margin-bottom: 1.3rem;
+}
+
+.SlotTextBlack{
+    color: black;
+}
+
+.button-33{
+    margin-left: 3rem;
+}
+
+.MainRow{
+    margin: auto;
+    padding: 2rem;
+}
+
+.WelcomeDiv{
+    padding-right: auto;
+}
+
+
+.ImageInputFloatLabel{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ImageInput{
+    width: 14rem;
+}
+
+.NameInputFloatLabel{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.NameInput{
+    text-align: center;
+    width: 48rem;
+}
+
+.PriceInput{
+    text-align: center; 
+}
+
+Button{
+    margin-top: 4rem;
+}
+
+#WelcomeText{
+    text-align: center;
+}
+
+.boxs{
+    margin-left: 7rem;
+    margin-top: 2rem;
+}
+
+.p-icon, .p-button-label{
+    display: none !important;
+}
+
+
+table{
+    background-color: white;
+}
+
+td{
+    font-size: 17px;
+    color: white;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
 }

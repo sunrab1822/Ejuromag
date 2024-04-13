@@ -82,13 +82,16 @@
 p {
     font-size: 17px;
 }
+
 li {
     font-size: 25px;
     color: white;
 }
 
+
 ul > li{
     font-size: 17px;
 
 }
+
 </style>

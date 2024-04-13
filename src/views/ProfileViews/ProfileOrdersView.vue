@@ -33,7 +33,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
             </div>
 
         </div>
@@ -73,6 +72,7 @@ onBeforeMount(() => {
 </script>
 
 <style lang="scss" scoped>
+
 .OrderStyle{
     border: 2px solid white;
     background-color: aliceblue;
@@ -107,6 +107,7 @@ h2{
     color: aliceblue;
     margin: auto;
     margin-top: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .productCards{

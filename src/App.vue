@@ -9,7 +9,7 @@ console.log(pathname);
 </script>
 
 <template>
-  <div class="test">
+  <div class="BackgroundImage">
     <AppNav v-if="pathname!= '/admin' && pathname!= '/admin/main'"/>
     <AppNav2 v-if="pathname!= '/admin' && pathname!= '/admin/main'"/>
     <RouterView />
@@ -19,7 +19,7 @@ console.log(pathname);
 </template>
 
 <style scoped>
-.test{
+.BackgroundImage{
   background-image: url("/backgroundPicture.webp");
   background-size: contain;
 }

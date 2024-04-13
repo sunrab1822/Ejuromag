@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Regisztráció</h1>
-                <br>
+                
                 <div class="col-md-4 col-lg-4 col-sl-4 col-4 Adatok button-85">
 
                     <div class="margintop">
@@ -127,8 +127,10 @@
                     </div>
 
                 </div>
-                <br><br><br>
-                <ProgressSpinner v-if="loading" />
+                <div>
+                    <ProgressSpinner class="RegisterLoading" v-if="loading" />
+
+                </div>
 
                 <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
                     <strong>{{ hiba }}</strong>
@@ -183,10 +185,6 @@
     const LoginPassword = ref()
 
     const ResetEmail = ref()
-
-    // const hasPasswordMismatch = computed(() => {
-    //     return jelszo.value == jelszoRepeat.value
-    // })
 
     const Register = async() => {
         loading.value = true
@@ -278,6 +276,9 @@
 </script>
 
 <style lang="scss" scoped>
+.RegisterLoading{
+    margin-top: 3rem;
+}
 
 strong{
     font-size: large;

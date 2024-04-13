@@ -26,33 +26,33 @@
                     <div class="flex flex-column h-40rem" >
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto font-medium p-3">
 
-                            <div class="row">
-                                <p style="margin-top: 10px;" class="col-lg-3">Vezetéknév:</p>
+                            <div class="row SzemelyesAdatokDiv">
+                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Vezetéknév:</p>
                                 <input class="col-lg-6" placeholder="Vezetéknév" required="required" v-model="OrderLastName"  type="text" name="" id="">
                             </div>
-                            <br>
-                            <div class="row">
-                                <p style="margin-top: 10px;" class="col-lg-3">Keresztnév:</p>
+                            
+                            <div class="row SzemelyesAdatokDiv">
+                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Keresztnév:</p>
                                 <input class="col-lg-6" placeholder="Keresztnév" required="required" v-model="OrderFirstName"  type="text" name="" id="">
                             </div>
-                            <br>    
-                            <div class="row">
-                                <p style="margin-top: 10px;" class="col-lg-3">Város:</p>
+
+                            <div class="row SzemelyesAdatokDiv">
+                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Város:</p>
                                 <InputOtp class="col-lg-4" v-model="OrderZipCode" integerOnly/>
                                 <input class="col-lg-4" placeholder="Város" required="required" v-model="OrderCity"  type="text" name="" id="">
                             </div>
-                            <br>
-                            <div class="row">
-                                <p style="margin-top: 10px;" class="col-lg-3">Utca, házszám:</p>
+
+                            <div class="row SzemelyesAdatokDiv">
+                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Utca, házszám:</p>
                                 <input class="col-lg-6" placeholder="Utca, házszám" required="required" v-model="OrderCityStreet"  type="text" name="" id="">
                             </div>
-                            <br>
-                            <div class="row">
+
+                            <div class="row SzemelyesAdatokDiv">
                                 <p class="col-lg-3">Telefonszám: </p>
                                 <InputMask class="col-lg-6" id="basic" v-model="OrderPhoneNumber" mask="+36-99-9999999?99999999" placeholder="+36-99-9999999" />
                             </div>
-                            <br>
-                            <div class="row">
+
+                            <div class="row SzemelyesAdatokDiv">
                                 <p class="col-lg-3">Email: </p>
                                 <input class="col-lg-6" placeholder="Email" required="required" v-model="OrderEmail" type="text" name="" id="">
                             </div>
@@ -70,24 +70,21 @@
                     <div class="flex flex-column OrderFinalize">
                         <div class="container border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
 
-                        <Button @click="OrderShippingImg ='/Posta_szallitas.png', OrderShippingPrice = 1590">
+                        <Button @click="OrderShippingImg ='/Posta_szallitas.webp', OrderShippingPrice = 1590">
                             <figure @click="nextCallback">
                                 <img class="ShippingImgs" src="/Posta_szallitas.webp" alt="" srcset="">
-                                <br><br>
                                 <figcaption>1.590,- Ft</figcaption>
                             </figure>
                         </Button>
-                        <Button @click="OrderShippingImg = '/PostaPont_szallitas.jpg', OrderShippingPrice = 990">
+                        <Button @click="OrderShippingImg = '/PostaPont_szallitas.webp', OrderShippingPrice = 990">
                             <figure @click="nextCallback">
                                 <img class="ShippingImgs" src="/PostaPont_szallitas.webp" alt="" srcset="">
-                                <br><br>
                                 <figcaption>990 Ft</figcaption>
                             </figure>
                         </Button>
-                        <Button class="row" @click="OrderShippingImg = '/Packeta_szallitas.png', OrderShippingPrice = 1480">
+                        <Button class="row" @click="OrderShippingImg = '/Packeta_szallitas.webp', OrderShippingPrice = 1480">
                             <figure @click="nextCallback">
                                 <img class="ShippingImgs" src="/Packeta_szallitas.webp" alt="" srcset="">
-                                <br><br>
                                 <figcaption>1 480 Ft</figcaption>
                             </figure>
                         </Button>
@@ -120,10 +117,9 @@
                                     <h5>Szállítás</h5>
                                 </div>
                                 <div class="card-body">
-                                    <Button class="row" style="margin: auto;">
+                                    <Button class="row ImageButton">
                                         <figure>
-                                            <img style="width: 7.9rem;" :src="OrderShippingImg" alt="" srcset="">
-                                            <br><br>
+                                            <img class="OrderShippingImgFinalize" :src="OrderShippingImg" alt="" srcset="">
                                             <figcaption>{{OrderShippingPrice}} Ft</figcaption>
                                         </figure>
                                     </Button>
@@ -156,8 +152,9 @@
                                         <div class="col-md-6">
                                             <label class="form-control">{{kosarAr}} Ft</label>
                                         </div>
+                                        <router-link to="/" v-if="OrderShippingImg != 0" id="RendelesFolyatatasaBtn" @click="SendOrder">Folytatás</router-link>
+
                                     </div>
-                                    <router-link to="/" v-if="OrderShippingImg != 0" id="RendelesFolyatatasaBtn" @click="SendOrder">Folytatás</router-link>
 
                                 </div>
                             </div>
@@ -182,7 +179,6 @@ import Button from 'primevue/button';
 import {ref,onBeforeMount} from 'vue'
 import { useUserStore } from "../store/store"
 import termekService from "../services/termekService"
-import router from '@/router';
 
 
 const store = useUserStore()
@@ -222,7 +218,6 @@ catch(err)
 })
 
 const SendOrder = () => {
-    console.log("kuki");
     const ProductsId = []
     for (let index = 0; index < adatok.length; index++) {
         console.log(adatok[index][5]);
@@ -252,12 +247,30 @@ const SendOrder = () => {
 
 
 <style scoped>
-    .OrderFinalize{
-        height: 19rem;
-    }
+.SzemelyesAdatokDiv{
+    margin-bottom: 1.5rem;
+}
+
+.ImageButton{
+    margin: auto;
+}
+
+.OrderShippingImgFinalize{
+    width: 7.9rem;
+    margin-bottom: 2rem;
+}
+
+.SzemelyesAdatokMarginTop
+{
+    margin-top: 10px;
+}
+.OrderFinalize {
+    height: 19rem;
+}
 
 .ShippingImgs{
     width: 180px;
+    margin-bottom: 2rem
 }
 
 .ProdcutCard{

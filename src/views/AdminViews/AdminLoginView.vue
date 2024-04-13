@@ -7,11 +7,9 @@
                     <h2 id="LoginName">Login</h2>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <br>
                     <li class="list-group-item">Email:
                         <input @keyup.enter="LoginAdmin" v-model="LoginAdminEmail" type="text">
                     </li>
-                    <br>
                     <li class="list-group-item">Password:
                         <input @keyup.enter="LoginAdmin" v-model="LoginAdminPassword" type="password">
                     </li>
