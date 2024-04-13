@@ -18,6 +18,8 @@ import AdminMainView from '@/views/AdminViews/AdminMainView.vue'
 
 import { useUserStore } from "../store/store.js"
 
+document.title = "Ejuromag"
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -30,7 +32,6 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: "404",
       component: ErrorView
-
     },
     {
       path: "/help/Rendeles_es_szallitas",
@@ -51,8 +52,7 @@ const router = createRouter({
       path: '/rendeles_osszegzes',
       name: 'Rendelés összegzése',
       component: OrderFinalizeView
-    }
-    ,
+    },
     {
       path: '/Login',
       name: 'Belépés',
@@ -66,6 +66,7 @@ const router = createRouter({
     {
       path: '/profil',
       name: 'Profil',
+      beforeEnter: checkIfUserLoggedIn,
       component: ProfileView
     },
     {
@@ -101,16 +102,19 @@ const router = createRouter({
     {
       path: '/profil/sajat_adatok',
       name: 'Profil_Sajat_Adatok',
+      beforeEnter: checkIfUserLoggedIn,
       component: ProfileDatasViewVue
     },
     {
       path: '/profil/jelszo_csere',
       name: 'Jelszo_csere',
+      beforeEnter: checkIfUserLoggedIn,
       component: ProfilePasswordResetView
     },
     {
       path: '/profil/rendelesek',
       name: 'Profil_Rendelesek',
+      beforeEnter: checkIfUserLoggedIn,
       component: ProfileOrdersViewVue
     },
 
@@ -128,9 +132,26 @@ const router = createRouter({
   
 })
 
+function checkIfUserLoggedIn(from, to, next) {
+  
+  let isLoggedIn;
+  let store = useUserStore()
 
+  try {
+    isLoggedIn = store.isLoggedIn
 
-function checkAdminRights(to, from, next) {
+    if(isLoggedIn === true) {
+      next();       
+  } else {
+    window.location.href = 'http://localhost:5173';
+  }
+  } catch (error) {
+    window.location.href = 'http://localhost:5173';
+  }
+
+}
+
+function checkAdminRights(from, to, next) {
   
   let user;
   let store = useUserStore()
@@ -148,11 +169,5 @@ function checkAdminRights(to, from, next) {
   }
 
 }
-
-router.beforeEach((to, from, next) => {
-  document.title = to.name + " - Ejuromag";
-  next();
-});
-
 export default router
 

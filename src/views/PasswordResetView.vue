@@ -70,11 +70,7 @@
     import { ref } from 'vue';  
     import { useUserStore } from "../store/store"
 
-    const token = window.location.pathname.split('/')[2];
-
-    const store = useUserStore()
-
-    const router = useRouter()    
+    const token = window.location.pathname.split('/')[2];   
 
     let hiba = ref()
     let Succesmessage = ref()
@@ -113,33 +109,6 @@
         loading.value = false
     }
 
-
-    // const Login = async() => {
-    //     Loading.value = false
-    //     const akt_login = {
-    //     email: LoginEmail.value,
-    //     password: LoginPassword.value,
-    //     }
-
-    //     try {
-    //         const res = await termekService.UserLogin(akt_login)
-    //         store.setUser(res)
-    //         store.setLoggedIn(true)
-    //         router.push({ name: "Profil" })
-    //     } catch (error) {
-
-    //         if(error.response.status == 401){
-    //             hiba.value = "Nem megfelelő email vagy jelszó"
-    //         }
-    //         if(error.response.status == 500){
-    //             hiba.value = "Hiba a szerveren"
-    //         }
-    //         if(error.response.status == 422){
-    //             hiba.value = "A mezők kitöltése kötelező"  
-    //         }
-    //         Loading.value = true
-    //     }
-    // }
 </script>
 
 <style lang="scss" scoped>

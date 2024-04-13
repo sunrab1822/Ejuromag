@@ -90,10 +90,6 @@ let adatok = []
 let getloggedin = ref()
 let kosarNev = ref()
 let kosarAr = ref(0)
-let szamlalo = 0;
-const selectedTermekNeve = ref()
-const TermekNeve = ref()
-const user = ref()
 
 const store = useUserStore()
 if(store.getLoggedIn){

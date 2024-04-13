@@ -197,7 +197,6 @@ const selectedPrice = ref()
 const selectedImageLink = ref()
 
 const products = ref();
-const productsByManufacturer = ref()
 const manufacturers = ref()
 const categorys = ref()
 let selectedProduct = ref(0)
@@ -213,11 +212,6 @@ const LogOut = async() => {
     store.setUser(null);
 
     router.push({ path: "/admin" })
-}
-
-function SearchCategory(){
-    let asd = manufacturers.length;
-    return asd
 }
 
 onBeforeMount(() => {
