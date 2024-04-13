@@ -62,7 +62,6 @@ const EmailReset = async() => {
 
             }
             catch(error){
-                console.log(error.message);
                 loading.value = false
                 return
             }

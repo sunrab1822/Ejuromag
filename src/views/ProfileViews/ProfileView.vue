@@ -28,7 +28,6 @@ const store = useUserStore()
 
 onBeforeMount(() => {
     user.value = store.getUser
-    console.log(user.value);
 })
 
 </script>

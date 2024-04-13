@@ -88,7 +88,6 @@ const LogOut = async() => {
 
 onBeforeMount(() => {
     user.value = store.getUser
-    console.log(user.value.user.token);
 })
 
 

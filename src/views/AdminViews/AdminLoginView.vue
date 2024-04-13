@@ -83,11 +83,8 @@ const LoginAdmin = async() => {
             else{
                 hiba.value = "You are not admin!"
             }
-            console.log(res.user.user.role);
 
         } catch (error) {
-
-            console.log(error);
 
             if(error.response.status == 401){
                 hiba.value = "Email or password is incorrect!"

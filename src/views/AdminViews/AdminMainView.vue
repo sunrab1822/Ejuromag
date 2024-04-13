@@ -222,13 +222,11 @@ function SearchCategory(){
 
 onBeforeMount(() => {
     user.value = store.getUser
-    console.log(user.value.user.user.name);
 
     termekService.getManufacturers()
     .then(resp => {
         manufacturers.value = resp.data;
-        console.log(resp.data);
-        console.log(manufacturers[0])
+
     });
 
     termekService.getAllProducts()
@@ -239,7 +237,6 @@ onBeforeMount(() => {
     termekService.getCategories()
     .then(resp=> {
         categorys.value = resp.data;
-        console.log(categorys.value);
     })
 
 })
@@ -277,7 +274,6 @@ const AddNewProduct = () => {
 const ChangeProduct = () => {
     let categoryId = document.getElementById("category").querySelector("span").textContent;
     let manufacturerId = document.getElementById("manufacturer");
-    console.log(manufacturerId);
     Succesmessage.value = ""
     ErrorMessage.value = ''
     if(categoryId == null || manufacturerId == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){

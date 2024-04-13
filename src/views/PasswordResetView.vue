@@ -71,7 +71,6 @@
     import { useUserStore } from "../store/store"
 
     const token = window.location.pathname.split('/')[2];
-    console.log(token);
 
     const store = useUserStore()
 
@@ -91,7 +90,6 @@
         token: token,
         password: resetPassword.value
     }
-    console.log(typeof akt_newpassword.password);
     if(akt_newpassword.password === void 0 )
     {
         hiba.value = "A jelszó nem lehet üres!"
@@ -107,7 +105,6 @@
             }   
         catch (error) {
             hiba.value = "A két jelszó nem egyezik!"
-            console.log(error.message);
             loading.value = false
 
             return

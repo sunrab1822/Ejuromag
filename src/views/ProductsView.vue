@@ -100,12 +100,10 @@
     let SelectedManufacturer = ref();
 
     watch(SelectedManufacturer, (SelectedManufacturer) => {
-        console.log(SelectedManufacturer);
     termekService.getProductsByManufacturer(SelectedManufacturer.id)
     .then(resp => {
         Products.value = resp.data[0].product;
         siteName.value = SelectedManufacturer.name + " Termékek";
-        console.log(resp.data);
     });
     })
 
@@ -175,7 +173,6 @@
     termekService.getManufacturers()
     .then(resp => {
         Manufacturers.value = resp.data;
-        console.log(resp.data);
     });
 
     const SearchByProductName = () => {
@@ -186,7 +183,6 @@
             termekService.SearchByName(ProductName.value)    
        .then(resp => {
         Products.value = resp.data;
-        console.log(resp.data);
     });
         }
 
@@ -210,27 +206,22 @@
                 const newValue = parseInt(old_data[index][1]) + parseInt(egy[product]);
                 old_data[index][2] = newDb;
                 old_data[index][1] = newValue
-                console.log(old_data[index][2]);
-                console.log(old_data[index][1]);
                 localStorage.setItem('data', JSON.stringify(old_data))
                 return
             }
         }
         old_data.push(new_data);
         localStorage.setItem('data', JSON.stringify(old_data))
-        console.log(old_data);
 
         adatok = JSON.parse(localStorage.getItem('data'))
         for(let product in adatok) 
         {
             
             egyAra.push(adatok[product][1])
-            console.log(egyAra);
 
         }
         localStorage.setItem('EgyArak', '[]');
         localStorage.setItem('EgyArak', JSON.stringify(egyAra));
-        console.log(JSON.parse(localStorage.getItem('EgyArak')));
 
     }
 

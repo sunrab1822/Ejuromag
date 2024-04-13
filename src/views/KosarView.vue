@@ -21,7 +21,6 @@
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
                             <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p data-cy="db" class="db"> {{ termek[2] }}</p></div>
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
-                        <!-- console.log(termek[1] += egyAra[1]) -->
                         <button data-cy="remove" @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
                     </div>
                     </div>
@@ -164,13 +163,9 @@ onBeforeMount(() => {
     for(let termek in adatok) 
     {
         kosarAr.value += adatok[termek][1]
-        console.log(szamlalo);
 
     }
     localStorage.setItem("CartPrice", kosarAr.value)
-
-    console.log(kosarAr.value);
-    console.log(JSON.parse(localStorage.getItem('data')));
 
     const egy = JSON.parse(localStorage.getItem('EgyArak'))
     

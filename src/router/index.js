@@ -145,7 +145,6 @@ function checkAdminRights(to, from, next) {
   }
   } catch (error) {
     window.location.href = 'http://localhost:5173';
-    console.log(window.location.pathname);
   }
 
 }

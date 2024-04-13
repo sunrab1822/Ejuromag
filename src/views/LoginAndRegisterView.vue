@@ -206,7 +206,6 @@
 
             }   
         catch (error) {
-        console.log(error.message);
         hiba.value = "A két jelszó nem egyezik vagy az emailcím már használatban van"
         }
         Succesmessage.value =  "Sikeresen regisztráltál!"
@@ -231,7 +230,6 @@
 
             }
             catch(error){
-                console.log(error.message);
                 hiba.value = "Nem található az email"
                 loading.value = false
                 return

@@ -70,7 +70,6 @@ onBeforeMount(() => {
     UserEmail.value = user.value.user.user.email
     UserLastName.value = user.value.user.user.name.split(" ")[0]
     UserFirstName.value = user.value.user.user.name.split(" ")[1]
-    console.log(user.value.user.user.email);
 })
 
 const Save = () => {

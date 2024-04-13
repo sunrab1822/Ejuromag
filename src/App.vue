@@ -4,7 +4,6 @@ import AppNav from './components/AppNav.vue';
 import AppNav2 from './components/AppNav2.vue';
 
 var pathname = window.location.pathname
-console.log(pathname);
 
 </script>
 

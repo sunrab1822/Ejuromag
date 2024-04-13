@@ -208,7 +208,6 @@ try{
     OrderLastName.value = user.value.user.user.name.split(" ")[0];
     OrderFirstName.value = user.value.user.user.name.split(" ")[1];
     OrderEmail.value = user.value.user.user.email;
-    console.log(adatok[0][5]);
 
 }
 catch(err)
@@ -220,7 +219,6 @@ catch(err)
 const SendOrder = () => {
     const ProductsId = []
     for (let index = 0; index < adatok.length; index++) {
-        console.log(adatok[index][5]);
         ProductsId.push(adatok[index][5])
         
     }
@@ -229,7 +227,6 @@ const SendOrder = () => {
         address: `${OrderZipCode.value}, ${OrderCity.value} ${OrderCityStreet.value}`,
         products: ProductsId
     }
-    console.log(akt_Order);
         try {
             termekService.SendBuy(akt_Order, user.value.user.token)   
             alert("Rendelés leadva") 

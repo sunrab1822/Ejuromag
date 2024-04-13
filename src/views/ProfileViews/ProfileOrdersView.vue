@@ -60,11 +60,8 @@ onBeforeMount(() => {
     termekService.GetOrder(userToken.value)
     .then(resp => {
         orders.value = resp.data;
-        console.log(resp.data);
 
     });
-
-    console.log(orders);
 
 })
 
