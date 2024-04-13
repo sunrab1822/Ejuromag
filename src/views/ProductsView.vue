@@ -8,7 +8,7 @@
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-4 col-lg-4 col-sm-4 ProductNameDiv"><input @keyup="SearchByProductName" v-model="ProductName" type="text" placeholder="Termék neve"></div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-4 ProductNameDiv"><input @keyup="SearchByProductName" v-model="ProductName" type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -43,7 +43,6 @@
 
                     </div>
                     
-
                 </div>
             </div>
 
@@ -63,15 +62,6 @@
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
                                 <p>{{product.description}}</p>
-                                <!-- <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p>
-                                <p>{{termek}}</p> -->
-
 
                             </div>
 
@@ -79,7 +69,6 @@
                                 <h3>{{product.price}} Ft</h3>
                                 <router-link to="/Kosar" data-cy="addToCart" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
                                 
-
                             </div>
                         </div>
                     </div>
@@ -102,8 +91,14 @@
     watch(SelectedManufacturer, (SelectedManufacturer) => {
     termekService.getProductsByManufacturer(SelectedManufacturer.id)
     .then(resp => {
-        Products.value = resp.data[0].product;
-        siteName.value = SelectedManufacturer.name + " Termékek";
+        try {
+            Products.value = resp.data[0].product;
+            siteName.value = SelectedManufacturer.name + " Termékek";
+            ProductName.value = []
+        } catch (error) {
+            
+        }
+
     });
     })
 
@@ -182,10 +177,11 @@
         else{
             termekService.SearchByName(ProductName.value)    
        .then(resp => {
+        siteName.value = "Keresés"
         Products.value = resp.data;
-    });
+        SelectedManufacturer.value = false
+        });
         }
-
     }
 
     function Save (ProductName, ProductPrice, ProductPicture, ProductDescription, ProductId){

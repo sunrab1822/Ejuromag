@@ -9,16 +9,16 @@ export default {
         return {
             slides: [
                 {
-                    image: "/public/vueperSlides1.webp",
+                    image: "/vueperSlides1.webp",
                     link: 'http://localhost:5173/help/Rolunk'
                 },
                 {
-                    image: "/public/NeedToRegisterSlides2.webp",
+                    image: "/NeedToRegisterSlides2.webp",
                     link: 'http://localhost:5173/Login'
                 },
                 {
 
-                    image: "/public/SocialMediaSlides33.webp",
+                    image: "/SocialMediaSlides33.webp",
                 },
                 {
                     title: 'El Teide Volcano, Spain',

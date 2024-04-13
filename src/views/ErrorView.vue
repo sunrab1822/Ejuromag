@@ -1,7 +1,7 @@
 <template>
     <div class= "container">
         <div class="row">
-            <h1 class="h1Custom">404 HIBA</h1>
+            <h1 class="h1Custom">404 ErrorMessage</h1>
 
         </div>
 

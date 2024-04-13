@@ -6,11 +6,7 @@ import PrimeVue from 'primevue/config'
 
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-// import as component
-import Badge from 'primevue/badge';
 
-
-// import as directive
 import BadgeDirective from 'primevue/badgedirective';
 
 
@@ -20,7 +16,6 @@ import router from './router'
 import 'bootstrap'
 import './assets/scss/style.scss'
 import './assets/scss/homeStyle.scss'
-
 
 
 const app = createApp(App)

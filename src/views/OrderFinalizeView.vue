@@ -175,13 +175,15 @@ import StepperPanel from 'primevue/stepperpanel';
 import InputOtp from 'primevue/inputotp';
 import InputMask from 'primevue/inputmask';
 import Button from 'primevue/button';
-
+import { useRouter  } from "vue-router";
 import {ref,onBeforeMount} from 'vue'
 import { useUserStore } from "../store/store"
 import termekService from "../services/termekService"
 
 
 const store = useUserStore()
+
+const router = useRouter()    
 
 
 let adatok = []
@@ -229,10 +231,9 @@ const SendOrder = () => {
     }
         try {
             termekService.SendBuy(akt_Order, user.value.user.token)   
-            alert("Rendelés leadva") 
+            router.push('/profil/rendelesek')
         } 
         catch (error) {
-            alert("UwU")
         }
 
     localStorage.removeItem('data')

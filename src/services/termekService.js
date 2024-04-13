@@ -2,16 +2,28 @@ import axios from "axios";
 
 export default {
     async getProducts(id){
-        const resp =  axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products/" + id)
-        return resp.data;
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products/" + id)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
     },
     async getAllProducts(){
-        const resp = axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products ")
-        return resp.data;
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/products ")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
     },
     async getProductsByManufacturer(id){
-        const resp = axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productwManuf/" + id)
-        return resp.data;
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productwManuf/" + id)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
     },
     async SearchByName(data){ 
         const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productbyName/' + data)
@@ -19,12 +31,20 @@ export default {
     },
 
     async getManufacturers(){
-        const resp = axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/manufacturers")
-        return resp.data;
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/manufacturers")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
     },
     async getCategories(){
-        const resp = axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/categories")
-        return resp.data;
+        return axios.get("https://bgs.jedlik.eu/ejuromag/Ejuromag/api/categories")
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+            })
     },
 
     async UserRegister(datas){ 

@@ -20,9 +20,9 @@
 
                 <ProgressSpinner v-if="loading" />
 
-                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ hiba }}</strong>
-                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                <div v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ ErrorMessage }}</strong>
+                    <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
                 </div>
 
                 <div v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
@@ -56,7 +56,7 @@ const store = useUserStore()
 const router = useRouter()    
 
 const loading = ref(false)
-const hiba = ref("")
+const ErrorMessage = ref("")
 const Succesmessage = ref("")
 const LoginAdminEmail = ref("")
 const LoginAdminPassword = ref("")
@@ -66,7 +66,7 @@ store.setUser(null);
 
 const LoginAdmin = async() => {
         loading.value = true
-        hiba.value = ""
+        ErrorMessage.value = ""
         Succesmessage.value = ""
         const akt_login = {
         email: LoginAdminEmail.value,
@@ -81,19 +81,19 @@ const LoginAdmin = async() => {
                 router.push({ name: "Admin_Main" })
             }
             else{
-                hiba.value = "You are not admin!"
+                ErrorMessage.value = "You are not admin!"
             }
 
         } catch (error) {
 
             if(error.response.status == 401){
-                hiba.value = "Email or password is incorrect!"
+                ErrorMessage.value = "Email or password is incorrect!"
             }
             if(error.response.status == 500){
-                hiba.value = "Error on server!"
+                ErrorMessage.value = "Error on server!"
             }
             if(error.response.status == 422){
-                hiba.value = "Please fill every field!"  
+                ErrorMessage.value = "Please fill every field!"  
             }
         }
         loading.value = false

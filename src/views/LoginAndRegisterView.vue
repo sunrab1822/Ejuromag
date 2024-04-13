@@ -32,9 +32,9 @@
                     <button data-cy="RegisterButton" class="button-85" @click="Sites=2">Regisztráció</button>
                 </div>
 
-                <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ hiba }}</strong>
-                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                <div data-cy="ErrorMessage" v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ ErrorMessage }}</strong>
+                    <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
                 </div>
             </div>
 
@@ -64,11 +64,11 @@
 
                 <div>
                         <button data-cy="EmailResetButton" @click="EmailReset" class="button-85">Kűldés</button>
-                        <button class="button-85" @click="Sites=1, hiba = ''">Mégse</button>
+                        <button class="button-85" @click="Sites=1, ErrorMessage = ''">Mégse</button>
                     </div>
-                    <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                        <strong>{{ hiba }}</strong>
-                        <button type="button" @click="hiba=''" class="btn-close"></button>
+                    <div data-cy="ErrorMessage" v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>{{ ErrorMessage }}</strong>
+                        <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
                     </div>
             </div>
 
@@ -132,9 +132,9 @@
 
                 </div>
 
-                <div data-cy="ErrorMessage" v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ hiba }}</strong>
-                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                <div data-cy="ErrorMessage" v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ ErrorMessage }}</strong>
+                    <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
                 </div>
 
                 <div class="button-85 RegisterDiv">
@@ -142,7 +142,7 @@
                         <button data-cy="RegisztrácioButton" class="RegisterBtn" @click="Register">Regisztráció</button>
                     </div>
                     <div>
-                        <button class="MegseBtn" @click="Sites=1, hiba = ''">Mégse</button>
+                        <button class="MegseBtn" @click="Sites=1, ErrorMessage = ''">Mégse</button>
 
                     </div>
                 </div>
@@ -168,7 +168,7 @@
 
     const router = useRouter()    
 
-    let hiba = ref()
+    let ErrorMessage = ref()
     let Succesmessage = ref()
     let Sites = ref(1)
 
@@ -188,7 +188,7 @@
 
     const Register = async() => {
         loading.value = true
-        hiba.value = ""
+        ErrorMessage.value = ""
         Succesmessage.value = ""
         const akt_register = {
         name: RegisterLastName.value + " " + RegisterFirstName.value,
@@ -206,13 +206,13 @@
 
             }   
         catch (error) {
-        hiba.value = "A két jelszó nem egyezik vagy az emailcím már használatban van"
+        ErrorMessage.value = "A két jelszó nem egyezik vagy az emailcím már használatban van"
         }
         Succesmessage.value =  "Sikeresen regisztráltál!"
 
     }
     else{
-        hiba.value = "A mezők kitöltése kötelező!"
+        ErrorMessage.value = "A mezők kitöltése kötelező!"
 
     }
         loading.value = false
@@ -222,7 +222,7 @@
 
     const EmailReset = async() => {
         loading.value = true
-        hiba.value = ""
+        ErrorMessage.value = ""
         Succesmessage.value = ""
         if(ResetEmail.value && ResetEmail.value!== undefined){
             try{
@@ -230,7 +230,7 @@
 
             }
             catch(error){
-                hiba.value = "Nem található az email"
+                ErrorMessage.value = "Nem található az email"
                 loading.value = false
                 return
             }
@@ -245,7 +245,7 @@
 
     const Login = async() => {
         loading.value = true
-        hiba.value = ""
+        ErrorMessage.value = ""
         Succesmessage.value = ""
         const akt_login = {
         email: LoginEmail.value,
@@ -260,13 +260,13 @@
         } catch (error) {
 
             if(error.response.status == 401){
-                hiba.value = "Nem megfelelő email vagy jelszó"
+                ErrorMessage.value = "Nem megfelelő email vagy jelszó"
             }
             if(error.response.status == 500){
-                hiba.value = "Hiba a szerveren"
+                ErrorMessage.value = "ErrorMessage a szerveren"
             }
             if(error.response.status == 422){
-                hiba.value = "A mezők kitöltése kötelező"  
+                ErrorMessage.value = "A mezők kitöltése kötelező"  
             }
         }
         loading.value = false

@@ -43,9 +43,9 @@
                     <button class="button-85" @click="ResetPassword">Mentés</button>
                 </div>
 
-                <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>{{ hiba }}</strong>
-                    <button type="button" @click="hiba=''" class="btn-close"></button>
+                <div v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>{{ ErrorMessage }}</strong>
+                    <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
                 </div>
 
                 <div v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
@@ -66,13 +66,11 @@
     import termekService from "../services/termekService"
     import ProgressSpinner from 'primevue/progressspinner';
     import Password from 'primevue/password';
-    import { useRouter  } from "vue-router";
     import { ref } from 'vue';  
-    import { useUserStore } from "../store/store"
 
     const token = window.location.pathname.split('/')[2];   
 
-    let hiba = ref()
+    let ErrorMessage = ref()
     let Succesmessage = ref()
 
     const loading = ref(false)
@@ -82,30 +80,38 @@
 
     const ResetPassword = async() => {
         loading.value = true
+        ErrorMessage.value = ""
+        Succesmessage.value = ""
         const akt_newpassword = {
         token: token,
         password: resetPassword.value
     }
-    if(akt_newpassword.password === void 0 )
+    if(!akt_newpassword.password )
     {
-        hiba.value = "A jelszó nem lehet üres!"
+        ErrorMessage.value = "A jelszó nem lehet üres!"
         loading.value = false
         return
     }
-
-    if(akt_newpassword.password == resetPasswordAgain.value)
+    console.log(resetPassword.value);
+    console.log(resetPasswordAgain.value);
+    if(resetPassword.value === resetPasswordAgain.value)
     {
         try {
             const res = await termekService.ResetPassword(akt_newpassword)
 
             }   
         catch (error) {
-            hiba.value = "A két jelszó nem egyezik!"
             loading.value = false
-
+            ErrorMessage.value = "ErrorMessage a szerveren!"
             return
-        }}
+        }
         Succesmessage.value = "A jelszó sikeresen megváltoztatva!"
+
+    }
+    else{
+        ErrorMessage.value = "A két jelszó nem egyezik!"
+
+    }
         loading.value = false
     }
 

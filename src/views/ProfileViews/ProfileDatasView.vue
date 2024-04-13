@@ -32,9 +32,9 @@
                     <button class="cursor-pointer button-33" @click="Save">Mentés</button>
                 </fieldset>
             </form>
-            <div v-if="hiba" class="alert alert-danger alert-dismissible" role="alert">
-                <strong>{{ hiba }}</strong>
-                <button type="button" @click="hiba=''" class="btn-close"></button>
+            <div v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
+                <strong>{{ ErrorMessage }}</strong>
+                <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
             </div>
             <div v-if="Succesmessage" class="alert alert-success alert-dismissible" role="alert">
                 <strong>{{ Succesmessage }}</strong>
@@ -61,7 +61,7 @@ const UserEmail = ref()
 const UserFirstName = ref()
 const UserLastName = ref()
 const UserActualPassword = ref()
-let hiba = ref()
+let ErrorMessage = ref()
 let Succesmessage = ref()
 
 
@@ -80,7 +80,7 @@ const Save = () => {
         }
         termekService.UserLogin(akt_login)
     } catch (error) {
-        hiba.value = "Hibás jelszó!"
+        ErrorMessage.value = "Hibás jelszó!"
         return
     }
 
