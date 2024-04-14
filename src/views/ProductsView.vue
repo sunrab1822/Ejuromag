@@ -83,10 +83,12 @@
 <script setup>
     import RadioButton from 'primevue/radiobutton';
     import {ref, watch} from "vue";
+    import { useCartStore } from "../store/store"
 
     import termekService from "../services/termekService"
 
     let SelectedManufacturer = ref();
+    const store = useCartStore()
 
     watch(SelectedManufacturer, (SelectedManufacturer) => {
     termekService.getProductsByManufacturer(SelectedManufacturer.id)
@@ -163,7 +165,6 @@
     var Manufacturers = ref();
     const siteName = ref("")
     let ProductName = ref()
-    const egy = JSON.parse(localStorage.getItem('EgyArak'))
 
     termekService.getManufacturers()
     .then(resp => {
@@ -187,43 +188,41 @@
     function Save (ProductName, ProductPrice, ProductPicture, ProductDescription, ProductId){
         var new_data = [ProductName, ProductPrice, 1, ProductPicture, ProductDescription, ProductId];
 
-        if(localStorage.getItem('data') == null)
-        {
-            localStorage.setItem('data', '[]');
-        }
-
-        var old_data = JSON.parse(localStorage.getItem("data"))
+        var old_data = store.getproductsInCart
+        store.setProductsinCart([])
         for(let product in old_data)
         {
             if(old_data[product][0] == ProductName)
             {
                 const index = product;
                 const newDb = parseInt(old_data[index][2]) + 1;
-                const newValue = parseInt(old_data[index][1]) + parseInt(egy[product]);
+                const newValue = parseInt(old_data[index][1]) + parseInt(store.getOnePrices[product]);
                 old_data[index][2] = newDb;
                 old_data[index][1] = newValue
-                localStorage.setItem('data', JSON.stringify(old_data))
+                store.setProductsinCart(old_data)
                 return
             }
         }
         old_data.push(new_data);
-        localStorage.setItem('data', JSON.stringify(old_data))
+        store.setProductsinCart(old_data)
+        store.setOnePrices([])
 
-        adatok = JSON.parse(localStorage.getItem('data'))
+        adatok = store.getproductsInCart
         for(let product in adatok) 
         {
-            
-            egyAra.push(adatok[product][1])
+            if(adatok[product][2] > 1) {
+                egyAra.push(adatok[product][1]/adatok[product][2])
+            }
+            else{
+                egyAra.push(adatok[product][1])
+            }
 
         }
-        localStorage.setItem('EgyArak', '[]');
-        localStorage.setItem('EgyArak', JSON.stringify(egyAra));
+        store.setOnePrices(egyAra)
 
     }
 
-
     ProductShow();
-
 
 </script>
 

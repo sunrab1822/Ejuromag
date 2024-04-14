@@ -11,16 +11,16 @@
                     <div class="row">
                         <p class="col-lg-2">Vezetéknév:</p>
                         <InputText class="col-lg-3 Inputs" required="required" v-model="UserLastName" type="text"
-                            name="" id="" />
+                            />
                         <p class="col-lg-2">Keresztnév:</p>
                         <InputText class="col-lg-3 Inputs" required="required" v-model="UserFirstName" type="text"
-                            name="" id="" />
+                             />
                     </div>
 
                     <div class="row EmailDiv">
                         <p class="col-lg-3">Email: </p>
                         <InputText class="col-lg-6 Inputs EmailInput" required="required" v-model="UserEmail"
-                            type="text" name="" id="" />
+                            type="text" />
                     </div>
 
                     <div class="row">

@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import OrderInfosView from '../views/OrderInfosView.vue' 
 import AboutUsView from '../views/AboutUsView.vue'
 import LoginAndRegisterView from "../views/LoginAndRegisterView.vue"
-import KosarView from "../views/KosarView.vue"
+import CartView from "../views/CartView.vue"
 import ProductsView from "../views/ProductsView.vue"
 import ProfileView from "../views/ProfileViews/ProfileView.vue"
 import ProfileDatasViewVue from '@/views/ProfileViews/ProfileDatasView.vue'
@@ -46,7 +46,7 @@ const router = createRouter({
     {
       path: '/Kosar',
       name: 'Kosár',
-      component: KosarView
+      component: CartView
     },
     {
       path: '/rendeles_osszegzes',
@@ -54,7 +54,7 @@ const router = createRouter({
       component: OrderFinalizeView
     },
     {
-      path: '/Login',
+      path: '/login',
       name: 'Belépés',
       component: LoginAndRegisterView
     },
@@ -101,19 +101,19 @@ const router = createRouter({
     },
     {
       path: '/profil/sajat_adatok',
-      name: 'Profil_Sajat_Adatok',
+      name: 'Profil Saját Adatok',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfileDatasViewVue
     },
     {
       path: '/profil/jelszo_csere',
-      name: 'Jelszo_csere',
+      name: 'Jelszó csere',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfilePasswordResetView
     },
     {
       path: '/profil/rendelesek',
-      name: 'Profil_Rendelesek',
+      name: 'Profil Rendelések',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfileOrdersViewVue
     },
@@ -124,7 +124,7 @@ const router = createRouter({
       component: AdminLoginView
     },    {
       path: '/admin/main',
-      name: 'Admin_Main',
+      name: 'Admin Main',
       beforeEnter: checkAdminRights,
       component: AdminMainView
     },

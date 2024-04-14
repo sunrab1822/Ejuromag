@@ -177,11 +177,12 @@ import InputMask from 'primevue/inputmask';
 import Button from 'primevue/button';
 import { useRouter  } from "vue-router";
 import {ref,onBeforeMount} from 'vue'
-import { useUserStore } from "../store/store"
+import { useUserStore, useCartStore } from "../store/store"
 import termekService from "../services/termekService"
 
 
 const store = useUserStore()
+const cartstore = useCartStore()
 
 const router = useRouter()    
 
@@ -202,9 +203,9 @@ let user = ref()
 
 onBeforeMount(() => {
 
-adatok = JSON.parse(localStorage.getItem('data'))
-kosarNev.value = JSON.parse(localStorage.getItem('data'))
-kosarAr.value = localStorage.getItem("CartPrice")
+adatok = cartstore.getproductsInCart
+kosarNev.value = adatok
+kosarAr.value = cartstore.getFullCartPrice
 try{
     user.value = store.getUser
     OrderLastName.value = user.value.user.user.name.split(" ")[0];

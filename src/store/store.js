@@ -4,7 +4,6 @@ export const useUserStore = defineStore('user', {
     state: () => ({
         user: null,
         isLoggedIn: false,
-        CartProductPrice: 0,
     }),
     persist: true,
     getters: {
@@ -14,20 +13,45 @@ export const useUserStore = defineStore('user', {
         getLoggedIn() {
             return this.isLoggedIn;
         },
-        getProductsPrice() {
-            return this.CartProductPrice;
-        }
     },
     actions: {
         setUser(user) {
             this.user = user;
-        },
-        setProductPrice(price) {
-            this.CartProductPrice = price;
-        },
-        
+        },  
         setLoggedIn(state) {
             this.isLoggedIn = state;
+        }
+    }
+})
+
+export const useCartStore = defineStore('cart', {
+    state: () => ({
+        productsInCart: [],
+        onePrices: [],
+        fullCartPrice: 0,
+    }),
+    persist: true,
+    getters: {
+        getproductsInCart() {
+            return this.productsInCart;
+        },
+        getOnePrices() {
+            return this.onePrices;
+        },
+        getFullCartPrice() {
+            return this.fullCartPrice;
+        }
+    },
+    actions: {
+        setProductsinCart(productsInCart) {
+            this.productsInCart = productsInCart;
+        },
+        setOnePrices(onePrices) {
+            this.onePrices = onePrices;
+        },
+        
+        setFullCartPrice(fullCartPrice) {
+            this.fullCartPrice = fullCartPrice;
         }
     }
 })

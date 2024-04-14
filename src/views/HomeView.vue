@@ -14,7 +14,7 @@ export default {
                 },
                 {
                     image: "/NeedToRegisterSlides2.webp",
-                    link: 'http://localhost:5173/Login'
+                    link: 'http://localhost:5173/login'
                 },
                 {
 

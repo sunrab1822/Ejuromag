@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="text-center NeedToRegisterButton">
-                                <router-link v-if="getloggedin" to="/Login"  id="NeedToRegisterButton">Jelentkezz be a rendelés leadásához</router-link>
+                                <router-link v-if="getloggedin" to="/login"  id="NeedToRegisterButton">Jelentkezz be a rendelés leadásához</router-link>
                             </div>
 
                         </form>
@@ -83,8 +83,9 @@
 
 import {ref, onBeforeMount} from "vue";
 import { useUserStore } from "../store/store"
+import { useCartStore } from "../store/store"
 
-
+const cartstore = useCartStore()
 
 let adatok = []
 let getloggedin = ref()
@@ -101,36 +102,32 @@ if(store.getLoggedIn){
     }
 
 function Novel(number){
-    const priceindex = 1
     for(let termek in adatok)
     {
         if(adatok[termek][0] == number)
         {
             const index = termek;
-            const egy = JSON.parse(localStorage.getItem('EgyArak'))
-            const newValue = parseInt(adatok[index][priceindex]) + egy[index];
-            adatok[index][priceindex] = newValue;
+            const newValue = parseInt(adatok[index][1]) + cartstore.getOnePrices[index];
+            adatok[index][1] = newValue;
             adatok[index][2]++
-            localStorage.setItem('data', JSON.stringify(adatok));
-            location.reload();
+            cartstore.setProductsinCart(adatok)
+            DataLoading()
         }
     }
 }
 
-function Csokkent(number){
-    const priceindex = 1
-    
+function Csokkent(number){    
     for(let termek in adatok)
     {
         if(adatok[termek][0] == number)
         {
             const index = termek;
-            const egy = JSON.parse(localStorage.getItem('EgyArak'))
-            const newValue = parseInt(adatok[index][priceindex]) - egy[index];
-            adatok[index][priceindex] = newValue;
+            const newValue = parseInt(adatok[index][1]) - cartstore.getOnePrices[index];
+            adatok[index][1] = newValue;
             adatok[index][2]--
-            localStorage.setItem('data', JSON.stringify(adatok));
-            location.reload();
+            cartstore.setProductsinCart(adatok)
+            DataLoading()
+
         }
     }
 }
@@ -143,31 +140,31 @@ function Torles(number){
         if(adatok[termek][0] == number)
         {
             const index = termek;
-            const egy = JSON.parse(localStorage.getItem('EgyArak'))
-            egy.splice(index, 1)
+            cartstore.getOnePrices.splice(index, 1)
             adatok.splice(index, 1);
-            localStorage.setItem('data', JSON.stringify(adatok));
-            localStorage.setItem('EgyArak', JSON.stringify(egy));
-            location.reload();
+            cartstore.setProductsinCart(adatok)
+            DataLoading()
         }
     }
 }
     
 onBeforeMount(() => {
 
-    adatok = JSON.parse(localStorage.getItem('data'))
+    DataLoading()
+    
+})
+
+function DataLoading() {
+    adatok = []
+    kosarAr.value = 0
+    adatok = cartstore.getproductsInCart
     for(let termek in adatok) 
     {
         kosarAr.value += adatok[termek][1]
 
     }
-    localStorage.setItem("CartPrice", kosarAr.value)
-
-    const egy = JSON.parse(localStorage.getItem('EgyArak'))
-    
-})
-
-let db = ref(1)
+    cartstore.setFullCartPrice(kosarAr.value)
+}
 
 </script>
 
