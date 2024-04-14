@@ -67,7 +67,7 @@
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
                                 <h3>{{product.price}} Ft</h3>
-                                <router-link to="/Kosar" data-cy="addToCart" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
+                                <router-link to="/kosar" data-cy="addToCart" @click="Save(product.name, product.price, product.picture, product.description, product.id)"><button class="button-33">Vásárlás</button></router-link>
                                 
                             </div>
                         </div>
@@ -93,7 +93,7 @@
     let minPrice = ref(0);
     let maxPrice = ref(10000000);
     let egyAra = []
-    let adatok = []
+    let datas = []
     var pathname = window.location.pathname
     var Products = ref();
     var Manufacturers = ref();
@@ -296,14 +296,14 @@
         store.setProductsinCart(old_data)
         store.setOnePrices([])
 
-        adatok = store.getproductsInCart
-        for(let product in adatok) 
+        datas = store.getproductsInCart
+        for(let product in datas) 
         {
-            if(adatok[product][2] > 1) {
-                egyAra.push(adatok[product][1]/adatok[product][2])
+            if(datas[product][2] > 1) {
+                egyAra.push(datas[product][1]/datas[product][2])
             }
             else{
-                egyAra.push(adatok[product][1])
+                egyAra.push(datas[product][1])
             }
 
         }

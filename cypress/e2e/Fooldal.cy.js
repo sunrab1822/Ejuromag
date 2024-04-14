@@ -2,7 +2,7 @@ describe('Főoldal tesztek', () => {
 
   it('A színek helyesek', () => {
     cy.visit('http://localhost:5173')
-    cy.get('[data-cy="KosarBelepesNav"]').should('have.css', 'background-color', 'rgb(20, 147, 202)'); 
+    cy.get('[data-cy="BelepesNav"]').should('have.css', 'background-color', 'rgb(20, 147, 202)'); 
     cy.get('[data-cy="TermekekNavbar"]').should('have.css', 'background-color', 'rgb(2, 102, 145)'); 
     cy.get('[data-cy="Footer"]').should('have.css', 'background-color', 'rgb(0, 0, 0)'); 
     cy.get('[data-cy="TabletButton"]').should('have.css', 'background-color', 'rgb(165, 42, 42)'); 

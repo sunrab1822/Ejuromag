@@ -174,11 +174,6 @@ p{
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
 }
-.Adatok{
-    display: inline-block;
-    margin: 5px;
-    width: auto; 
-}
 p, input{
     display: inline-block;
 }

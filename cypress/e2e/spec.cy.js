@@ -29,7 +29,7 @@ describe('template spec', () => {
   // })
 
   it('A kosár oldalon található „Végösszeg:” felirat', () => {
-    cy.visit('http://localhost:5173/Kosar')
+    cy.visit('http://localhost:5173/kosar')
     cy.get(':nth-child(4) > .col-md-5').contains("Végösszeg:")
   })
 })

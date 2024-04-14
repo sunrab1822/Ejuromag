@@ -1,6 +1,6 @@
 <template>
 <div class="card hatter">
-    <div v-for="termek in adatok" v-if="kosarNev != ''" class="button-85">
+    <div v-for="termek in datas" v-if="datas != ''" class="button-85">
         <div class="row">
             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
                 <!-- <img src="" alt="Termék képe"> -->
@@ -133,7 +133,7 @@
                                     <div class="row mb-3">
                                         <p class="col-md-5 col-form-label text-md-end">Összeg:</p>
                                         <div class="col-md-6">
-                                            <label class="form-control">{{kosarAr}} ft</label>
+                                            <label class="form-control">{{CartPrice}} ft</label>
                                         </div>
                                     </div>
         
@@ -150,7 +150,7 @@
                                     <div class="row mb-3">
                                         <p class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
                                         <div class="col-md-6">
-                                            <label class="form-control">{{kosarAr}} Ft</label>
+                                            <label class="form-control">{{CartPrice}} Ft</label>
                                         </div>
                                         <router-link to="/" v-if="OrderShippingImg != 0" id="RendelesFolyatatasaBtn" @click="SendOrder">Folytatás</router-link>
 
@@ -187,9 +187,8 @@ const cartstore = useCartStore()
 const router = useRouter()    
 
 
-let adatok = []
-let kosarNev = ref()
-let kosarAr = ref(0)
+let datas = []
+let CartPrice = ref(0)
 let OrderLastName = ref()
 let OrderFirstName = ref()
 let OrderEmail = ref()
@@ -203,9 +202,8 @@ let user = ref()
 
 onBeforeMount(() => {
 
-adatok = cartstore.getproductsInCart
-kosarNev.value = adatok
-kosarAr.value = cartstore.getFullCartPrice
+datas = cartstore.getproductsInCart
+CartPrice.value = cartstore.getFullCartPrice
 try{
     user.value = store.getUser
     OrderLastName.value = user.value.user.user.name.split(" ")[0];
@@ -221,8 +219,8 @@ catch(err)
 
 const SendOrder = () => {
     const ProductsId = []
-    for (let index = 0; index < adatok.length; index++) {
-        ProductsId.push(adatok[index][5])
+    for (let index = 0; index < datas.length; index++) {
+        ProductsId.push(datas[index][5])
         
     }
     const akt_Order = {

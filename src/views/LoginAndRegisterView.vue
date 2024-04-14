@@ -82,7 +82,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <h1 class="LoginMain">Regisztráció</h1>
                 
-                <div class="col-md-4 col-lg-4 col-sl-4 col-4 Adatok button-85">
+                <div class="col-md-4 col-lg-4 col-sl-4 col-4 datas button-85">
 
                     <div class="margintop">
                         <p>Vezetéknév: </p>
@@ -362,7 +362,7 @@ p{
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
 }
-.Adatok{
+.datas{
     display: inline-block;
     margin: 5px;
     width: auto; 

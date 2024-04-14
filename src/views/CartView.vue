@@ -4,24 +4,24 @@
         <div class="row" >
 
             <div class="col-md-8 col-lg-8 col-sm-12">
-                <div v-for="termek in adatok" v-if="kosarNev != ''" class="row button-85 ">
+                <div v-for="product in datas" class="row button-85 ">
 
                     <div class="col-md-4 col-lg-4 col-sm-4  ">
-                        <img data-cy="image" class="ProductImg" :src="termek[3]" alt="Termék képe">
+                        <img data-cy="image" class="ProductImg" :src="product[3]" alt="Termék képe">
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm-4 ">
-                        <h3 data-cy="name">{{ termek[0] }}</h3>
-                        <p>{{ termek[4] }}</p>
+                        <h3 data-cy="name">{{ product[0] }}</h3>
+                        <p>{{ product[4] }}</p>
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm4 ">
-                        <p class="text-center Ar">{{ termek[1] }}<span> Ft</span></p>
+                        <p class="text-center Ar">{{ product[1] }}<span> Ft</span></p>
                         <div class="row">
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="termek[2] >= 2" class="PlusMinus" @click="Csokkent(termek[0])">-</button></div>
-                            <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p data-cy="db" class="db"> {{ termek[2] }}</p></div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(termek[0])">+</button></div>
-                        <button data-cy="remove" @click="Torles(termek[0])" id="TorolBtn">Töröl</button>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="product[2] >= 2" class="PlusMinus" @click="Csokkent(product[0])">-</button></div>
+                            <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p data-cy="db" class="db"> {{ product[2] }}</p></div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(product[0])">+</button></div>
+                        <button data-cy="remove" @click="Torles(product[0])" id="TorolBtn">Töröl</button>
                     </div>
                     </div>
 
@@ -42,7 +42,7 @@
                             <div class="row mb-3">
                                 <p class="col-md-5 col-form-label text-md-end">Összeg:</p>
                                 <div class="col-md-6">
-                                    <label class="form-control">{{kosarAr}} ft</label>
+                                    <label class="form-control">{{CartPrice}} ft</label>
                                 </div>
                             </div>
 
@@ -59,16 +59,16 @@
                             <div class="row mb-3">
                                 <p data-cy="fullPriceText" class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
                                 <div class="col-md-6">
-                                    <label data-cy="fullPrice" class="form-control">{{kosarAr + 1200}} Ft</label>
+                                    <label data-cy="fullPrice" class="form-control">{{CartPrice + 1200}} Ft</label>
                                 </div>
                             </div>
 
                             <div class="text-center RendelesFolyatatasaBtn">
-                                <router-link to="/rendeles_osszegzes" data-cy="continue" id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                                <router-link v-if="getloggedin && datas.length >= 1" to="/rendeles_osszegzes" data-cy="continue" id="RendelesFolyatatasaBtn">Folytatás</router-link>
                             </div>
 
                             <div class="text-center NeedToRegisterButton">
-                                <router-link v-if="getloggedin" to="/login"  id="NeedToRegisterButton">Jelentkezz be a rendelés leadásához</router-link>
+                                <router-link v-if="!getloggedin" to="/login"  id="NeedToRegisterButton">Jelentkezz be a rendelés leadásához</router-link>
                             </div>
 
                         </form>
@@ -87,45 +87,44 @@ import { useCartStore } from "../store/store"
 
 const cartstore = useCartStore()
 
-let adatok = []
+let datas = []
 let getloggedin = ref()
-let kosarNev = ref()
-let kosarAr = ref(0)
+let CartPrice = ref(0)
 
 const store = useUserStore()
 if(store.getLoggedIn){
-        getloggedin.value = false
+        getloggedin.value = true
     }
     else{
-        getloggedin.value = true
+        getloggedin.value = false
 
     }
 
 function Novel(number){
-    for(let termek in adatok)
+    for(let product in datas)
     {
-        if(adatok[termek][0] == number)
+        if(datas[product][0] == number)
         {
-            const index = termek;
-            const newValue = parseInt(adatok[index][1]) + cartstore.getOnePrices[index];
-            adatok[index][1] = newValue;
-            adatok[index][2]++
-            cartstore.setProductsinCart(adatok)
+            const index = product;
+            const newValue = parseInt(datas[index][1]) + cartstore.getOnePrices[index];
+            datas[index][1] = newValue;
+            datas[index][2]++
+            cartstore.setProductsinCart(datas)
             DataLoading()
         }
     }
 }
 
 function Csokkent(number){    
-    for(let termek in adatok)
+    for(let product in datas)
     {
-        if(adatok[termek][0] == number)
+        if(datas[product][0] == number)
         {
-            const index = termek;
-            const newValue = parseInt(adatok[index][1]) - cartstore.getOnePrices[index];
-            adatok[index][1] = newValue;
-            adatok[index][2]--
-            cartstore.setProductsinCart(adatok)
+            const index = product;
+            const newValue = parseInt(datas[index][1]) - cartstore.getOnePrices[index];
+            datas[index][1] = newValue;
+            datas[index][2]--
+            cartstore.setProductsinCart(datas)
             DataLoading()
 
         }
@@ -135,14 +134,14 @@ function Csokkent(number){
 
 function Torles(number){
 
-    for(let termek in adatok)
+    for(let product in datas)
     {
-        if(adatok[termek][0] == number)
+        if(datas[product][0] == number)
         {
-            const index = termek;
+            const index = product;
             cartstore.getOnePrices.splice(index, 1)
-            adatok.splice(index, 1);
-            cartstore.setProductsinCart(adatok)
+            datas.splice(index, 1);
+            cartstore.setProductsinCart(datas)
             DataLoading()
         }
     }
@@ -151,19 +150,18 @@ function Torles(number){
 onBeforeMount(() => {
 
     DataLoading()
-    
 })
 
 function DataLoading() {
-    adatok = []
-    kosarAr.value = 0
-    adatok = cartstore.getproductsInCart
-    for(let termek in adatok) 
+    datas = []
+    CartPrice.value = 0
+    datas = cartstore.getproductsInCart
+    for(let product in datas) 
     {
-        kosarAr.value += adatok[termek][1]
+        CartPrice.value += datas[product][1]
 
     }
-    cartstore.setFullCartPrice(kosarAr.value)
+    cartstore.setFullCartPrice(CartPrice.value)
 }
 
 </script>

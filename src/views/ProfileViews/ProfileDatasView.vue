@@ -73,12 +73,25 @@ onBeforeMount(() => {
 })
 
 const Save = () => {
+    Succesmessage.value = ""
+    ErrorMessage.value = ""
     try {
         const akt_login = {
         email: UserEmail.value,
         password: UserActualPassword.value,
         }
         termekService.UserLogin(akt_login)
+        try {
+            const updated_data = {
+                name: UserLastName.value + "" + UserFirstName.value,
+                email: UserEmail.value
+            }
+            termekService.UserUpdate(updated_data, user.value.user.token)
+            Succesmessage.value = "Sikeres mentés!"
+            ErrorMessage.value = ""
+        } catch (error) {
+            
+        }
     } catch (error) {
         ErrorMessage.value = "Hibás jelszó!"
         return

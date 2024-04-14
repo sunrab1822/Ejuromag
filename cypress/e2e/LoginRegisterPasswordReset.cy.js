@@ -7,7 +7,7 @@ describe('Belépés oldal tesztje', () => {
 
     cy.get('[data-cy="LoginButton"]').click();
 
-    cy.url().should('include', '/profil');
+    cy.url().should('eq', 'http://localhost:5173/profil');
   });
 
   it('Sikertelen belépés', () => {

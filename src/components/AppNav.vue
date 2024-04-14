@@ -20,7 +20,7 @@
                 <div class="row">
 
                     <div class="nav-item col-6" >
-                        <a v-badge="cartCounter" id="Cart" data-cy="navbar-kosar-link" class="nav-link" href="/Kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a v-badge="cartCounter" id="Cart" data-cy="navbar-kosar-link" class="nav-link" href="/kosar"><i class="fa-solid fa-cart-shopping"></i></a>
 
                     </div>
                     <div class="dropdown col-6">
@@ -36,7 +36,7 @@
 
 <script setup>
 
-import { useUserStore } from "../store/store"
+import { useUserStore, useCartStore } from "../store/store"
 import { useRouter  } from "vue-router";
 import {ref, onBeforeMount} from "vue";
 
@@ -44,10 +44,11 @@ let cartCounter = ref(0)
 
 const router = useRouter()    
 const store = useUserStore()
+const cartstore = useCartStore()
 
 onBeforeMount(() => {
     try {
-        cartCounter.value = (JSON.parse(localStorage.getItem('data')).length)
+        cartCounter.value = cartstore.getproductsInCart.length
 
     } 
     catch (error) {

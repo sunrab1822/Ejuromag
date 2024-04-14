@@ -64,6 +64,11 @@ export default {
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/logout')
         return resp.data
     },
+    async UserUpdate(data, token){ 
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/updateUser', data)
+        return resp.data
+    },
     async ResetPasswordToken(data){ 
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/reset-password-token', data)
         return resp.data

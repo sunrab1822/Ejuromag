@@ -44,13 +44,14 @@ const router = createRouter({
       component: AboutUsView
     },
     {
-      path: '/Kosar',
+      path: '/kosar',
       name: 'Kosár',
       component: CartView
     },
     {
       path: '/rendeles_osszegzes',
       name: 'Rendelés összegzése',
+      beforeEnter: checkIfUserLoggedIn,
       component: OrderFinalizeView
     },
     {
