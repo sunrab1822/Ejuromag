@@ -8,7 +8,7 @@
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-4 col-lg-4 col-sm-4 col-4 ProductNameDiv"><input v-model="ProductName" type="text" placeholder="Termék neve"></div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-4 ProductNameDiv"><input v-model="ProductName" @keyup="SearchByProductName" type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -106,13 +106,12 @@
         Manufacturers.value = resp.data;
     });
 
-    watch(ProductName, (ProductName) => {
-        console.log(ProductName);
-        if(ProductName == []){
+    const SearchByProductName = () => {
+        if(ProductName.value == []){
             ProductShow()
         }
         else{
-            termekService.getProductsBySearchByName(ProductName)
+            termekService.getProductsBySearchByName(ProductName.value)
             .then(resp => {
                 try {
                     const rawData = resp.data;
@@ -125,16 +124,15 @@
                         }
                     Products.value = fillteredData
 
-                    ProductName.value = []
                 } catch (error) {
                     
                 }
-
+                SelectedManufacturer.value = false
+                minPrice.value = 0
+                maxPrice.value = 10000000
             });
         }
-
-    })
-
+    }
 
     watch(SelectedManufacturer, (SelectedManufacturer) => {
         termekService.getProductsByManufacturer(SelectedManufacturer.id)
@@ -151,6 +149,8 @@
                 Products.value = fillteredData
 
                 ProductName.value = []
+                minPrice.value = 0
+                maxPrice.value = 10000000
             } catch (error) {
                 
             }
@@ -177,12 +177,15 @@
                 } catch (error) {
                     
                 }
+                ProductName.value = []
+                SelectedManufacturer.value = false
 
             });
         }
     })
 
     watch(maxPrice, (maxPrice) =>{
+
         if(maxPrice > 0)
         {
             termekService.getProductsByMinMaxPrice(minPrice.value, maxPrice)
@@ -202,7 +205,8 @@
                 } catch (error) {
                     
                 }
-
+                ProductName.value = []
+                SelectedManufacturer.value = false
             });
         }
     })
