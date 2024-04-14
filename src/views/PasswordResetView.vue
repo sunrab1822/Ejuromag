@@ -92,8 +92,7 @@
         loading.value = false
         return
     }
-    console.log(resetPassword.value);
-    console.log(resetPasswordAgain.value);
+
     if(resetPassword.value === resetPasswordAgain.value)
     {
         try {

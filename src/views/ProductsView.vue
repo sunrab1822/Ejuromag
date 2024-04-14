@@ -8,7 +8,7 @@
                         <h5>Név:</h5>
                     </div>
                     <div class="card-body">
-                        <div class="col-md-4 col-lg-4 col-sm-4 col-4 ProductNameDiv"><input @keyup="SearchByProductName" v-model="ProductName" type="text" placeholder="Termék neve"></div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-4 ProductNameDiv"><input v-model="ProductName" type="text" placeholder="Termék neve"></div>
                     </div>
                 </div>
 
@@ -18,9 +18,9 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <input pattern="\d*" class="inputs" type="text" maxlength="10" name="" id="minPrice" placeholder="Min ár">
+                            <input pattern="\d*" v-model="minPrice" class="inputs" type="number" maxlength="10" name="" id="minPrice" placeholder="Min ár">
                             <span class="Price-">-</span>
-                            <input pattern="\d*" class="inputs" type="text" maxlength="10" name="" id="maxPrice" placeholder="Max ár">
+                            <input pattern="\d*" v-model="maxPrice" class="inputs" type="number" maxlength="10" name="" id="maxPrice" placeholder="Max ár">
                         </div>
                     </div>
                 </div>
@@ -90,18 +90,121 @@
     let SelectedManufacturer = ref();
     const store = useCartStore()
 
-    watch(SelectedManufacturer, (SelectedManufacturer) => {
-    termekService.getProductsByManufacturer(SelectedManufacturer.id)
+    let minPrice = ref(0);
+    let maxPrice = ref(10000000);
+    let egyAra = []
+    let adatok = []
+    var pathname = window.location.pathname
+    var Products = ref();
+    var Manufacturers = ref();
+    const siteName = ref("")
+    let ProductName = ref()
+    let CategoryId = ref()
+
+    termekService.getManufacturers()
     .then(resp => {
-        try {
-            Products.value = resp.data[0].product;
-            siteName.value = SelectedManufacturer.name + " Termékek";
-            ProductName.value = []
-        } catch (error) {
-            
+        Manufacturers.value = resp.data;
+    });
+
+    watch(ProductName, (ProductName) => {
+        console.log(ProductName);
+        if(ProductName == []){
+            ProductShow()
+        }
+        else{
+            termekService.getProductsBySearchByName(ProductName)
+            .then(resp => {
+                try {
+                    const rawData = resp.data;
+                    const fillteredData = []
+                    for (let index = 0; index < rawData.length; index++) {
+                            if(rawData[index].category_id === CategoryId.value){
+                                fillteredData.push(rawData[index]);
+                            }
+                            
+                        }
+                    Products.value = fillteredData
+
+                    ProductName.value = []
+                } catch (error) {
+                    
+                }
+
+            });
         }
 
-    });
+    })
+
+
+    watch(SelectedManufacturer, (SelectedManufacturer) => {
+        termekService.getProductsByManufacturer(SelectedManufacturer.id)
+        .then(resp => {
+            try {
+                const rawData = resp.data[0].product;
+                const fillteredData = []
+                for (let index = 0; index < rawData.length; index++) {
+                        if(rawData[index].category_id === CategoryId.value){
+                            fillteredData.push(rawData[index]);
+                        }
+                        
+                    }
+                Products.value = fillteredData
+
+                ProductName.value = []
+            } catch (error) {
+                
+            }
+
+        });
+    })
+
+    watch(minPrice, (minPrice) => {
+        if(minPrice > 0){
+            termekService.getProductsByMinMaxPrice(minPrice, maxPrice.value)
+            .then(resp => {
+                try {
+                
+                const rawData = resp.data;
+                const fillteredData = []
+                for (let index = 0; index < rawData.length; index++) {
+                    if(rawData[index].category_id === CategoryId.value){
+                        fillteredData.push(rawData[index]);
+                    }
+                    
+                }
+                Products.value = fillteredData
+
+                } catch (error) {
+                    
+                }
+
+            });
+        }
+    })
+
+    watch(maxPrice, (maxPrice) =>{
+        if(maxPrice > 0)
+        {
+            termekService.getProductsByMinMaxPrice(minPrice.value, maxPrice)
+            .then(resp => {
+                try {
+                
+                const rawData = resp.data;
+                const fillteredData = []
+                for (let index = 0; index < rawData.length; index++) {
+                    if(rawData[index].category_id === CategoryId.value){
+                        fillteredData.push(rawData[index]);
+                    }
+                    
+                }
+                Products.value = fillteredData
+
+                } catch (error) {
+                    
+                }
+
+            });
+        }
     })
 
     function ProductShow(){
@@ -111,6 +214,7 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Laptopok"
+                    CategoryId.value = 1
                 });
                 break;
             case '/tabletek':
@@ -118,6 +222,8 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Tabletek"
+                    CategoryId.value = 2
+
                 });
 
                 break;
@@ -126,6 +232,7 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Irodai számítógépek"
+                    CategoryId.value = 3
                 });
                 
                 break;
@@ -134,6 +241,8 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Gamer számítógépek"
+                    CategoryId.value = 4
+
                 });
                 
                 break;
@@ -142,6 +251,7 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Telefonok"
+                    CategoryId.value = 5
                 });
                 
                 break;
@@ -150,38 +260,13 @@
                 .then(resp => {
                     Products.value = resp.data[0].product;
                     siteName.value = "Konzolok"
+                    CategoryId.value = 6
                 });
 
                 break;
             default:
 
                 break;
-        }
-    }
-    let egyAra = []
-    let adatok = []
-    var pathname = window.location.pathname
-    var Products = ref();
-    var Manufacturers = ref();
-    const siteName = ref("")
-    let ProductName = ref()
-
-    termekService.getManufacturers()
-    .then(resp => {
-        Manufacturers.value = resp.data;
-    });
-
-    const SearchByProductName = () => {
-        if(ProductName.value == []){
-            ProductShow()
-        }
-        else{
-            termekService.SearchByName(ProductName.value)    
-       .then(resp => {
-        siteName.value = "Keresés"
-        Products.value = resp.data;
-        SelectedManufacturer.value = false
-        });
         }
     }
 

@@ -25,8 +25,12 @@ export default {
             .catch(err => {
             })
     },
-    async SearchByName(data){ 
+    async getProductsBySearchByName(data){ 
         const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productbyName/' + data)
+        return resp.data
+    },
+    async getProductsByMinMaxPrice(min, max){ 
+        const resp = await axios.get('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/productByPrice/' + min + '/' + max)
         return resp.data
     },
 
