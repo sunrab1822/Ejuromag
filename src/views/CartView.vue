@@ -59,7 +59,7 @@
                             <div class="row mb-3">
                                 <p data-cy="fullPriceText" class="col-md-5 col-form-label text-md-end">Végösszeg:</p>
                                 <div class="col-md-6">
-                                    <label data-cy="fullPrice" class="form-control">{{CartPrice + 1200}} Ft</label>
+                                    <label data-cy="fullPrice" class="form-control">{{CartPrice + 1000}} Ft</label>
                                 </div>
                             </div>
 

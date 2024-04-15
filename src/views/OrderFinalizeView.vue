@@ -236,7 +236,9 @@ const SendOrder = () => {
         catch (error) {
         }
 
-    cartstore.setProductsinCart = cartstore.setOnePrices = cartstore.setFullCartPrice = null
+    cartstore.setProductsinCart([])
+    cartstore.setOnePrices(0)
+    cartstore.setFullCartPrice([])
 
 }
 
