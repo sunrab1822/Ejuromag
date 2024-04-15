@@ -66,7 +66,7 @@ export default {
     },
     async UserUpdate(data, token){ 
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-        const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/updateUser', data)
+        const resp = await axios.patch('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/updateUser', data)
         return resp.data
     },
     async ResetPasswordToken(data){ 

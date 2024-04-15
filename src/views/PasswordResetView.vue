@@ -9,7 +9,7 @@
                     <div class="margintop">
 
                         <div class="margintop">
-                            <p class="JelszoSzoveg">Új Jelszó: </p>
+                            <p>Új Jelszó: </p>
                             <Password class="Password" placeholder="Jelszó" v-model="resetPassword" toggleMask>
                                 <template #header>
                                     <h6>Válasz jelszót</h6>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="margintop">
-                        <p class="JelszoSzoveg">Új jelszó megerősítése: </p>
+                        <p>Új jelszó megerősítése: </p>
                         <Password class="Password" placeholder="Jelszó" :feedback="false"  v-model="resetPasswordAgain" toggleMask>
                         </Password>
                     </div>

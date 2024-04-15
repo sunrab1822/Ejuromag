@@ -5,7 +5,6 @@
         </div>
 
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 col-10 button-85">
-            <form>
                 <fieldset>
                     <legend>Fiók adatok:</legend>
                     <div class="row">
@@ -24,14 +23,16 @@
                     </div>
 
                     <div class="row">
-                        <p class="JelszoSzoveg col-lg-3">Jelszó megerősítés: </p>
+                        <p class="col-lg-3">Jelszó megerősítés: </p>
                         <Password :feedback="false" required="required" v-model="UserActualPassword"
                             class="Password col-lg-6" toggleMask></Password>
+                            <ProgressSpinner v-if="loading"/>
+
                     </div>
 
                     <button class="cursor-pointer button-33" @click="Save">Mentés</button>
                 </fieldset>
-            </form>
+
             <div v-if="ErrorMessage" class="alert alert-danger alert-dismissible" role="alert">
                 <strong>{{ ErrorMessage }}</strong>
                 <button type="button" @click="ErrorMessage=''" class="btn-close"></button>
@@ -51,6 +52,8 @@ import Password from 'primevue/password';
 import InputText from 'primevue/inputtext';
 import { ref } from "vue";
 import termekService from '@/services/termekService';
+import ProgressSpinner from 'primevue/progressspinner';
+
 
 import { useUserStore } from "../../store/store"
 import {onBeforeMount} from "vue"
@@ -62,6 +65,7 @@ const UserFirstName = ref()
 const UserLastName = ref()
 const UserActualPassword = ref()
 let ErrorMessage = ref()
+let loading = ref(false)
 let Succesmessage = ref()
 
 
@@ -69,39 +73,55 @@ onBeforeMount(() => {
     user.value = store.getUser
     UserEmail.value = user.value.user.user.email
     UserLastName.value = user.value.user.user.name.split(" ")[0]
-    UserFirstName.value = user.value.user.user.name.split(" ")[1]
+    UserFirstName.value = user.value.user.user.name.split(" ").slice(1).join(" ");
 })
 
-const Save = () => {
+const Save = async() => {
+    loading.value = true
     Succesmessage.value = ""
     ErrorMessage.value = ""
-    try {
-        const akt_login = {
-        email: UserEmail.value,
-        password: UserActualPassword.value,
-        }
-        termekService.UserLogin(akt_login)
-        try {
-            const updated_data = {
-                name: UserLastName.value + "" + UserFirstName.value,
-                email: UserEmail.value
+            try {
+            const akt_login = {
+            email: UserEmail.value,
+            password: UserActualPassword.value,
             }
-            termekService.UserUpdate(updated_data, user.value.user.token)
-            Succesmessage.value = "Sikeres mentés!"
-            ErrorMessage.value = ""
-        } catch (error) {
-            
-        }
-    } catch (error) {
-        ErrorMessage.value = "Hibás jelszó!"
-        return
-    }
+            await termekService.UserLogin(akt_login)
+            try {
+                const updated_data = {
+                    name: UserLastName.value + " " + UserFirstName.value,
+                    email: UserEmail.value
+                }
+                await termekService.UserUpdate(updated_data, user.value.user.token)
+                const akt_updated_login = {
+                email: UserEmail.value,
+                password: UserActualPassword.value,
+                }
+                const res = await termekService.UserLogin(akt_updated_login)
+                store.setUser(res)
 
-}
+                Succesmessage.value = "Adatok sikeresen módosítva"
+            } catch (error) {
+                console.log(error.message);
+                ErrorMessage.value = "Hibás jelszó!"
+                return
+            }
+
+        } catch (error) {
+            ErrorMessage.value = "Hibás jelszó!"
+        }
+        loading.value = false
+
+
+    }
 
 </script>
 
 <style lang="scss" scoped>
+
+.button-33{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
 .EmailDiv{
     margin-top: 1rem;

@@ -15,7 +15,7 @@
 
                     <div class="margintop row LoginMobile">
                         <p>Jelszó: </p>
-                        <input data-cy="PasswordInput" class="EmailAndPasswordInput" type="password" id="jelszoRepeat" @keyup.enter="Login" placeholder="Jelszó"
+                        <input data-cy="PasswordInput" class="EmailAndPasswordInput" type="password" id="PasswordRepeat" @keyup.enter="Login" placeholder="Jelszó"
                             required="required" v-model="LoginPassword"></input>
 
                     </div>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="margintop">
-                        <p class="JelszoSzoveg">Jelszó: </p>
+                        <p class="PasswordText">Jelszó: </p>
                         <Password data-cy="JelszoInput" class="Password" placeholder="Jelszó" v-model="RegisterPassword" toggleMask>
                             <template #header>
                                 <h6>Válasz jelszót</h6>
@@ -121,8 +121,8 @@
                     </div>
 
                     <div class="margintop">
-                        <p class="JelszoSzoveg">Jelszó újra: </p>
-                        <Password data-cy="JelszoUjraInput" id="jelszoRepeat" placeholder="jelszó Újra" required="required"
+                        <p class="PasswordText">Jelszó újra: </p>
+                        <Password data-cy="JelszoUjraInput" id="PasswordRepeat" placeholder="jelszó Újra" required="required"
                             v-model="RegisterPasswordAgain" class="Password" toggleMask></Password>
                     </div>
 
@@ -297,7 +297,7 @@ strong{
     margin-bottom: 1rem;
 }
 
-.JelszoSzoveg{
+.PasswordText{
     width: 100px;
 }
 

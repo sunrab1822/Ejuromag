@@ -59,7 +59,7 @@ button{
 
 // Kosar Stílusok Kezdete
 
-#RendelesFolyatatasaBtn{
+#OrderContinueButton{
     margin: auto;
     width: 200px;
     margin-top: 15px;
@@ -75,22 +75,8 @@ button{
 
 }
 
-#RendelesFolyatatasaBtn:hover, #TorolBtn:hover{
+#OrderContinueButton:hover{
   background-position: right center; /* change the direction of the change here */
-}
-
-#TorolBtn{
-    float: right;
-    border-radius: 5px;
-    width: 80px;
-    margin-top: 7px;
-    padding: 9px;
-    color: white;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    text-transform: uppercase;
-    background-image: linear-gradient(to right, #ad3333 0%, #fd7272 51%, #ff0000 100%);
 }
 
 .PlusMinus{

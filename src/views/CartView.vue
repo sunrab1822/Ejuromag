@@ -16,12 +16,12 @@
                     </div>
 
                     <div class="col-md-4 col-lg-4 col-sm4 ">
-                        <p class="text-center Ar">{{ product[1] }}<span> Ft</span></p>
+                        <p class="text-center Price">{{ product[1] }}<span> Ft</span></p>
                         <div class="row">
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button v-if="product[2] >= 2" class="PlusMinus" @click="Csokkent(product[0])">-</button></div>
                             <div class="col-md-6 col-lg-6 col-sm-3 col-3"><p data-cy="db" class="db"> {{ product[2] }}</p></div>
                             <div class="col-md-3 col-lg-3 col-sm-3 col-3"><button class="PlusMinus" @click="Novel(product[0])">+</button></div>
-                        <button data-cy="remove" @click="Torles(product[0])" id="TorolBtn">Töröl</button>
+                        <button data-cy="remove" @click="Torles(product[0])" id="DeleteButton">Töröl</button>
                     </div>
                     </div>
 
@@ -63,8 +63,8 @@
                                 </div>
                             </div>
 
-                            <div class="text-center RendelesFolyatatasaBtn">
-                                <router-link v-if="getloggedin && datas.length >= 1" to="/rendeles_osszegzes" data-cy="continue" id="RendelesFolyatatasaBtn">Folytatás</router-link>
+                            <div class="text-center OrderContinueButton">
+                                <router-link v-if="getloggedin && datas.length >= 1" to="/rendeles_osszegzes" data-cy="continue" id="OrderContinueButton">Folytatás</router-link>
                             </div>
 
                             <div class="text-center NeedToRegisterButton">
@@ -182,7 +182,7 @@ h3{
     margin-top: 1rem;
 }
 
-.RendelesFolyatatasaBtn{
+.OrderContinueButton{
     margin-top: 2.5rem;
     margin-bottom: 2rem;
 }
@@ -196,7 +196,7 @@ p{
     font-size: 20px;
 }
 
-.Ar{
+.Price{
     font-size: 32px;
     font-weight: bold;
 }
@@ -206,8 +206,23 @@ p{
 
 }
 
-#TorolBtn{
+#DeleteButton{
     margin:auto;
+    float: right;
+    border-radius: 5px;
+    width: 80px;
+    margin-top: 7px;
+    padding: 9px;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #ad3333 0%, #fd7272 51%, #ff0000 100%);
+}
+
+#DeleteButton:hover{
+  background-position: right center; /* change the direction of the change here */
 }
 
 h2{

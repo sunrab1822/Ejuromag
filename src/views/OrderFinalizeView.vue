@@ -1,5 +1,5 @@
 <template>
-<div class="card hatter">
+<div class="card background">
     <div v-for="termek in datas" v-if="datas != ''" class="button-85">
         <div class="row">
             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
@@ -27,23 +27,23 @@
                         <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto font-medium p-3">
 
                             <div class="row SzemelyesAdatokDiv">
-                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Vezetéknév:</p>
+                                <p class="col-lg-3 PersonalDataMarginTop">Vezetéknév:</p>
                                 <input class="col-lg-6" placeholder="Vezetéknév" required="required" v-model="OrderLastName"  type="text" name="" id="">
                             </div>
                             
                             <div class="row SzemelyesAdatokDiv">
-                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Keresztnév:</p>
+                                <p class="col-lg-3 PersonalDataMarginTop">Keresztnév:</p>
                                 <input class="col-lg-6" placeholder="Keresztnév" required="required" v-model="OrderFirstName"  type="text" name="" id="">
                             </div>
 
                             <div class="row SzemelyesAdatokDiv">
-                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Város:</p>
+                                <p class="col-lg-3 PersonalDataMarginTop">Város:</p>
                                 <InputOtp class="col-lg-4" v-model="OrderZipCode" integerOnly/>
                                 <input class="col-lg-4" placeholder="Város" required="required" v-model="OrderCity"  type="text" name="" id="">
                             </div>
 
                             <div class="row SzemelyesAdatokDiv">
-                                <p class="col-lg-3 SzemelyesAdatokMarginTop">Utca, házszám:</p>
+                                <p class="col-lg-3 PersonalDataMarginTop">Utca, házszám:</p>
                                 <input class="col-lg-6" placeholder="Utca, házszám" required="required" v-model="OrderCityStreet"  type="text" name="" id="">
                             </div>
 
@@ -152,7 +152,7 @@
                                         <div class="col-md-6">
                                             <label class="form-control">{{CartPrice}} Ft</label>
                                         </div>
-                                        <router-link to="/" v-if="OrderShippingImg != 0" id="RendelesFolyatatasaBtn" @click="SendOrder">Folytatás</router-link>
+                                        <router-link to="/" v-if="OrderShippingImg != 0 && OrderCity != void(0) && OrderPhoneNumber !=void(0)" id="OrderContinueButton" @click="SendOrder">Folytatás</router-link>
 
                                     </div>
 
@@ -199,6 +199,7 @@ let OrderZipCode = ref()
 let OrderShippingImg = ref(0)
 let OrderShippingPrice = ref()
 let user = ref()
+console.log(OrderPhoneNumber.value);
 
 onBeforeMount(() => {
 
@@ -207,7 +208,7 @@ CartPrice.value = cartstore.getFullCartPrice
 try{
     user.value = store.getUser
     OrderLastName.value = user.value.user.user.name.split(" ")[0];
-    OrderFirstName.value = user.value.user.user.name.split(" ")[1];
+    OrderFirstName.value = user.value.user.user.name.split(" ").slice(1).join(" ");
     OrderEmail.value = user.value.user.user.email;
 
 }
@@ -235,8 +236,7 @@ const SendOrder = () => {
         catch (error) {
         }
 
-    localStorage.removeItem('data')
-    
+    cartstore.setProductsinCart = cartstore.setOnePrices = cartstore.setFullCartPrice = null
 
 }
 
@@ -257,7 +257,7 @@ const SendOrder = () => {
     margin-bottom: 2rem;
 }
 
-.SzemelyesAdatokMarginTop
+.PersonalDataMarginTop
 {
     margin-top: 10px;
 }
@@ -297,7 +297,7 @@ Button{
     }
 }
 
-.hatter{
+.background{
     margin: 1.5rem;
 }
 

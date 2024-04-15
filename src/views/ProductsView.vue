@@ -92,7 +92,7 @@
 
     let minPrice = ref(0);
     let maxPrice = ref(10000000);
-    let egyAra = []
+    let OnePrice = []
     let datas = []
     var pathname = window.location.pathname
     var Products = ref();
@@ -300,14 +300,14 @@
         for(let product in datas) 
         {
             if(datas[product][2] > 1) {
-                egyAra.push(datas[product][1]/datas[product][2])
+                OnePrice.push(datas[product][1]/datas[product][2])
             }
             else{
-                egyAra.push(datas[product][1])
+                OnePrice.push(datas[product][1])
             }
 
         }
-        store.setOnePrices(egyAra)
+        store.setOnePrices(OnePrice)
 
     }
 
