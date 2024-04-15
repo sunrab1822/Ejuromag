@@ -8,12 +8,12 @@
                     </tr>
                     <tr>
                         <td><button
-                                @click="New=true, Modositas=false, selectedProduct=0, ErrorMessage = '', Succesmessage=''">New</button>
+                                @click="newProduct=true, modification=false, selectedProduct=0, ErrorMessage = '', Succesmessage=''">New</button>
                         </td>
                     </tr>
                     <tr>
                         <td><button
-                                @click="Modositas=true, New=false, selectedProduct=0, ErrorMessage = '',Succesmessage=''">Change</button>
+                                @click="modification=true, newProduct=false, selectedProduct=0, ErrorMessage = '',Succesmessage=''">Change</button>
                         </td>
                     </tr>
                 </table>
@@ -21,7 +21,7 @@
 
             <div class="col-lg-10 col-md-10 col-sm-7 col-7">
                 
-                <div v-if="New">
+                <div v-if="newProduct">
                     <div class="card button-85">
                         <div class="card-body">
                             <div class="row">
@@ -33,10 +33,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <p></p>
                                     <Dropdown v-model="selectedCategory" :options="categorys" optionLabel="categoryName"
                                         placeholder="Select a Category" checkmark :highlightOnSelect="false"
                                         class="categoryDropDown md:w-14rem" />
-
+                                    <p></p>
                                     <Dropdown v-model="selectedManufacturer" :options="manufacturers" optionLabel="name"
                                         placeholder="Select a Manufacturer" checkmark :highlightOnSelect="false"
                                         class=" md:w-14rem" />
@@ -66,7 +67,7 @@
                     </div>
                 </div>
 
-                <div v-if="Modositas && selectedProduct == 0">
+                <div v-if="modification && selectedProduct == 0">
                     <DataTable v-model:selection="selectedProduct" selectionMode="single" paginator :rows="3"
                         :value="products" removableSort tableStyle="min-width: 50rem">
                         <Column field="id" header="id" sortable></Column>
@@ -92,7 +93,7 @@
                     </DataTable>
                 </div>
 
-                <div v-if="Modositas && selectedProduct != 0">
+                <div v-if="modification && selectedProduct != 0">
                     <div class="card button-85">
                         <div class="card-body">
                             <div class="row">
@@ -105,18 +106,19 @@
                             <div class="row">
 
                                 <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                                    <p>Current: {{ categorys[selectedProduct.category_id-1].categoryName }}</p>
                                     <Dropdown v-model="selectedCategory" id="category" :options="categorys"
                                         optionLabel="categoryName" placeholder="Select a Category" checkmark
                                         :highlightOnSelect="false" class="categoryDropDown md:w-14rem" />
-
-                                    <Dropdown v-model="manufacturers[selectedProduct.manufacturer_id-1]"
+                                    <p>Current: {{ manufacturers[selectedProduct.manufacturer_id-1].name }}</p>
+                                    <Dropdown v-model="selectedManufacturer"
                                         :value="manufacturers.id" id="manufacturer" :options="manufacturers"
                                         optionLabel="name" placeholder="Select a Manufacturer" checkmark
                                         :highlightOnSelect="false" class=" md:w-14rem" />
 
                                     <FloatLabel class="ImageInputFloatLabel">
-                                        <InputText class="ImageInput" id="username" v-model="selectedProduct.picture" />
-                                        <label for="username">Product image link</label>
+                                        <InputText class="ImageInput" id="productImage" v-model="selectedProduct.picture" />
+                                        <label>Product image link</label>
                                     </FloatLabel>
 
                                 </div>
@@ -181,7 +183,7 @@ import FloatLabel from 'primevue/floatlabel';
 import InputText from 'primevue/inputtext';
 
 
-import { ref, onMounted, watch, onBeforeMount, computed } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue';
 import termekService from "../../services/termekService.js"
 import { useUserStore } from "../../store/store.js"
 
@@ -201,11 +203,12 @@ const manufacturers = ref()
 const categorys = ref()
 let selectedProduct = ref(0)
 
-let Modositas = ref(false)
-let New = ref(false)
+let modification = ref(false)
+let newProduct = ref(false)
 
 const user = ref()
 const store = useUserStore()
+
 const LogOut = async() => {
     const res = await termekService.UserLogOut(user.value.user.token);
     store.setLoggedIn(false);
@@ -236,7 +239,7 @@ onBeforeMount(() => {
 })
 
 
-const AddNewProduct = () => {
+const AddNewProduct = async() => {
     Succesmessage.value = ""
     ErrorMessage.value = ''
 
@@ -251,50 +254,60 @@ const AddNewProduct = () => {
         name: selectedName.value,
         description: selectedDescription.value,
         price: selectedPrice.value,
-        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRuZ8qJdOA0UUnYhR7mf5xtGHeOYTp6_qmOXY8vELaGA&s"
+        picture: selectedImageLink.value
     }
+    console.log(new_product);
 
     try {
-        termekService.CreateNewProduct(new_product, user.value.user.token)   
+        await termekService.CreateNewProduct(new_product, user.value.user.token)   
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
         selectedCategory.value = selectedManufacturer.value = selectedName.value = selectedDescription.value = selectedPrice.value = null
+        products.value = 0
+        await termekService.getAllProducts()
+        .then(resp => {
+        products.value = resp.data;
+        });
+        newProduct.value = false
+        modification.value = false
     } catch (error) {
+        console.log(error.message);
         ErrorMessage.value = "Error adding product"
     }
 
 }
 
-const ChangeProduct = () => {
-    let categoryId = document.getElementById("category").querySelector("span").textContent;
-    let manufacturerId = document.getElementById("manufacturer");
+const ChangeProduct = async() => {
+
     Succesmessage.value = ""
     ErrorMessage.value = ''
-    if(categoryId == null || manufacturerId == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){
+    if(selectedCategory.value == null || selectedManufacturer.value == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){
         ErrorMessage.value = "Please fill all fields"
         return
     }
-    
 
     const changed_product = {
-        category_id: categoryId,
-        manufacturer_id: manufacturerId,
+        category_id: selectedCategory.value.id,
+        manufacturer_id: selectedManufacturer.value.id,
         name: selectedProduct.value.name,
         description: selectedProduct.value.description,
         price: selectedProduct.value.price,
-        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRuZ8qJdOA0UUnYhR7mf5xtGHeOYTp6_qmOXY8vELaGA&s"
+        picture: selectedProduct.picture
     }
 
     try {
-        // termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
+        await termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
         selectedCategory.value = selectedManufacturer.value = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price =  null
         selectedProduct.value = 0
-        termekService.getAllProducts()
+        products.value = 0
+        await termekService.getAllProducts()
         .then(resp => {
         products.value = resp.data;
         });
+        newProduct.value = false
+        modification.value = false
 
     } catch (error) {
         ErrorMessage.value = error.message

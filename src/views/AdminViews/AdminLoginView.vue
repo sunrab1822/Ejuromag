@@ -78,14 +78,14 @@ const LoginAdmin = async() => {
             if(res.user.user.role == 1){
                 store.setUser(res)
                 store.setLoggedIn(true)
-                router.push({ name: "Admin_Main" })
+                router.push({ name: "Admin Main" })
             }
             else{
                 ErrorMessage.value = "You are not admin!"
             }
 
         } catch (error) {
-
+            console.log(error);
             if(error.response.status == 401){
                 ErrorMessage.value = "Email or password is incorrect!"
             }
