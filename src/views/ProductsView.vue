@@ -82,8 +82,9 @@
 
 <script setup>
     import RadioButton from 'primevue/radiobutton';
-    import {ref, watch} from "vue";
+    import {onMounted, ref, watch} from "vue";
     import { useCartStore } from "../store/store"
+    import router from '@/router';
 
     import termekService from "../services/termekService"
 
@@ -94,7 +95,8 @@
     let maxPrice = ref(10000000);
     let OnePrice = []
     let datas = []
-    var pathname = window.location.pathname
+    var pathname = window.location.pathname.split("/").slice(1)[1]
+
     var Products = ref();
     var Manufacturers = ref();
     const siteName = ref("")
@@ -213,7 +215,7 @@
 
     function ProductShow(){
         switch (pathname){
-            case '/laptopok':
+            case 'laptopok':
                 termekService.getProducts(1)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -221,7 +223,7 @@
                     CategoryId.value = 1
                 });
                 break;
-            case '/tabletek':
+            case 'tabletek':
                 termekService.getProducts(2)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -231,7 +233,7 @@
                 });
 
                 break;
-            case '/irodai_szamitogepek':
+            case 'irodai_szamitogepek':
                 termekService.getProducts(3)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -240,7 +242,7 @@
                 });
                 
                 break;
-            case '/gamer_szamitogepek':
+            case 'gamer_szamitogepek':
                 termekService.getProducts(4)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -250,7 +252,7 @@
                 });
                 
                 break;
-            case '/telefonok':
+            case 'telefonok':
                 termekService.getProducts(5)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -259,7 +261,7 @@
                 });
                 
                 break;
-            case '/konzolok':
+            case 'konzolok':
                 termekService.getProducts(6)
                 .then(resp => {
                     Products.value = resp.data[0].product;
@@ -310,8 +312,14 @@
         store.setOnePrices(OnePrice)
 
     }
-
     ProductShow();
+
+
+    router.afterEach((to, from) => {
+        pathname = window.location.pathname.split("/").slice(1)[1]
+        ProductShow();
+    });
+
 
 </script>
 

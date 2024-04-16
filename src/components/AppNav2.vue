@@ -7,19 +7,19 @@
                     <router-link class="nav-link" data-cy="navbar2-laptops-link" to="/laptopok">Laptopok</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" data-cy="navbar2-gamerPcs-link" to="/gamer_szamitogepek">Gamer számítógépek</router-link>
+                    <router-link class="nav-link" data-cy="navbar2-gamerPcs-link" to="gamer_szamitogepek">Gamer számítógépek</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" data-cy="navbar2-officePcs-link" to="/irodai_szamitogepek">Irodai számítógépek</router-link>
+                    <router-link class="nav-link" data-cy="navbar2-officePcs-link" to="irodai_szamitogepek">Irodai számítógépek</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" data-cy="navbar2-consoles-link" to="/konzolok">Konzolok</router-link>
+                    <router-link class="nav-link" data-cy="navbar2-consoles-link" to="konzolok">Konzolok</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" data-cy="navbar2-phones-link" to="/telefonok">Telefonok</router-link>
+                    <router-link class="nav-link" data-cy="navbar2-phones-link" to="telefonok">Telefonok</router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link class="nav-link" data-cy="navbar2-tablets-link" to="/tabletek">Tabletek</router-link>
+                    <router-link class="nav-link" data-cy="navbar2-tablets-link" to="tabletek">Tabletek</router-link>
                   </li>
 
                 </ul>
