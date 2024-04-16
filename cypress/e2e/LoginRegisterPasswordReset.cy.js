@@ -1,17 +1,17 @@
 describe('Belépés oldal tesztje', () => {
   it('Sikeres belépés', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
 
     cy.get('[data-cy="EmailInput"]').type('asd@gmail.com');
     cy.get('[data-cy="PasswordInput"]').type('asdfghjkl');
 
     cy.get('[data-cy="LoginButton"]').click();
 
-    cy.url().should('eq', 'http://bgs.jedlik.eu/ejuromag/profil');
+    cy.url().should('eq', 'http://localhost:5173/profil');
   });
 
   it('Sikertelen belépés', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
 
     cy.get('[data-cy="EmailInput"]').type('fake@gmail.com');
     cy.get('[data-cy="PasswordInput"]').type('k');
@@ -26,7 +26,7 @@ describe('Belépés oldal tesztje', () => {
 
 describe('Regisztráció oldal tesztje', () => {
   it('Sikeres regisztráció', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
 
     cy.get('[data-cy="RegisterButton"]').click()
 
@@ -46,7 +46,7 @@ describe('Regisztráció oldal tesztje', () => {
 
   });
   it('Sikertelen regisztráció', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
 
     cy.get('[data-cy="RegisterButton"]').click()
 
@@ -68,14 +68,14 @@ describe('Regisztráció oldal tesztje', () => {
 
 describe('Elfelejtett jelszó oldal tesztje', () => {
   it('Sikeres jelszó visszaállítás', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
     cy.get('[data-cy="PasswordResetButton"]').click()
     cy.get('[data-cy="ResetEmailInput"]').type('dassayss@gmail.com');
     cy.get('[data-cy="EmailResetButton"]').click()
     cy.get('[data-cy="Succesmessage"]').should('be.visible').should('have.text', 'Email elküldve')})
 
   it('Sikertelen jelszó visszaállítás', () => {
-    cy.visit('http://bgs.jedlik.eu/ejuromag/login')
+    cy.visit('http://localhost:5173/login')
     cy.get('[data-cy="PasswordResetButton"]').click()
     cy.get('[data-cy="ResetEmailInput"]').type('fake@gmail.com');
     cy.get('[data-cy="EmailResetButton"]').click()

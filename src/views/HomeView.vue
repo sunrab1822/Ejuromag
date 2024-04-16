@@ -9,12 +9,21 @@ export default {
         return {
             slides: [
                 {
+<<<<<<< HEAD
                     image: "/ejuromag/vueperSlides1.webp",
                     link: 'http://bgs.jedlik.eu/ejuromag/help/Rolunk'
                 },
                 {
                     image: "/ejuromag/vueperSlides2.webp",
                     link: 'http://bgs.jedlik.eu/ejuromag/login'
+=======
+                    image: "/vueperSlides1.webp",
+                    link: 'http://localhost:5173/help/Rolunk'
+                },
+                {
+                    image: "/vueperSlides2.webp",
+                    link: 'http://localhost:5173/login'
+>>>>>>> parent of 82768b6 (localhost átírva)
                 },
                 {
 
