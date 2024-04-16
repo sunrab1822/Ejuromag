@@ -10,11 +10,11 @@ export default {
             slides: [
                 {
                     image: "/vueperSlides1.webp",
-                    link: 'http://localhost:5173/help/Rolunk'
+                    link: 'http://bgs.jedlik.eu/ejuromag/help/Rolunk'
                 },
                 {
                     image: "/vueperSlides2.webp",
-                    link: 'http://localhost:5173/login'
+                    link: 'http://bgs.jedlik.eu/ejuromag/login'
                 },
                 {
 

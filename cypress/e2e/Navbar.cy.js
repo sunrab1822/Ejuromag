@@ -1,6 +1,6 @@
 describe('navBarTesztje', () => {
   beforeEach(() => {
-      cy.visit('http://localhost:5173')
+      cy.visit('http://bgs.jedlik.eu/ejuromag')
   })
 
 
@@ -29,7 +29,7 @@ describe('navBarTesztje', () => {
 
   it('A képre kattintva vissza kell vinnie a főoldalra', () => {
       cy.get('[data-cy="logo-img"]').click()
-      cy.url().should('eq', "http://localhost:5173/")
+      cy.url().should('eq', "http://bgs.jedlik.eu/ejuromag")
   })
 
 

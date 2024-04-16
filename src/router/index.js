@@ -144,10 +144,10 @@ function checkIfUserLoggedIn(from, to, next) {
     if(isLoggedIn === true) {
       next();       
   } else {
-    window.location.href = 'http://localhost:5173';
+    window.location.href = 'http://bgs.jedlik.eu/ejuromag';
   }
   } catch (error) {
-    window.location.href = 'http://localhost:5173';
+    window.location.href = 'http://bgs.jedlik.eu/ejuromag';
   }
 
 }
@@ -163,10 +163,10 @@ function checkAdminRights(from, to, next) {
     if(user.user.user.role === 1) {
       next();       
   } else {
-    window.location.href = 'http://localhost:5173';
+    window.location.href = 'http://bgs.jedlik.eu/ejuromag';
   }
   } catch (error) {
-    window.location.href = 'http://localhost:5173';
+    window.location.href = 'http://bgs.jedlik.eu/ejuromag';
   }
 
 }
