@@ -9,19 +9,19 @@ export default {
         return {
             slides: [
                 {
-                    image: "/vueperSlides1.webp",
+                    image: "/ejuromag/vueperSlides1.webp",
                     link: 'http://bgs.jedlik.eu/ejuromag/help/Rolunk'
                 },
                 {
-                    image: "/vueperSlides2.webp",
+                    image: "/ejuromag/vueperSlides2.webp",
                     link: 'http://bgs.jedlik.eu/ejuromag/login'
                 },
                 {
 
-                    image: "/vueperSlides3.webp",
+                    image: "/ejuromag/vueperSlides3.webp",
                 },
                 {
-                    image: "/vueperSlides4.webp",
+                    image: "/ejuromag/vueperSlides4.webp",
                 },
             ]
         }

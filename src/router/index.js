@@ -21,110 +21,111 @@ import { useUserStore } from "../store/store.js"
 document.title = "Ejuromag"
 
 const router = createRouter({
+  base: "/ejuromag",
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/ejuromag/',
+      path: '/',
       name: 'Főoldal',
       component: HomeView
     },
     {
-      path: '/ejuromag/:pathMatch(.*)*',
+      path: '/:pathMatch(.*)*',
       name: "404",
       component: ErrorView
     },
     {
-      path: "/ejuromag/help/Rendeles_es_szallitas",
+      path: "/help/Rendeles_es_szallitas",
       name: "Rendelés és szállitás",
       component: OrderInfosView
     },
     {
-      path: '/ejuromag/help/Rolunk',
+      path: '/help/Rolunk',
       name: 'Rólunk',
       component: AboutUsView
     },
     {
-      path: '/ejuromag/kosar',
+      path: '/kosar',
       name: 'Kosár',
       component: CartView
     },
     {
-      path: '/ejuromag/rendeles_osszegzes',
+      path: '/rendeles_osszegzes',
       name: 'Rendelés összegzése',
       beforeEnter: checkIfUserLoggedIn,
       component: OrderFinalizeView
     },
     {
-      path: '/ejuromag/login',
+      path: '/login',
       name: 'Belépés',
       component: LoginAndRegisterView
     },
     {
-      path: '/ejuromag/resetPassword/:token',
+      path: '/resetPassword/:token',
       name: 'Jelszó visszaállítás',
       component: PasswordResetView
     },
     {
-      path: '/ejuromag/profil',
+      path: '/profil',
       name: 'Profil',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfileView
     },
     {
-      path: '/ejuromag/laptopok',
+      path: '/laptopok',
       name: 'Laptopok',
       component: ProductsView
     },
     {
-      path: '/ejuromag/irodai_szamitogepek',
+      path: '/irodai_szamitogepek',
       name: 'Irodai számítógépek',
       component: ProductsView
     },
     {
-      path: '/ejuromag/gamer_szamitogepek',
+      path: '/gamer_szamitogepek',
       name: 'Gamer számítógépek',
       component: ProductsView
     },
     {
-      path: '/ejuromag/telefonok',
+      path: '/telefonok',
       name: 'Telefonok',
       component: ProductsView
     },
     {
-      path: '/ejuromag/tabletek',
+      path: '/tabletek',
       name: 'Tabletek',
       component: ProductsView
     },
     {
-      path: '/ejuromag/konzolok',
+      path: '/konzolok',
       name: 'Konzolok',
       component: ProductsView
     },
     {
-      path: '/ejuromag/profil/sajat_adatok',
+      path: '/profil/sajat_adatok',
       name: 'Profil Saját Adatok',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfileDatasViewVue
     },
     {
-      path: '/ejuromag/profil/jelszo_csere',
+      path: '/profil/jelszo_csere',
       name: 'Jelszó csere',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfilePasswordResetView
     },
     {
-      path: '/ejuromag/profil/rendelesek',
+      path: '/profil/rendelesek',
       name: 'Profil Rendelések',
       beforeEnter: checkIfUserLoggedIn,
       component: ProfileOrdersViewVue
     },
 
     {
-      path: '/ejuromag/admin',
+      path: '/admin',
       name: 'Admin',
       component: AdminLoginView
     },    {
-      path: '/ejuromag/admin/main',
+      path: '/admin/main',
       name: 'Admin Main',
       beforeEnter: checkAdminRights,
       component: AdminMainView
