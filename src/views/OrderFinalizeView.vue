@@ -82,12 +82,6 @@
                                 <figcaption>990 Ft</figcaption>
                             </figure>
                         </Button>
-                        <Button class="row" @click="OrderShippingImg = '/Packeta_szallitas.webp', OrderShippingPrice = 1480">
-                            <figure @click="nextCallback">
-                                <img class="ShippingImgs" src="/Packeta_szallitas.webp" alt="" srcset="">
-                                <figcaption>1 480 Ft</figcaption>
-                            </figure>
-                        </Button>
 
                         </div>
                     </div>
@@ -98,7 +92,7 @@
             </StepperPanel>
             <StepperPanel header="Rendelés összegzése">
                 <template #content="{ prevCallback }">
-                    <div class="flex flex-column h-20rem contrainer">
+                    <div class="container">
                         <div  class=" row border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
                             <div class="card col-lg-3 col-md-3 col-12" >
                                 <div class="card-header">
@@ -246,6 +240,11 @@ const SendOrder = () => {
 
 
 <style scoped>
+
+.card{
+    margin-left: 10px !important;
+}
+
 .SzemelyesAdatokDiv{
     margin-bottom: 1.5rem;
 }

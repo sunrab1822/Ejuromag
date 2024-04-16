@@ -256,13 +256,12 @@ const AddNewProduct = async() => {
         price: selectedPrice.value,
         picture: selectedImageLink.value
     }
-    console.log(new_product);
 
     try {
         await termekService.CreateNewProduct(new_product, user.value.user.token)   
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
-        selectedCategory.value = selectedManufacturer.value = selectedName.value = selectedDescription.value = selectedPrice.value = null
+        selectedCategory.value = selectedManufacturer.value = selectedName.value = selectedDescription.value = selectedPrice.value = selectedImageLink.value = null
         products.value = 0
         await termekService.getAllProducts()
         .then(resp => {
@@ -271,7 +270,6 @@ const AddNewProduct = async() => {
         newProduct.value = false
         modification.value = false
     } catch (error) {
-        console.log(error.message);
         ErrorMessage.value = "Error adding product"
     }
 
@@ -281,7 +279,7 @@ const ChangeProduct = async() => {
 
     Succesmessage.value = ""
     ErrorMessage.value = ''
-    if(selectedCategory.value == null || selectedManufacturer.value == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null){
+    if(selectedCategory.value == null || selectedManufacturer.value == null || selectedProduct.value.name == null || selectedProduct.value.description == null || selectedProduct.value.price == null || selectedProduct.value.picture == null){
         ErrorMessage.value = "Please fill all fields"
         return
     }
@@ -292,14 +290,14 @@ const ChangeProduct = async() => {
         name: selectedProduct.value.name,
         description: selectedProduct.value.description,
         price: selectedProduct.value.price,
-        picture: selectedProduct.picture
+        picture: selectedProduct.value.picture
     }
 
     try {
-        await termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)   
+        await termekService.UpdateProduct(changed_product, selectedProduct.value.id, user.value.user.token)           
         Succesmessage.value = "Product added succesfully"
         ErrorMessage.value = ''
-        selectedCategory.value = selectedManufacturer.value = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price =  null
+        selectedCategory.value = selectedManufacturer.value = selectedProduct.value.name = selectedProduct.value.description = selectedProduct.value.price = selectedProduct.value.picture = null
         selectedProduct.value = 0
         products.value = 0
         await termekService.getAllProducts()

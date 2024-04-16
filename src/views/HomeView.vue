@@ -13,18 +13,15 @@ export default {
                     link: 'http://localhost:5173/help/Rolunk'
                 },
                 {
-                    image: "/NeedToRegisterSlides2.webp",
+                    image: "/vueperSlides2.webp",
                     link: 'http://localhost:5173/login'
                 },
                 {
 
-                    image: "/SocialMediaSlides33.webp",
+                    image: "/vueperSlides3.webp",
                 },
                 {
-                    title: 'El Teide Volcano, Spain',
-                    content: 'Photo by Max Rive',
-                    image: "asd",
-                    link: 'https://www.maxrivephotography.com/index/C0000rU1RKCHdqwI/G0000X57AtIzuRX0/I0000Gvr9HqdtyXk'
+                    image: "/vueperSlides4.webp",
                 },
             ]
         }

@@ -1,31 +1,32 @@
 <template>
-    <div class="row">
-      <div class="col-2">
-        <ProfileNavbar />
-      </div>
-  
-      <div class="col-10 button-85">
-        <fieldset>
-          <div class="row password-reset">
-            <div class="col-6">
-              <h2>Biztosan szeretnéd megváltoztatni a jelszavadat?</h2>
-            </div>
-  
-            <div class="col-6">
-              <button class="cursor-pointer button-33" @click="emailReset">Mentés</button>
-            </div>
-  
-            <ProgressSpinner v-if="loading" />
-  
-            <div v-if="successMessage" class="alert alert-success alert-dismissible" role="alert">
-              <strong>{{ successMessage }}</strong>
-              <button type="button" @click="successMessage = ''" class="btn-close"></button>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+  <div class="row width">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+      <ProfileNavbar />
     </div>
-  </template>
+
+    <div class="col-10 button-85">
+      <fieldset>
+        <div class="row password-reset">
+          <div class="alignCenter">
+            <h2>Biztosan szeretnéd megváltoztatni a jelszavadat?</h2>
+          </div>
+
+          <div class="alignCenter">
+            <button class="cursor-pointer button-33" @click="emailReset">Email kűldése</button>
+          </div>
+
+          <ProgressSpinner v-if="loading" />
+
+          <div v-if="successMessage" class="alert alert-success alert-dismissible" role="alert">
+            <strong>{{ successMessage }}</strong>
+            <button type="button" @click="successMessage = ''" class="btn-close"></button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+</template>
   
   <script setup>
   import ProfileNavbar from '../../components/ProfileNavbar.vue';
@@ -65,5 +66,11 @@
   <style lang="scss" scoped>
   .password-reset {
     margin: 5rem;
+
   }
+  .alignCenter{
+    margin-top: 1rem;
+    text-align: center;
+  }
+
   </style>

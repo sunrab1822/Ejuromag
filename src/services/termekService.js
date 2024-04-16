@@ -93,9 +93,13 @@ export default {
         const resp = await axios.post('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/createProduct', data)
         return resp.data
     },
-    async UpdateProduct(data, id, token){
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-        const resp = await axios.put('https://bgs.jedlik.eu/ejuromag/Ejuromag/api/modifyProduct/' + id, data)
-        return resp.data
-    }
+    async UpdateProduct(data, id, token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const resp = await axios({
+          method: 'PUT',
+          url: 'https://bgs.jedlik.eu/ejuromag/Ejuromag/api/modifyProduct/' + id,
+          data: data
+        });
+        return resp.data;
+      }
 }
