@@ -37,52 +37,52 @@ export default {
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-2 " >
-                <a  href="/laptopok">
+                <router-link to="/laptopok">
                     <div data-cy="LaptopButton" class="button margin-transition laptopPng">
                         <p class="font">Laptopok</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
             <div class="col-lg-2 col-md-2 " >
-                <a href="/gamer_szamitogepek">
+                <router-link to="/gamer_szamitogepek">
                     <div data-cy="GamerPcButton" class="button margin-transition gamerpcPng">
                         <p class="font">Gamer Számitógépek</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
             <div class="col-lg-2 col-md-2 " >
-                <a href="/irodai_szamitogepek">
+                <router-link to="/irodai_szamitogepek">
                     <div data-cy="OfficePcButton" class="button margin-transition officepcPng">
                         <p class="font">Irodai Számítógépek</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
 
             <div class="col-lg-2 col-md-2 ">
-                <a href="/konzolok">
+                <router-link to="/konzolok">
                     <div data-cy="ConsoleButton" class="button margin-transition consolePng">
                         <p class="font">Konzolok</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
             <div class="col-lg-2 col-md-2 ">
-                <a href="/telefonok">
+                <router-link to="/telefonok">
                     <div data-cy="PhoneButton" class="button margin-transition phonePng">
                         <p class="font">Telefonok</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
             <div class="col-lg-2 col-md-2 ">
-                <a href="/tabletek">
+                <router-link to="/tabletek">
                     <div data-cy="TabletButton" class="button margin-transition tabletPng">
                         <p class="font">Tabletek</p>
                     </div>
-                </a>
+                </router-link>
             </div>
 
         </div>

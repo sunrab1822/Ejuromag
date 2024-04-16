@@ -3,9 +3,9 @@
 <div>
     <nav data-cy="KosarBelepesNav" class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <router-link class="navbar-brand" to="/">
                 <img data-cy="logo-img" src="/EjuroMagLogo.webp" alt="Logo">
-            </a>
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,11 +20,11 @@
                 <div class="row">
 
                     <div class="nav-item col-6" >
-                        <a v-badge="cartCounter" id="Cart" data-cy="navbar-kosar-link" class="nav-link" href="/kosar"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <router-link v-badge="cartCounter" id="Cart" data-cy="navbar-kosar-link" class="nav-link" to="/kosar"><i class="fa-solid fa-cart-shopping"></i></router-link>
 
                     </div>
                     <div class="dropdown col-6">
-                        <a class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></a>
+                        <router-link class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></router-link>
                     </div>
                 </div>
             </div>

@@ -19,16 +19,16 @@
                 <div></div>
                 <div>
                     <p style="color: white">DropBox + https://www.the-qrcode-generator.com</p>
-                    <a href="/help/Rendeles_es_szallitas">Rendelés és Szállítási információk</a>
+                    <router-link to="/help/Rendeles_es_szallitas">Rendelés és Szállítási információk</router-link>
                 <div>
-                    <a href="/help/Rolunk">Rólunk</a>
+                    <router-link to="/help/Rolunk">Rólunk</router-link>
 
                 </div>
                 </div>
                     <div class=" SocialIcons">
-                        <a href="" ><i id="fa-facebook" class="fa-brands fa-facebook"></i></a>
-                        <a href="" ><i id="fa-tiktok" class="fa-brands fa-tiktok"></i></a>
-                        <a href="" ><i id="fa-instagram" class="fa-brands fa-instagram"></i></a>
+                        <router-link to="" ><i id="fa-facebook" class="fa-brands fa-facebook"></i></router-link>
+                        <router-link to="" ><i id="fa-tiktok" class="fa-brands fa-tiktok"></i></router-link>
+                        <router-link to="" ><i id="fa-instagram" class="fa-brands fa-instagram"></i></router-link>
                     </div>
             </div>
             
