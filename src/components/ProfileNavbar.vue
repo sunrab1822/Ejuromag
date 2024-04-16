@@ -20,22 +20,22 @@
 
                                 <ul class="list-none p-0 m-0 overflow-hidden">
                                     <li>
-                                        <a href="/profil/rendelesek" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <router-link to="/profil/rendelesek" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-home mr-2"></i>
                                             <span class="font-medium">Rendelések</span>
-                                        </a>
+                                        </router-link>
                                     </li>
                                     <li>
-                                        <a href="/profil/jelszo_csere" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <router-link to="/profil/jelszo_csere" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-bookmark mr-2"></i>
                                             <span class="font-medium">Jelszó csere</span>
-                                        </a>
+                                        </router-link>
                                     </li>
                                     <li>
-                                        <a href="/profil/sajat_adatok" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <router-link to="/profil/sajat_adatok" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-bookmark mr-2"></i>
                                             <span class="font-medium">Fiókadatok</span>
-                                        </a>
+                                        </router-link>
                                     </li>
                                     <li>
                                         <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
