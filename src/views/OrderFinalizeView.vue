@@ -70,13 +70,13 @@
                     <div class="flex flex-column OrderFinalize">
                         <div class="container border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
 
-                        <Button @click="OrderShippingImg ='/Posta_szallitas.webp', OrderShippingPrice = 1590">
+                        <Button @click="OrderShippingImg ='/ejuromag/Posta_szallitas.webp', OrderShippingPrice = 1590">
                             <figure @click="nextCallback">
                                 <img class="ShippingImgs" src="/Posta_szallitas.webp" alt="" srcset="">
                                 <figcaption>1.590,- Ft</figcaption>
                             </figure>
                         </Button>
-                        <Button @click="OrderShippingImg = '/PostaPont_szallitas.webp', OrderShippingPrice = 990">
+                        <Button @click="OrderShippingImg = '/ejuromag/PostaPont_szallitas.webp', OrderShippingPrice = 990">
                             <figure @click="nextCallback">
                                 <img class="ShippingImgs" src="/PostaPont_szallitas.webp" alt="" srcset="">
                                 <figcaption>990 Ft</figcaption>

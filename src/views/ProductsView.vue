@@ -316,6 +316,10 @@
     onMounted(() => {
         ProductShow();
         router.afterEach((to, from) => {
+        SelectedManufacturer.value = false
+        ProductName.value = []
+        maxPrice.value = 10000000
+        minPrice.value = 0
         pathname = window.location.pathname.split("/").slice(1)[1]
         ProductShow();
     });
