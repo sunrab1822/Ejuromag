@@ -82,7 +82,7 @@
 
 <script setup>
     import RadioButton from 'primevue/radiobutton';
-    import {onMounted, ref, watch} from "vue";
+    import {onBeforeUnmount, onMounted, ref, watch} from "vue";
     import { useCartStore } from "../store/store"
     import router from '@/router';
 
@@ -312,13 +312,15 @@
         store.setOnePrices(OnePrice)
 
     }
-    ProductShow();
 
-
-    router.afterEach((to, from) => {
+    onMounted(() => {
+        ProductShow();
+        router.afterEach((to, from) => {
         pathname = window.location.pathname.split("/").slice(1)[1]
         ProductShow();
     });
+    })
+
 
 
 </script>

@@ -51,7 +51,7 @@
                     <div class="mt-auto">
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <div class="m-3 flex align-items-center p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <Avatar image="http://localhost:5173/UserImg.webp" shape="circle" size="large"/>
+                            <Avatar image="http://bgs.jedlik.eu/ejuromag/UserImg.webp" shape="circle" size="large"/>
                             <span class="font-bold">{{user.user.user.name}}</span>
                         </div>
                     </div>
