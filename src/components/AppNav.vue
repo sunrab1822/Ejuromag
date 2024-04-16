@@ -24,7 +24,7 @@
 
                     </div>
                     <div class="dropdown col-6">
-                        <router-link class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></router-link>
+                        <a class="nav-link fa-solid fa-user" data-cy="navbar-login-link" @click="Login"></a>
                     </div>
                 </div>
             </div>

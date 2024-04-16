@@ -21,7 +21,6 @@ import { useUserStore } from "../store/store.js"
 document.title = "Ejuromag"
 
 const router = createRouter({
-  base: "/ejuromag",
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -68,7 +67,7 @@ const router = createRouter({
     {
       path: '/profil',
       name: 'Profil',
-      beforeEnter: checkIfUserLoggedIn,
+    beforeEnter: checkIfUserLoggedIn,
       component: ProfileView
     },
     {

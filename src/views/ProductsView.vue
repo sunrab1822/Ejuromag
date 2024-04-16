@@ -57,7 +57,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-lg-4 col-sm-4">
-                                <img class="ProductImg":src="product.picture" alt="" srcset="">
+                                <img class="ProductImg" :src="product.picture" alt="" srcset="">
                             </div>
 
                             <div class="col-md-4 col-lg-4 col-sm-4">
