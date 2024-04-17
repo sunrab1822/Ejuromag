@@ -7,7 +7,7 @@
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 col-10">
             <h1 class="h1Custom">Rendelések</h1>
             <div v-for="order in orders" class="OrderStyle">
-                <h1>Rendelésed száma: {{ order.id }}</h1>
+                <h1>Rendelésed azonosító száma: {{ order.id }}</h1>
                 <h1>Szállítási cím: {{ order.adress }}</h1>
                 <h1>Rendelés összege: {{ order.price }} Ft</h1>
                 <div v-for="product in order.products" class="card button-85">
