@@ -5,7 +5,7 @@
 
             <div id="QrCodeContainer">
                 <div id="QrCodeImage">
-                    <img id="QrCode" src='/QrCodePlaceholder.webp' alt="QrKód" >
+                    <img id="QrCode" src='/QrCodeForApk.webp' alt="QrKód" >
                 </div>
                 <div id="QrCodeText">
                     <h3 class="text-center text-white">Töltsd le az EjuroMag appot</h3>
@@ -18,7 +18,6 @@
             <div class="FooterContainer">
                 <div></div>
                 <div>
-                    <p style="color: white">DropBox + https://www.the-qrcode-generator.com</p>
                     <router-link to="/help/Rendeles_es_szallitas">Rendelés és Szállítási információk</router-link>
                 <div>
                     <router-link to="/help/Rolunk">Rólunk</router-link>
